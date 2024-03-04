@@ -17,10 +17,10 @@ from django.views.generic import View
 
 
 def index(request):
-    product = Main_category.objects.all()
+    main_category = Main_category.objects.all()
 
     context = {
-        "main_cat":product,
+        "main_cat":main_category,
     }
     return render(request, 'core/index.html', context)
 

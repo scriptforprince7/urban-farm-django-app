@@ -309,94 +309,20 @@
           }
         }'>
                     <div class="swiper-wrapper">
-
+                        {% for main in main_cat %}
                         <a href="/category" class="category-page">
                             <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3" src="{% static "images/category2/hyrdeas.jpeg" %}"
+                                <img loading="lazy" class="w-100 h-auto mb-3" src="{{main.image.url}}"
                                     alt="">
                                 <div class="text-center">
                                     <a href="/category" class="menu-link fw-medium">
-                                        Hydroponic <br> Accessories
+                                       {{main.main_title}}
                                     </a>
                                 </div>
                             </div>
                         </a>
-                        <a href="/category" class="category-page">
-                            <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3" src="{% static "images/category2/growing_sys.jpg" %}"
-                                    alt="">
-                                <div class="text-center">
-                                    <a href="/category" class="menu-link fw-medium">
-                                        Hydroponic <br> Growing Systems
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/category" class="category-page">
-                            <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3"
-                                    src="{% static "images/category2/measuring_ins.jpg" %}" alt="">
-                                <div class="text-center">
-                                    <a href="/category" class="menu-link fw-medium">
-                                        Measuring <br> Instruments
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/category" class="category-page">
-                            <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3" src="{% static 'images/category2/nft.jpg' %}" alt="">
-                                <div class="text-center">
-                                    <a href="/category" class="menu-link fw-medium">
-                                        NFT <br>System
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/category" class="category-page">
-                            <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3" src="{% static 'images/category2/indoor.jpg' %}"
-                                    alt="">
-                                <div class="text-center">
-                                    <a href="/category" class="menu-link fw-medium">
-                                        Indoor<br> Hydroponic Systems
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/category" class="category-page">
-                            <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3"
-                                    src="{% static 'images/category2/agricultural_product.jpg' %}" alt="">
-                                <div class="text-center">
-                                    <a href="/category" class="menu-link fw-medium">
-                                        Agriculture <br>Product
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/category" class="category-page">
-                            <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3"
-                                    src="{% static 'images/category2/agricul_tray.jpg' %}" alt="">
-                                <div class="text-center">
-                                    <a href="/category" class="menu-link fw-medium">
-                                        Agricultural <br>Tray
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/category" class="category-page">
-                            <div class="swiper-slide">
-                                <img loading="lazy" class="w-100 h-auto mb-3" src="{% static 'images/category2/soil.jpg' %}"
-                                    alt="">
-                                <div class="text-center">
-                                    <a href="/category" class="menu-link fw-medium">
-                                        Soilless <br>Farming
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
+                        {% endfor %}
+                       
                     </div>
                 </div>
 

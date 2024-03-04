@@ -140,9 +140,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 JAZZMIN_SETTINGS = {
-    'site_header': "The Panipat Handloom",
-    'site_brand': "One Stop Shop",
-    'site_logo': "wp-content/themes/minimog-child-demo/assets/demos/megamog/tphh.png",
+    'site_header': "Urban Farms",
+    'site_brand': "Urban Farms",
+    'site_logo': "images/logo-dark.png",
     'copyright': "Prince Sachdeva (Software Developer)",
 }
 
