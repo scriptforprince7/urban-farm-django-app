@@ -1,0 +1,10 @@
+User-agent: *
+
+Allow: /
+
+Disallow: /user/sign-up/
+Disallow: /user/sign-in/
+Disallow: /write-to-ceo/
+Disallow: /contact-us/
+Disallow: /career/
+Disallow: /about-us/
