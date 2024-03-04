@@ -18,74 +18,14 @@ from django.views.generic import View
 
 def index(request):
     product = Main_category.objects.all()
-    walpaper_cat = Company_name.objects.filter(wallpaper_category=True)
-    curtain_sofa_brands = Company_name.objects.filter(curtain_sofa_brands=True)
-    mattresses_brands = Company_name.objects.filter(mattresses_brands=True)
-    window_blind_brands = Company_name.objects.filter(window_blinds_brands=True)
-    carpet_tile_office = Company_name.objects.filter(carpet_tile_for_office_brands=True)
-    rugs_brands = Company_name.objects.filter(rugs_brands=True)
-    pillow_brands = Company_name.objects.filter(pillow_brands=True)
-    hospital_floor_walls = Company_name.objects.filter(hospital_walls_brands=True)
-    wooden_laminate = Company_name.objects.filter(wooden_laminate_flooring_brands=True)
-    pvc_rubber = Company_name.objects.filter(pvc_rubber_flooring_brands=True)
-    curtain_rods_channel = Company_name.objects.filter(curtains_rods_channel_brands=True)
-    foam_material = Company_name.objects.filter(foam_material_brands=True)
-    awning_canopy = Company_name.objects.filter(awning_canopy_brands=True)
-
 
     context = {
         "main_cat":product,
-        "walpaper_cat": walpaper_cat,
-        "curtain_sofa_brands": curtain_sofa_brands,
-        "mattresses_brands": mattresses_brands,
-        "window_blind_brands": window_blind_brands,
-        "carpet_tile_office": carpet_tile_office,
-        "rugs_brands": rugs_brands,
-        "pillow_brands": pillow_brands,
-        "hospital_floor_walls": hospital_floor_walls,
-        "wooden_laminate": wooden_laminate,
-        "pvcrubber": pvc_rubber,
-        "curtain_rods_channel": curtain_rods_channel,
-        "foam_material": foam_material,
-        "awning_canopy": awning_canopy,
     }
     return render(request, 'core/index.html', context)
 
-def category(request, cat_title):
-    category = Category.objects.get(cat_title=cat_title)
-    company_names = Company_name.objects.filter(category=category)
-    
-    # Fetch all sub-categories related to the category
-    all_sub_categories = Sub_categories.objects.filter(category=category)
-
-    # Specify the desired order for "Wallpapers" sub-categories
-    wallpaper_order = ['SABYASACHI', 'Versace', 'Dolce & Gabbana', 'Lamborghini', 'Good Earth', 'Philipp Plein', 'Trussardi', 'Roberto Cavalli', 'Cole & Sons', 'Tailor Weave by Burberry', 'Customization', 'Deluxe', 'Economic']
-
-    # Conditionally order sub-categories based on the category
-    sub_categories = all_sub_categories.order_by(
-        Case(
-            *[When(sub_cat_title=title, then=pos) for pos, title in enumerate(wallpaper_order)],
-            default=Value(999),  # Default value for other sub-categories (alphabetical order)
-            output_field=IntegerField()
-        )
-    )
-
-    # Fetch related products using the relationships
-    products = Product.objects.filter(
-        category=category,
-        sub_category__in=all_sub_categories,
-        company_name__in=company_names
-    )
-
-    context = {
-        "category": category,
-        "company_names": company_names,
-        "sub_categories": sub_categories,
-        "products": products,
-    }
-
-    return render(request, "core/category.html", context)
-
+def category(request):
+    return render(request, "core/category.html")
 
 def sub_category(request, sub_cat_slug):
     sub_cats = Sub_categories.objects.filter(slug=sub_cat_slug)
@@ -119,17 +59,8 @@ def sub_category(request, sub_cat_slug):
 
     return render(request, "core/sub-category.html", context)
 
-
-
-def main_category(request, main_title):
-    main_categories = Main_category.objects.get(main_title=main_title)
-    categories = Category.objects.filter(main_category=main_categories)
-
-    context = {
-        "main_categories": main_categories,
-        "categories": categories,
-    }
-    return render(request, "core/main_category.html", context)
+def main_category(request):
+    return render(request, "core/main_category.html")
 
 
 def add_to_cart(request):
@@ -342,7 +273,7 @@ def about(request):
     return render(request, "core/about-us.html")
 
 def contact(request):
-    return render(request, "core/contact-us.html")
+    return render(request, "core/contact_us.html")
 
 def career(request):
     return render(request, "core/career.html")
@@ -369,6 +300,9 @@ class RobotsTxtView(View):
             content = f.read()
 
         return HttpResponse(content, content_type='text/plain')
+    
+def product_new(request):
+    return render(request, "core/product.html")
 
 
 

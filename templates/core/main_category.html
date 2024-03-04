@@ -1,0 +1,155 @@
+{% extends "partials/base.html" %} {% load static %} {% block main %}
+
+<main>
+  <div class="mb-4 pb-4"></div>
+  <section class="lookbook container">
+    <h2 class="page-title">
+      <span style="text-transform: capitalize"> Shop by</span> Categories
+    </h2>
+  </section>
+  <section class="lookbook-collection">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column">
+          <a
+            href="/category"
+            class="lookbook-collection__item position-relative flex-grow-1 mb-4 effect border-plus"
+          >
+            <div class="lookbook-collection__item-image">
+              <img
+                loading="lazy"
+                src="{% static './images/cat-3/cat-01.jpeg' %}"
+                width="690"
+                height="399"
+                alt=""
+              />
+            </div>
+            <div
+              class="content_abs content_bottom content_left content_bottom-md content_left-md"
+            >
+              <p class="text-uppercase mb-1 white-color"></p>
+              <h3 class="white-color">Hydroponic Accessories</h3>
+            </div>
+          </a>
+          <a
+            href="/category"
+            class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus"
+          >
+            <div class="lookbook-collection__item-image">
+              <img
+                loading="lazy"
+                src="{% static './images/cat-3/cat-02.jpg' %}"
+                width="690"
+                height="399"
+                alt=""
+              />
+            </div>
+            <div
+              class="content_abs content_bottom content_left content_bottom-md content_left-md"
+            >
+              <p class="text-uppercase mb-1 white-color"></p>
+              <h3 class="white-color">Hydroponic Growing Systems</h3>
+            </div>
+            <!-- /.content_abs content_bottom content_left content_bottom-md content_left-md -->
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <a
+            href="/category"
+            class="lookbook-collection__item size-lg position-relative mb-4 effect border-plus"
+          >
+            <div class="lookbook-collection__item-image">
+              <img
+                loading="lazy"
+                src="{% static './images/cat-3/cat-03.jpg' %}"
+                width="690"
+                height="826"
+                alt=""
+              />
+            </div>
+            <div
+              class="content_abs content_bottom content_left content_bottom-md content_left-md"
+            >
+              <p class="white-color text-uppercase mb-1"></p>
+              <h3 class="white-color">Measuring Instruments</h3>
+            </div>
+            <!-- /.content_abs content_bottom content_left content_bottom-md content_left-md -->
+          </a>
+        </div>
+        <!-- /.col-md-6 -->
+        <div class="col-lg-6">
+          <a
+            href="/category"
+            class="lookbook-collection__item size-lg position-relative mt-1 mb-4 effect border-plus"
+          >
+            <div class="lookbook-collection__item-image">
+              <img
+                loading="lazy"
+                src="{% static 'images/cat-3/cat-07.jpg' %}"
+                width="690"
+                height="826"
+                alt=""
+              />
+            </div>
+            <div
+              class="content_abs content_bottom content_left content_bottom-md content_left-md"
+            >
+              <p class="text-uppercase mb-1"></p>
+              <h3>NFT System</h3>
+            </div>
+            <!-- /.content_abs content_bottom content_left content_bottom-md content_left-md -->
+          </a>
+        </div>
+        <!-- /.col-md-6 -->
+        <div class="col-lg-6 d-flex flex-column">
+          <a
+            href="/category"
+            class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus"
+          >
+            <div class="lookbook-collection__item-image">
+              <img
+                loading="lazy"
+                src="{% static './images/cat-3/cat-05.jpg' %}"
+                width="690"
+                height="399"
+                alt=""
+              />
+            </div>
+            <div
+              class="content_abs content_bottom content_left content_bottom-md content_left-md"
+            >
+              <p class="white-color text-uppercase mb-1"></p>
+              <h3 class="white-color">Indoor Hydroponic Systems</h3>
+            </div>
+            <!-- /.content_abs content_bottom content_left content_bottom-md content_left-md -->
+          </a>
+          <a
+            href="/category"
+            class="lookbook-collection__item position-relative flex-grow-1 mt-1 mb-4 effect border-plus"
+          >
+            <div class="lookbook-collection__item-image">
+              <img
+                loading="lazy"
+                src="{% static './images/cat-3/cat-08.jpg' %}"
+                width="690"
+                height="399"
+                alt=""
+              />
+            </div>
+            <div
+              class="content_abs content_bottom content_left content_bottom-md content_left-md"
+            >
+              <p class="white-color text-uppercase mb-1"></p>
+              <h3 class="white-color">Agriculture Product</h3>
+            </div>
+            <!-- /.content_abs content_bottom content_left content_bottom-md content_left-md -->
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="mb-5 pb-xl-5"></div>
+
+{% endblock main %}
