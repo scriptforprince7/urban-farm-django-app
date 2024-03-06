@@ -100,122 +100,20 @@ class Category(models.Model):
 
 class Tags(models.Model):
     pass    
-
-class Sub_categories(models.Model):
-    ssid = ShortUUIDField(unique=True, max_length=30, prefix="sub_cat", alphabet="abcdefgh12345")   
-    maincat = models.ForeignKey(Main_category, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    sub_cat_title = models.CharField(max_length=100, default="Mobile & Laptop")
-    slug = models.SlugField(unique=True, max_length=150, blank=True, null=True)
-    description = models.CharField(max_length=200)
-    page_about_description = models.CharField(max_length=500)
-    bottom_page_description = HTMLField()
-    canonical_link = models.CharField(max_length=200)
-    meta_description = models.CharField(max_length=200)
-    meta_title = models.CharField(max_length=200)
-    meta_tag = models.CharField(max_length=200)
-    meta_robots = models.CharField(max_length=100)
-    og_url = models.CharField(max_length=100)
-    og_title = models.CharField(max_length=100)
-    og_description = models.CharField(max_length=100)
-    og_image = models.CharField(max_length=100)
-    twitter_title = models.CharField(max_length=100)
-    twitter_description = models.CharField(max_length=100)
-    twitter_description = models.CharField(max_length=100)
-    youtube_link = models.CharField(max_length=1000)
-    image = models.ImageField(upload_to=user_directory_path, default="subcategory.jpg")
-    main_page_img = models.ImageField(upload_to=user_directory_path, default="mainpageimg.jpg")
-
-    class Meta:
-        verbose_name_plural = "Sub Categories"
-
-    def sub_category_image(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
-    
-    def main_page_image(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.main_page_img.url))
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.sub_cat_title)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse('core:sub-category', kwargs={'sub_cat_slug': str(self.slug)})
-    
-    def __str__(self):
-        return self.sub_cat_title
-    
-
-class SubcategoryImages(models.Model):
-    images = models.ImageField(upload_to="sub-categories-images", default="sub-category.jpg")
-    sub_category = models.ForeignKey(Sub_categories, on_delete=models.SET_NULL, null=True)
-    date = models.DateField(auto_now_add=True)
-
-
-    class Meta:
-        verbose_name_plural = "Sub Categories Images"
-
-    
-class Company_name(models.Model):
-    sid = ShortUUIDField(unique=True, max_length=50, prefix="Company_name", alphabet="abcdefgh12345")   
-    maincat = models.ForeignKey(Main_category, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    sub_category = models.ForeignKey(Sub_categories, on_delete=models.SET_NULL, null=True)
-    company_name_title = models.CharField(max_length=100, default="Mobile & Laptop")
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    meta_description = models.CharField(max_length=100)
-    meta_title = models.CharField(max_length=100)
-    meta_tag = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
-    best_seller = models.BooleanField(default=False)
-    curtain_fabric_category = models.BooleanField(default=False)
-    fabric_use_upholstery_category = models.BooleanField(default=False)
-    window_blinds_category = models.BooleanField(default=False)
-    wall_panel_category = models.BooleanField(default=False)
-    wallpaper_category = models.BooleanField(default=False)
-    curtain_sofa_brands = models.BooleanField(default=False)
-    mattresses_brands = models.BooleanField(default=False)
-    window_blinds_brands = models.BooleanField(default=False)
-    carpet_tile_for_office_brands = models.BooleanField(default=False)
-    carpet_rolls_brands = models.BooleanField(default=False)
-    rugs_brands = models.BooleanField(default=False)
-    pillow_brands = models.BooleanField(default=False)
-    hospital_walls_brands = models.BooleanField(default=False)
-    wooden_laminate_flooring_brands = models.BooleanField(default=False)
-    pvc_rubber_flooring_brands = models.BooleanField(default=False)
-    curtains_rods_channel_brands = models.BooleanField(default=False)
-    foam_material_brands = models.BooleanField(default=False)
-    awning_canopy_brands = models.BooleanField(default=False)
-    image = models.ImageField(upload_to=user_directory_path, default="subcategory.jpg")
-    main_page_img = models.ImageField(upload_to=user_directory_path, default="mainpageimg.jpg")
-    logo_img = models.ImageField(upload_to=user_directory_path, default="logo.jpg")
-
-    class Meta:
-        verbose_name_plural = "Company Name"
-
-    def sub_category_image(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
-    
-    def main_page_image(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.main_page_img.url))
-    
-    def logo_image(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.logo_img.url))
-    
-    def __str__(self):
-        return self.company_name_title
     
 
 class Product(models.Model):
     pid = ShortUUIDField(unique=True, max_length=30, prefix="sub_cat", alphabet="abcdefgh12345")
     main_category = models.ForeignKey(Main_category, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    sub_category = models.ForeignKey(Sub_categories, on_delete=models.SET_NULL, null=True)
-    company_name = models.ForeignKey(Company_name, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=500, default="Mobile & Laptop")
+    packing_size = models.CharField(max_length=500, default="Box 100 Pcs")
+    minimum_order_qty = models.CharField(max_length=500, default="1")
+    unit_item = models.CharField(max_length=100, default="BOX")
+    application = models.CharField(max_length=100, default="starter/seed")
+    material = models.CharField(max_length=100, default="Cocopith")
+    hsn_code = models.CharField(max_length=100, default="5305")
     product_slug = models.SlugField(unique=True, max_length=150, blank=True, null=True)
     description = models.TextField(max_length=500, null=True, blank=True, default="This is the product")
     bottom_page_description = HTMLField(default="N/A")
@@ -334,7 +232,6 @@ class CartOrder(models.Model):
         verbose_name_plural = "Cart Order"
 
 
-
 class CartOrderItems(models.Model):
     order = models.ForeignKey(CartOrder, on_delete=models.CASCADE)
     invoice_no = models.CharField(max_length=200)
@@ -351,8 +248,6 @@ class CartOrderItems(models.Model):
 
     def order_img(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" />' % (self.image.url))   
-
-
 
 class ProductReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -392,45 +287,6 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural = "Address"
 
-
-class Architecture(models.Model):
-    aid = ShortUUIDField(unique=True, max_length=30, prefix="arch", alphabet="abcdefgh12345")
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    name = models.CharField(max_length=100, default="CJS BHATIA...")
-    contact = models.CharField(max_length=100, default="+91-")
-    email = models.CharField(max_length=100, default="@gmail.com")
-    address = models.CharField(max_length=100, default="South Delhi...")
-    description = models.TextField(null=True, blank=True, default="about yourself...")
-    instagram = models.CharField(max_length=100, default="@instagram.com")
-    facebook = models.CharField(max_length=100, default="@facebook.com")
-    linkedin = models.CharField(max_length=100, default="@linkedin.com")
-    twitter = models.CharField(max_length=100, default="@twitter.com")
-    meta_description = models.CharField(max_length=100)
-    meta_title = models.CharField(max_length=100)
-    meta_tag = models.CharField(max_length=100)
-    featured = models.BooleanField(default=False)
-    sku = ShortUUIDField(unique=True, max_length=50, prefix="sku", alphabet="12345678900")
-    date = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(null=True)
-    image = models.ImageField(upload_to=user_directory_path, default="architecture.jpg")
-
-    class Meta:
-        verbose_name_plural = "Architecture"
-
-    def arch_image(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
-    
-    def __str__(self):
-        return self.name
-    
-class ArchitectureImages(models.Model):
-    images = models.ImageField(upload_to="architecture-images", default="architecture.jpg")
-    architecture = models.ForeignKey(Architecture, on_delete=models.SET_NULL, null=True)
-    date = models.DateField(auto_now_add=True)
-
-
-    class Meta:
-        verbose_name_plural = "Architecture Project Images"
 
 class PrivacyPolicy(models.Model):
     privacy_policy_content = HTMLField()
