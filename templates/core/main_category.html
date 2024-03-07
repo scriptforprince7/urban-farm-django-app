@@ -50,7 +50,7 @@
         {% for main in main_cat %}
         <div class="col-lg-4 d-flex flex-column">
           <a
-            href="/category"
+            href="{% url 'core:category' main.main_title %}"
             class="lookbook-collection__item position-relative flex-grow-1 mb-4 effect border-plus"
           >
             <div class="lookbook-collection__item-image">

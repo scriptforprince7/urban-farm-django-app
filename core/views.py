@@ -24,44 +24,18 @@ def index(request):
     }
     return render(request, 'core/index.html', context)
 
-def category(request):
-    return render(request, "core/category.html")
-
-def sub_category(request, sub_cat_slug):
-    sub_cats = Sub_categories.objects.filter(slug=sub_cat_slug)
-
-    if not sub_cats.exists():
-        # Handle the case where no objects are found
-        raise Http404("Sub-category does not exist")
-
-    sub_cat = sub_cats.first()
-
-    related_sub_categories = Sub_categories.objects.filter(maincat=sub_cat.maincat, category=sub_cat.category)
-    company_names = Company_name.objects.filter(sub_category=sub_cat)
-    
-    # Create a dictionary to store company names and their associated products
-    company_products = {}
-    for company in company_names:
-        products = Product.objects.filter(company_name=company)
-        company_products[company] = products
-
-    # Fetch sub-categories images
-    sub_cat_images = SubcategoryImages.objects.filter(sub_category=sub_cat)
-    image_urls = [image.images.url for image in sub_cat_images]
+def category(request, main_title):
+    main_categories = Main_category.objects.get(main_title=main_title)
+    products = Product.objects.filter(main_category=main_categories)
 
     context = {
-        "sub_cat": sub_cat,
-        "company_products": company_products,
-        "related_sub_categories": related_sub_categories,
-        "sub_cat_images": sub_cat_images,
-        "image_urls": image_urls,
+        "main_categories": main_categories,
+        "products": products,
     }
-
-    return render(request, "core/sub-category.html", context)
+    return render(request, "core/category.html", context)
 
 def main_category(request):
     return render(request, "core/main_category.html")
-
 
 def add_to_cart(request):
     cart_product = {}
@@ -242,32 +216,6 @@ def payment_completed_view(request):
 def payment_failed_view(request):
     return render(request, "core/payment-failed.html")
 
-
-def com_name(request):
-    return render(request, "core/sub-category.html")
-
-def arch(request):
-    architectures = Architecture.objects.filter(featured=True)
-    architecture = Architecture.objects.filter(featured=False)
-    archi = Architecture.objects.all()
-
-    context = {
-        "architectures": architectures,
-        "architecture": architecture,
-        "archi": archi,
-
-    }
-    return render(request, "arch/index.html", context)
-
-def arch_name(request, name):
-    architecture = get_object_or_404(Architecture, name=name)
-    arch_images = ArchitectureImages.objects.filter(architecture=architecture)
-
-    context = {
-        "architecture": architecture,
-        "arch_images": arch_images,
-    }
-    return render(request, "arch/portfolio-details.html", context)
 
 def about(request):
     return render(request, "core/about-us.html")

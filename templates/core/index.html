@@ -310,7 +310,7 @@
         }'>
                     <div class="swiper-wrapper">
                         {% for main in main_cat %}
-                        <a href="/category" class="category-page">
+                        <a href="{% url 'core:category' main.main_title %}" class="category-page">
                             <div class="swiper-slide">
                                 <img loading="lazy" class="w-100 h-auto mb-3" src="{{main.image.url}}"
                                     alt="">

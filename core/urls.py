@@ -5,9 +5,8 @@ app_name = "core"
 
 urlpatterns = [
     path("", index, name="index"),
-    path("category/<cat_title>/", category, name="inner-category"),
     path("shop-category/", main_category, name="main_category"),
-    path("category/", category, name="category"),
+    path("category/<main_title>/", category, name="category"),
     path("product/", product_new, name="product_new"),
     path("add-to-cart/", add_to_cart, name="add-to-cart"),
     path("product/<slug:product_slug>/", product, name="product"),
@@ -24,5 +23,4 @@ urlpatterns = [
     path("career", career, name="career"),
     path("blog/", blogs, name="blogs"),
     path("privacy-policy/", privacypolicy, name="privacypolicy"),
-    path("<slug:sub_cat_slug>/", sub_category, name="sub-category"),
 ]
