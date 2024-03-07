@@ -13,95 +13,14 @@
                   <img
                     loading="lazy"
                     class="h-auto"
-                    src="{% static './images/product/product_0.jpg' %}"
+                    src="{{products.image.url}}"
                     width="674"
                     height="674"
                     alt=""
                   />
                   <a
                     data-fancybox="gallery"
-                    href="../images/product/product_0.jpg"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Zoom"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use href="#icon_zoom" />
-                    </svg>
-                  </a>
-                </div>
-                <div class="swiper-slide product-single__image-item">
-                  <img
-                    loading="lazy"
-                    class="h-auto"
-                    src="{% static './images/product/product_1.jpg' %}"
-                    width="674"
-                    height="674"
-                    alt=""
-                  />
-                  <a
-                    data-fancybox="gallery"
-                    href="../images/product/product_0-1.jpg"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Zoom"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use href="#icon_zoom" />
-                    </svg>
-                  </a>
-                </div>
-                <div class="swiper-slide product-single__image-item">
-                  <img
-                    loading="lazy"
-                    class="h-auto"
-                    src="{% static './images/product/product_1.jpg' %}"
-                    width="674"
-                    height="674"
-                    alt=""
-                  />
-                  <a
-                    data-fancybox="gallery"
-                    href="../images/product/product_0-2.jpg"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Zoom"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use href="#icon_zoom" />
-                    </svg>
-                  </a>
-                </div>
-                <div class="swiper-slide product-single__image-item">
-                  <img
-                    loading="lazy"
-                    class="h-auto"
-                    src="{% static './images/product/product_2.jpg' %}"
-                    width="674"
-                    height="674"
-                    alt=""
-                  />
-                  <a
-                    data-fancybox="gallery"
-                    href="../images/product/product_0-3.jpg"
+                    href="{{products.image.url}}"
                     data-bs-toggle="tooltip"
                     data-bs-placement="left"
                     title="Zoom"
@@ -147,37 +66,7 @@
                   <img
                     loading="lazy"
                     class="h-auto"
-                    src="{% static './images/product/product_0.jpg' %}"
-                    width="104"
-                    height="104"
-                    alt=""
-                  />
-                </div>
-                <div class="swiper-slide product-single__image-item">
-                  <img
-                    loading="lazy"
-                    class="h-auto"
-                    src="{% static './images/product/product_1.jpg' %}"
-                    width="104"
-                    height="104"
-                    alt=""
-                  />
-                </div>
-                <div class="swiper-slide product-single__image-item">
-                  <img
-                    loading="lazy"
-                    class="h-auto"
-                    src="{% static './images/product/product_2.jpg' %}"
-                    width="104"
-                    height="104"
-                    alt=""
-                  />
-                </div>
-                <div class="swiper-slide product-single__image-item">
-                  <img
-                    loading="lazy"
-                    class="h-auto"
-                    src="{% static './images/product/product_3.jpg' %}"
+                    src="{{products.image.url}}"
                     width="104"
                     height="104"
                     alt=""
@@ -192,7 +81,7 @@
         <div class="d-flex justify-content-between mb-4 pb-md-2">
           <div class="breadcrumb mb-0 d-none d-md-block flex-grow-1">
             <a
-              href="#"
+              href="/"
               class="menu-link menu-link_us-s text-uppercase fw-medium"
               >Home</a
             >
@@ -202,16 +91,14 @@
             <a
               href="#"
               class="menu-link menu-link_us-s text-uppercase fw-medium"
-              >Plant Support Materials - Hanging Coir Pots</a
+              >{{products.title}}</a
             >
           </div>
           <!-- /.breadcrumb -->
 
           <!-- /.shop-acs -->
         </div>
-        <h1 class="product-single__name">
-          Plant Support Materials - Hanging Coir Pots
-        </h1>
+        <h1 class="product-single__name">{{products.title}}</h1>
         <div class="product-single__rating">
           <div class="reviews-group d-flex">
             <svg
@@ -251,138 +138,77 @@
             </svg>
           </div>
           <span class="reviews-note text-lowercase text-secondary ms-1"
-            >8k+ reviews</span
-          >
+            >0 reviews
+          </span>
         </div>
         <div class="product-single__price">
-          <span class="current-price">₹449</span>
+          <span class="current-price">₹ {{products.price}}</span>
         </div>
+
+        <div class="product-single__meta-info">
+          <div class="meta-item">
+            <label>SKU:</label>
+            <span>{{products.sku}}</span>
+          </div>
+          <div class="meta-item">
+            <label>HSN Code:</label>
+            <span>{{products.hsn_code}}</span>
+          </div>
+          <div class="meta-item">
+            <label>Application:</label>
+            <span>{{products.application}}</span>
+          </div>
+          <div class="meta-item">
+            <label>Unit Item:</label>
+            <span>{{products.unit_item}}</span>
+          </div>
+          <div class="meta-item">
+            <label>Material:</label>
+            <span>{{products.material}}</span>
+          </div>
+        </div>
+
         <div class="product-single__short-desc">
-          <p>
-            Phasellus sed volutpat orci. Fusce eget lore mauris vehicula
-            elementum gravida nec dui. Aenean aliquam varius ipsum, non
-            ultricies tellus sodales eu. Donec dignissim viverra nunc, ut
-            aliquet magna posuere eget.
-          </p>
+          <div class="meta-item">
+            <label>Material:</label>
+            <span>{{products.specifications}}</span>
+          </div>
         </div>
         <form name="addtocart-form" method="post">
           <div class="product-single__swatches">
             <div class="product-swatch text-swatches">
-              <label>Sizes</label>
+              <label>Packaging Size</label>
               <div class="swatch-list">
                 <input type="radio" name="size" id="swatch-1" />
                 <label
                   class="swatch js-swatch"
                   for="swatch-1"
-                  aria-label="Extra Small"
+                  aria-label="50 Pcs"
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
-                  title="Extra Small"
-                  >XS</label
+                  title="50 Pcs"
+                  >50 Pcs</label
                 >
                 <input type="radio" name="size" id="swatch-2" checked />
                 <label
                   class="swatch js-swatch"
                   for="swatch-2"
-                  aria-label="Small"
+                  aria-label="100 Pcs"
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
-                  title="Small"
-                  >S</label
+                  title="100 Pcs"
+                  >100 Pcs</label
                 >
                 <input type="radio" name="size" id="swatch-3" />
                 <label
                   class="swatch js-swatch"
                   for="swatch-3"
-                  aria-label="Middle"
+                  aria-label="756 Pcs"
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
-                  title="Middle"
-                  >M</label
+                  title="756 Pcs"
+                  >756 Pcs</label
                 >
-                <input type="radio" name="size" id="swatch-4" />
-                <label
-                  class="swatch js-swatch"
-                  for="swatch-4"
-                  aria-label="Large"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="Large"
-                  >L</label
-                >
-                <input type="radio" name="size" id="swatch-5" />
-                <label
-                  class="swatch js-swatch"
-                  for="swatch-5"
-                  aria-label="Extra Large"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="Extra Large"
-                  >XL</label
-                >
-              </div>
-              <a
-                href="#"
-                class="sizeguide-link"
-                data-bs-toggle="modal"
-                data-bs-target="#sizeGuide"
-                >Size Guide</a
-              >
-            </div>
-            <div class="product-swatch color-swatches">
-              <label>Color</label>
-              <div class="swatch-list">
-                <input type="radio" name="color" id="swatch-11" />
-                <label
-                  class="swatch swatch-image js-swatch"
-                  for="swatch-11"
-                  aria-label="Red"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="Red"
-                >
-                  <img
-                    loading="lazy"
-                    src="{% static './images/product/product_0.jpg' %}"
-                    width="60"
-                    height="60"
-                    alt=""
-                  />
-                </label>
-                <input type="radio" name="color" id="swatch-12" checked />
-                <label
-                  class="swatch swatch-image js-swatch"
-                  for="swatch-12"
-                  aria-label="Blue"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="Blue"
-                >
-                  <img
-                    loading="lazy"
-                    src="{% static './images/product/product_0.jpg' %}"
-                    width="60"
-                    height="60"
-                    alt=""
-                  />
-                </label>
-                <input type="radio" name="color" id="swatch-13" />
-                <label
-                  class="swatch swatch-image js-swatch"
-                  for="swatch-13"
-                  aria-label="Black"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="Black"
-                >
-                  <img
-                    loading="lazy"
-                    src="{% static './images/product/product_0.jpg' %}"
-                    width="60"
-                    height="60"
-                    alt=""
-                  />
-                </label>
               </div>
             </div>
           </div>
@@ -490,16 +316,12 @@
         </div>
         <div class="product-single__meta-info">
           <div class="meta-item">
-            <label>SKU:</label>
-            <span>N/A</span>
-          </div>
-          <div class="meta-item">
             <label>Categories:</label>
-            <span>Casual & Urban Wear, Jackets, Men</span>
+            <span></span>
           </div>
           <div class="meta-item">
             <label>Tags:</label>
-            <span>biker, black, bomber, leather</span>
+            <span>Plants, Grow Media, Grow, Atmoshpehere</span>
           </div>
         </div>
       </div>
@@ -508,22 +330,6 @@
       <h2 class="product-single__details-list__title">Description</h2>
       <div class="product-single__details-list__content">
         <div class="product-single__description">
-          <h3 class="block-title mb-4">
-            Sed do eiusmod tempor incididunt ut labore
-          </h3>
-          <p class="content">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Sed ut
-            perspiciatis unde omnis iste natus error sit voluptatem accusantium
-            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-            inventore veritatis et quasi architecto beatae vitae dicta sunt
-            explicabo.
-          </p>
           <div class="row">
             <div class="col-lg-6">
               <h3 class="block-title">Why choose product?</h3>
@@ -588,65 +394,6 @@
             <div class="customer-review">
               <div class="customer-name">
                 <h6>Janice Miller</h6>
-                <div class="reviews-group d-flex">
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                </div>
-              </div>
-              <div class="review-date">April 06, 2023</div>
-              <div class="review-text">
-                <p>
-                  Nam libero tempore, cum soluta nobis est eligendi optio cumque
-                  nihil impedit quo minus id quod maxime placeat facere
-                  possimus, omnis voluptas assumenda est…
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="product-single__reviews-item">
-            <div class="customer-avatar">
-              <img
-                loading="lazy"
-                src="{% static '../images/avatar.jpg' %}"
-                alt=""
-              />
-            </div>
-            <div class="customer-review">
-              <div class="customer-name">
-                <h6>Benjam Porter</h6>
                 <div class="reviews-group d-flex">
                   <svg
                     class="review-star"
@@ -856,491 +603,6 @@
             }
           }'
       >
-        <div class="swiper-wrapper">
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_1.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_1.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Kirby T-Shirt</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price">₹17</span>
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_2.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_2.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Cropped Faux Leather Jacket</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price">₹29</span>
-              </div>
-              <div class="product-card__review d-flex align-items-center">
-                <div class="reviews-group d-flex">
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                  <svg
-                    class="review-star"
-                    viewBox="0 0 9 9"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use href="#icon_star" />
-                  </svg>
-                </div>
-                <span class="reviews-note text-lowercase text-secondary ms-1"
-                  >8k+ reviews</span
-                >
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_3.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_3.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Calvin Shorts</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price">₹62</span>
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_1.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_1.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Shirt In Botanical Cheetah Print</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price">₹62</span>
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_1.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_1.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Cotton Jersey T-Shirt</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price">₹17</span>
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_2.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_2.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Cableknit Shawl</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price price-old">₹129</span>
-                <span class="money price price-sale">₹99</span>
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_3.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_3.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Colorful Jacket</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price">₹29</span>
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="swiper-slide product-card">
-            <div class="pc__img-wrapper">
-              <a href="/product">
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_0.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img"
-                />
-                <img
-                  loading="lazy"
-                  src="{% static './images/product/product_0.jpg' %}"
-                  width="330"
-                  height="400"
-                  alt="Cropped Faux leather Jacket"
-                  class="pc__img pc__img-second"
-                />
-              </a>
-              <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                Add To Cart
-              </button>
-            </div>
-
-            <div class="pc__info position-relative">
-              <p class="pc__category">Dresses</p>
-              <h6 class="pc__title">
-                <a href="/product">Zessi Dresses</a>
-              </h6>
-              <div class="product-card__price d-flex">
-                <span class="money price price-old">₹129</span>
-                <span class="money price price-sale">₹99</span>
-              </div>
-
-              <button
-                class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
-                title="Add To Wishlist"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use href="#icon_heart" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
         <!-- /.swiper-wrapper -->
       </div>
       <!-- /.swiper-container js-swiper-slider -->

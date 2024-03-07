@@ -76,59 +76,6 @@ def cart_view(request):
         return redirect("core:index")
 
 
-def product(request, product_slug):
-    products = Product.objects.filter(product_slug=product_slug)
-
-    if not products.exists():
-        # Handle the case where no objects are found
-        raise Http404("Product does not exist")
-
-    # If there are multiple objects, you may want to choose one or handle the situation appropriately
-    main_product = products.first()
-
-    related_products = Product.objects.filter(company_name=main_product.company_name).exclude(pk=main_product.pk)[:10]
-    product_images = ProductImages.objects.filter(product=main_product)
-    product_varients = ProductVarient.objects.filter(product=main_product)
-    related_company = main_product.company_name
-    related_subcategory = main_product.sub_category
-
-    context = {
-        "main_product": main_product,
-        "related_products": related_products,
-        "product_images": product_images,
-        "related_company": related_company,
-        "related_subcategory": related_subcategory,
-        "product_varients" : product_varients,
-    }
-    return render(request, "core/product.html", context)
-
-def producttitle(request, title):
-    products = Product.objects.filter(title=title)
-
-    if not products.exists():
-        # Handle the case where no objects are found
-        raise Http404("Product does not exist")
-
-    # If there are multiple objects, you may want to choose one or handle the situation appropriately
-    main_product = products.first()
-
-    related_products = Product.objects.filter(company_name=main_product.company_name).exclude(pk=main_product.pk)[:10]
-    product_images = ProductImages.objects.filter(product=main_product)
-    product_varients = ProductVarient.objects.filter(product=main_product)
-    related_company = main_product.company_name
-    related_subcategory = main_product.sub_category
-
-    context = {
-        "main_product": main_product,
-        "related_products": related_products,
-        "product_images": product_images,
-        "related_company": related_company,
-        "related_subcategory": related_subcategory,
-        "product_varients" : product_varients,
-    }
-    return render(request, "core/product.html", context)
-
-
 def search_view(request):
     query = request.GET.get("q")
 
@@ -249,8 +196,14 @@ class RobotsTxtView(View):
 
         return HttpResponse(content, content_type='text/plain')
     
-def product_new(request):
-    return render(request, "core/product.html")
+def product_new(request, title):
+    products = Product.objects.get(title=title)
+    
+    context = {
+        "products": products,
+    }
+    
+    return render(request, "core/product.html", context)
 
 
 

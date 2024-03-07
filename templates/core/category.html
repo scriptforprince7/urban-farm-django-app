@@ -137,7 +137,7 @@
               aria-expanded="true"
               aria-controls="accordion-filter-size"
             >
-              Sizes
+              Packaging Size
               <svg
                 class="accordion-button__icon type2"
                 viewBox="0 0 10 6"
@@ -162,32 +162,17 @@
                 <a
                   href="#"
                   class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter"
-                  >XS</a
+                  >50 Pcs</a
                 >
                 <a
                   href="#"
                   class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter"
-                  >S</a
+                  >100 Pcs</a
                 >
                 <a
                   href="#"
                   class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter"
-                  >M</a
-                >
-                <a
-                  href="#"
-                  class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter"
-                  >L</a
-                >
-                <a
-                  href="#"
-                  class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter"
-                  >XL</a
-                >
-                <a
-                  href="#"
-                  class="swatch-size btn btn-sm btn-outline-light mb-3 me-3 js-filter"
-                  >XXL</a
+                  >756 Pcs</a
                 >
               </div>
             </div>
@@ -239,16 +224,16 @@
               data-slider-max="1000"
               data-slider-step="5"
               data-slider-value="[250,450]"
-              data-currency="$"
+              data-currency="₹"
             />
             <div class="price-range__info d-flex align-items-center mt-2">
               <div class="me-auto">
                 <span class="text-secondary">Min Price: </span>
-                <span class="price-range__min">$250</span>
+                <span class="price-range__min">₹ 250</span>
               </div>
               <div>
                 <span class="text-secondary">Max Price: </span>
-                <span class="price-range__max">$450</span>
+                <span class="price-range__max">₹ 1000</span>
               </div>
             </div>
           </div>
@@ -362,7 +347,7 @@
               >
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <a href="/product"
+                    <a href="{% url 'core:product_new' product.title %}"
                       ><img
                         loading="lazy"
                         src="{{product.image.url}}"
@@ -483,7 +468,7 @@
           </div>
         </div>
         {% endfor %} {% else %}
-        <p>No products found.</p>
+        <h6 class="pc__title">No Products Found</h6>
         {% endif %}
       </div>
 
