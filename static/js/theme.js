@@ -735,20 +735,22 @@ function pureFadeOut(e) {
 
       _stickyScrollHander() {
         if (this.$header.classList.contains("sticky_disabled")) {
-          return;
+            return;
         }
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (currentScrollTop > this.lastScrollTop || currentScrollTop < this.stickyMinPos) {
-          this.$header.classList.remove(this.selectors.stickyActiveClass);
-          this.$header.classList.add('position-absolute');
-        } else if (currentScrollTop > this.stickyMinPos) {
-          this.$header.classList.add(this.selectors.stickyActiveClass);
-          this.$header.classList.remove('position-absolute');
+    
+        // Add or remove the sticky class based on scroll position
+        if (currentScrollTop > this.stickyMinPos) {
+            this.$header.classList.add(this.selectors.stickyActiveClass);
+            this.$header.classList.remove('position-absolute');
+        } else {
+            this.$header.classList.remove(this.selectors.stickyActiveClass);
+            this.$header.classList.add('position-absolute');
         }
-
+    
         this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-      }
+    }
+    
     });
 
 
