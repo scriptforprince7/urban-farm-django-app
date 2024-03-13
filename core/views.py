@@ -45,6 +45,16 @@ def category(request, main_title):
 def main_category(request):
     return render(request, "core/main_category.html")
 
+def cart(request):
+    return render(request, "core/cart.html")
+
+def checkout(request):
+    return render(request, "core/checkout.html")
+
+def confirmation(request):
+    return render(request, "core/confirmation.html")
+
+
 def add_to_cart(request):
     cart_product = {}
     cart_product[str(request.GET['id'])] = {

@@ -13,7 +13,7 @@ urlpatterns = [
     path("search/", search_view, name="search"),
     path("delete-from-cart/", delete_item_from_cart, name="delete-from-cart"),
     path("update-cart/", update_cart, name="update-cart"),
-    path("checkout/", checkout_view, name="checkout"),
+    # path("checkout/", checkout_view, name="checkout"),
     path('paypal/', include('paypal.standard.ipn.urls')),
     path("payment-completed/", payment_completed_view, name="payment-completed"),
     path("payment-failed/", payment_failed_view, name="payment-failed"),
@@ -22,4 +22,7 @@ urlpatterns = [
     path("career", career, name="career"),
     path("blog/", blogs, name="blogs"),
     path("privacy-policy/", privacypolicy, name="privacypolicy"),
+    path("cart/", cart, name="cart"),
+    path("checkout/", checkout, name="checkout"),
+    path("confirmation/", confirmation, name="confirmation"),
 ]
