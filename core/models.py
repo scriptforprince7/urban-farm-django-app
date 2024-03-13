@@ -126,7 +126,7 @@ class Product(models.Model):
     status = models.BooleanField(default=True)
     in_stock = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
-    sku = ShortUUIDField(unique=True, max_length=50, prefix="sku", alphabet="12345678900")
+    sku = ShortUUIDField(unique=True, max_length=11, prefix="sku", alphabet="12345678900")
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
 

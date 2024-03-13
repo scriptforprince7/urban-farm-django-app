@@ -16274,7 +16274,7 @@ textarea.form-control.is-invalid {
 
 .logo__image {
   max-width: 100%;
-  max-height: 60px;
+  max-height: 70px;
 }
 
 .header-tools {
@@ -16410,7 +16410,6 @@ textarea.form-control.is-invalid {
   margin-right: 2.1875rem;
 }
 .header-desk_type_1 .header-tools {
-  margin-left: auto;
   margin-right: -0.5rem;
 }
 
