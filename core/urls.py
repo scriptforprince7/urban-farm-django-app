@@ -25,4 +25,5 @@ urlpatterns = [
     path("cart/", cart, name="cart"),
     path("checkout/", checkout, name="checkout"),
     path("confirmation/", confirmation, name="confirmation"),
+    # path("search/", search, name="search"),
 ]

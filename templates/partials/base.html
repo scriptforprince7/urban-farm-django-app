@@ -331,7 +331,7 @@
   >
     <div class="container">
       <form
-        action=""
+        action="{% url 'core:search' %}"
         method="GET"
         class="search-field position-relative mt-4 mb-3"
       >
@@ -339,7 +339,7 @@
           <input
             class="search-field__input w-100 border rounded-1"
             type="text"
-            name="search-keyword"
+            name="q"
             placeholder="Search products"
           />
           <button class="btn-icon search-popup__submit pb-0 me-2" type="submit">
@@ -609,14 +609,14 @@
 
     <div class="header-tools d-flex align-items-center">
       <form
-        action=""
+        action="{% url 'core:search' %}"
         method="GET"
         class="header-search search-field d-none d-xxl-flex mx-4"
       >
         <input
           class="header-search__input w-100"
           type="text"
-          name="search-keyword"
+          name="q"
           placeholder="Search products..."
         />
         <button class="btn header-search__btn" type="submit">
@@ -819,6 +819,10 @@
                         </li>
                         <li class="sub-menu__item"><a href="#"
                                 class="menu-link menu-link_us-s text-white">Affiliates</a></li>
+                                <li class="sub-menu__item"><a href="#"
+                                  class="menu-link menu-link_us-s text-white">Privacy Policy</a></li>
+                                  <li class="sub-menu__item"><a href="#"
+                                    class="menu-link menu-link_us-s text-white">Shipping Policy</a></li>
                         <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s text-white">Blog</a></li>
                         <li class="sub-menu__item"><a href="/contact-us"
                                 class="menu-link menu-link_us-s text-white">Contact Us</a>
@@ -827,7 +831,7 @@
                 </div><!-- /.footer-column -->
 
                 <div class="footer-column footer-menu mb-4 mb-lg-0">
-                  <h6 class="sub-menu__title text-uppercase">Help</h6>
+                  <h6 class="sub-menu__title text-uppercase">Shop by Category</h6>
                   <ul class="sub-menu__list list-unstyled">
                       {% for main in first_half_categories %}
                           <li class="sub-menu__item">
@@ -838,7 +842,7 @@
               </div>
               
               <div class="footer-column footer-menu mb-4 mb-lg-0">
-                  <h6 class="sub-menu__title text-uppercase">Help</h6>
+                  <h6 class="sub-menu__title text-uppercase">Most Sell</h6>
                   <ul class="sub-menu__list list-unstyled">
                       {% for main in second_half_categories %}
                           <li class="sub-menu__item">
@@ -1116,8 +1120,8 @@
                 <h6 class="fs-base fw-medium">SUBTOTAL:</h6>
                 <span class="cart-subtotal fw-medium">₹176.00</span>
             </div><!-- /.d-flex justify-content-between -->
-            <a href="" class="btn btn-light mt-3 d-block">View Cart</a>
-            <a href="" class="btn btn-primary mt-3 d-block">Checkout</a>
+            <a href="/cart" class="btn btn-light mt-3 d-block">View Cart</a>
+            <a href="/checkout" class="btn btn-primary mt-3 d-block">Checkout</a>
         </div><!-- /.aside-content -->
     </div><!-- /.aside -->
     <!-- Quick View -->
