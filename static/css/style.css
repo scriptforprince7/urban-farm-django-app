@@ -16793,7 +16793,7 @@ textarea.form-control.is-invalid {
 }
 @media (min-width: 992px) {
   .footer-middle {
-    padding-top: 6.25rem;
+    padding-top: 4.25rem;
     padding-bottom: 3rem;
   }
 }

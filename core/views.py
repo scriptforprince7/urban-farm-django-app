@@ -17,12 +17,20 @@ from django.views.generic import View
 
 
 def index(request):
-    main_category = Main_category.objects.all()
+    main_categories = Main_category.objects.all()
+
+    halfway_index = len(main_categories) // 2
+
+    first_half_categories = main_categories[:halfway_index]
+    second_half_categories = main_categories[halfway_index:]
 
     context = {
-        "main_cat":main_category,
+        "main_cat": main_categories,
+        "first_half_categories": first_half_categories,
+        "second_half_categories": second_half_categories,
     }
     return render(request, 'core/index.html', context)
+
 
 def category(request, main_title):
     main_categories = Main_category.objects.get(main_title=main_title)
@@ -204,6 +212,7 @@ def product_new(request, title):
     }
     
     return render(request, "core/product.html", context)
+
 
 
 
