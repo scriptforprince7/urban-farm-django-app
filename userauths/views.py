@@ -87,6 +87,8 @@ def login_view(request):
     return render(request, "userauths/sign-in.html")
 
 
+
+
 def logout_view(request):
     logout(request)
     messages.success(request, "You Logged Out.")
@@ -101,7 +103,6 @@ def verify_email(request, token):
     user.save()
     verification_token.delete()  # Token is no longer needed
     return render(request, "userauths/email_verified.html")  # Create this template
-
 
 
 
