@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from django.urls import reverse_lazy
 
-BASE_URL = '103.169.86.3'  # Replace with your actual domain and port
+BASE_URL = 'http://127.0.0.1:8000/'  # Replace with your actual domain and port
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +30,7 @@ SECRET_KEY = "django-insecure-=gz6u1d6i@v#$c@(zxy_@4+c7w)5hlumrdyu_ru^(_!kc!b5_8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['103.169.86.3', '*']
+ALLOWED_HOSTS = ['127.0.0.1', 'http://127.0.0.1:8000/']
 
 SITE_ID = 1
 # Application definition
