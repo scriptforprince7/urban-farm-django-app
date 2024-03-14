@@ -571,9 +571,8 @@
       </ul>
 
       <a href="#" style="color: white" class="navigation__link">Blog</a>
-      <a href="#" style="color: white" class="navigation__link">Testimonials</a>
       {% if user.is_authenticated %}
-      <a href="#" class="navigation__link" style="color: white;">Welcome, {{ user.username }}</a>
+      <a href="#" class="navigation__link" style="color: white;">Hello,  {{ user.username }} <i class="fa-solid fa-right-to-bracket"></i></a>
        {% endif %}
 
     </div>
