@@ -101,14 +101,23 @@ def search_view(request):
     query = request.GET.get("q")
 
     products = Product.objects.filter(title__icontains=query).order_by("-date")
+    related_main_categories = Main_category.objects.filter(product__in=products).distinct()
+    
+    # Calculate the percentage of items shown
+    total_products_count = Product.objects.count()
+    if total_products_count == 0:
+        percentage = 0
+    else:
+        percentage = (products.count() / total_products_count) * 100
 
     context = {
         "products": products,
         "query": query,
+        "related_main_categories": related_main_categories,
+        "percentage": percentage,  # Pass the percentage to the context
     }
 
     return render(request, "core/search.html", context)
-
 
 def delete_item_from_cart(request):
     product_id = str(request.GET['id'])

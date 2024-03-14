@@ -13,3 +13,11 @@ def default(request):
         'first_half_categories': first_half_categories,
         'second_half_categories': second_half_categories,
     }
+
+
+def defaultOne(request):
+    products = Product.objects.all()
+
+    return {
+        "products_count": products,
+    }

@@ -359,7 +359,7 @@
                   </div>
                   <!-- /.pc__img-wrapper -->
                   <div class="swiper-slide">
-                    <a href="/product"
+                    <a href="{% url 'core:product_new' product.title %}"
                       ><img
                         loading="lazy"
                         src="{{product.image.url}}"
@@ -402,7 +402,7 @@
             <div class="pc__info position-relative">
               <p class="pc__category">{{main_categories.main_title}}</p>
               <h6 class="pc__title">
-                <a href="/product">{{product.title}}</a>
+                <a href="{% url 'core:product_new' product.title %}">{{product.title}}</a>
               </h6>
               <div class="product-card__price d-flex">
                 <span class="money price">₹ {{product.price}}</span>
