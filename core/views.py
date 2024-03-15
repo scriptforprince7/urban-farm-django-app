@@ -239,13 +239,18 @@ class RobotsTxtView(View):
         return HttpResponse(content, content_type='text/plain')
     
 def product_new(request, title):
-    products = Product.objects.get(title=title)
-    
+    product = Product.objects.get(title=title)
+    product_variants = ProductVarient.objects.filter(product=product)
+    product_variant_types = ProductVariantTypes.objects.filter(product_variant__in=product_variants)
+
     context = {
-        "products": products,
+        "products": product,
+        "product_variants": product_variants,
+        "product_variant_types": product_variant_types,
     }
-    
+
     return render(request, "core/product.html", context)
+
 
 
 

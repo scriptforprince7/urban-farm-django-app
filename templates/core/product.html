@@ -166,52 +166,38 @@
             <label>Material:</label>
             <span>{{products.material}}</span>
           </div>
-        </div>
-
-        <div class="product-single__short-desc">
           <div class="meta-item">
-            <label>Material:</label>
+            <label>Specifications:</label>
             <span>{{products.specifications}}</span>
           </div>
         </div>
         <form name="addtocart-form" method="post">
+
+          {% for variant in product_variants %}
           <div class="product-single__swatches">
             <div class="product-swatch text-swatches">
-              <label>Packaging Size</label>
+              <label>{{ variant.title }}</label>
+
               <div class="swatch-list">
+                {% for variant_type in product_variant_types %}
+                {% if variant_type.product_variant == variant %}
                 <input type="radio" name="size" id="swatch-1" />
                 <label
                   class="swatch js-swatch"
                   for="swatch-1"
-                  aria-label="50 Pcs"
+                  aria-label="{{ variant_type.variant_title }}"
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
-                  title="50 Pcs"
-                  >50 Pcs</label
+                  title="{{ variant_type.variant_title }}"
+                  >{{ variant_type.variant_title }}</label
                 >
-                <input type="radio" name="size" id="swatch-2" checked />
-                <label
-                  class="swatch js-swatch"
-                  for="swatch-2"
-                  aria-label="100 Pcs"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="100 Pcs"
-                  >100 Pcs</label
-                >
-                <input type="radio" name="size" id="swatch-3" />
-                <label
-                  class="swatch js-swatch"
-                  for="swatch-3"
-                  aria-label="756 Pcs"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="756 Pcs"
-                  >756 Pcs</label
-                >
+                {% endif %}
+                {% endfor %}
               </div>
+
             </div>
           </div>
+          {% endfor %}
           <div class="product-single__addtocart">
             <div class="qty-control position-relative">
               <input
@@ -279,7 +265,7 @@
                     type="text"
                     class="field__input w-full"
                     id="url"
-                    value="https://uomo-crystal.myshopify.com/blogs/news/go-to-wellness-tips-for-mental-health"
+                    value=""
                     placeholder="Link"
                     onclick="this.select();"
                     readonly=""
