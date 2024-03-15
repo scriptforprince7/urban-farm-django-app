@@ -242,14 +242,17 @@ def product_new(request, title):
     product = Product.objects.get(title=title)
     product_variants = ProductVarient.objects.filter(product=product)
     product_variant_types = ProductVariantTypes.objects.filter(product_variant__in=product_variants)
+    product_images = ProductImages.objects.filter(product=product)
 
     context = {
         "products": product,
         "product_variants": product_variants,
         "product_variant_types": product_variant_types,
+        "product_images": product_images,
     }
 
     return render(request, "core/product.html", context)
+
 
 
 

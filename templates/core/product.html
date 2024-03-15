@@ -9,6 +9,7 @@
           <div class="product-single__image">
             <div class="swiper-container">
               <div class="swiper-wrapper">
+
                 <div class="swiper-slide product-single__image-item">
                   <img
                     loading="lazy"
@@ -36,6 +37,36 @@
                     </svg>
                   </a>
                 </div>
+                {% for image in product_images %}
+                <div class="swiper-slide product-single__image-item">
+                  <img
+                    loading="lazy"
+                    class="h-auto"
+                    src="{{ image.images.url }}"
+                    width="674"
+                    height="674"
+                    alt=""
+                  />
+                  <a
+                    data-fancybox="gallery"
+                    href="{{ image.images.url }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="left"
+                    title="Zoom"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <use href="#icon_zoom" />
+                    </svg>
+                  </a>
+                </div>
+                {% endfor %}
+
               </div>
               <div class="swiper-button-prev">
                 <svg
@@ -62,7 +93,9 @@
           <div class="product-single__thumbnail">
             <div class="swiper-container">
               <div class="swiper-wrapper">
+
                 <div class="swiper-slide product-single__image-item">
+
                   <img
                     loading="lazy"
                     class="h-auto"
@@ -72,6 +105,19 @@
                     alt=""
                   />
                 </div>
+                {% for image in product_images %}
+                <div class="swiper-slide product-single__image-item">
+
+                  <img
+                    loading="lazy"
+                    class="h-auto"
+                    src="{{ image.images.url }}"
+                    width="104"
+                    height="104"
+                    alt=""
+                  />
+                </div>
+                {% endfor %}
               </div>
             </div>
           </div>
@@ -365,7 +411,7 @@
           </div>
         </div>
       </div>
-      <h2 class="product-single__details-list__title">Reviews (3)</h2>
+      {% comment %} <h2 class="product-single__details-list__title">Reviews (3)</h2>
       <div class="product-single__details-list__content">
         <h3 class="product-single__reviews-title">Reviews</h3>
         <div class="product-single__reviews-list">
@@ -544,7 +590,7 @@
             </div>
           </form>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </section>
   <section class="products-carousel container">
