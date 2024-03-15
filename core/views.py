@@ -35,12 +35,24 @@ def index(request):
 def category(request, main_title):
     main_categories = Main_category.objects.get(main_title=main_title)
     products = Product.objects.filter(main_category=main_categories)
+    
+    prices = products.values_list('price', flat=True)
+    min_price = min(prices) if prices else 0
+    max_price = max(prices) if prices else 0
 
+    price_range = request.GET.get('price_range')
+    if price_range:
+        min_price, max_price = map(float, price_range.split(','))
+        products = products.filter(price__range=(min_price, max_price))
+    
     context = {
         "main_categories": main_categories,
         "products": products,
+        "min_price": min_price,
+        "max_price": max_price,
     }
     return render(request, "core/category.html", context)
+
 
 def main_category(request):
     return render(request, "core/main_category.html")
