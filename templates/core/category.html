@@ -27,7 +27,7 @@
         <div class="background-img" style="background-color: #f5e6e0">
           <img
             loading="lazy"
-            src="{% static 'images/shop/shop_banner_2.jpg' %}"
+            src="{{main_categories.banner_image.url}}"
             width="1759"
             height="420"
             alt="Pattern"
@@ -249,9 +249,7 @@
         <div class="category_custom mb-0 d-none d-md-block flex-grow-1">
           <h2>{{main_categories.main_title}}</h2>
           <p>
-            Elevate your urban farming experience with Urban Farm's premium
-            germination media, fostering the perfect foundation for robust and
-            flourishing hydroponic plants.
+            {{main_categories.description}}
           </p>
         </div>
         <!-- /.breadcrumb -->

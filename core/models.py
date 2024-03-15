@@ -49,17 +49,21 @@ def user_directory_path(instance, filename):
 class Main_category(models.Model):
     mid = ShortUUIDField(unique=True, max_length=30, prefix="main_cat", alphabet="abcdefgh12345")
     main_title = models.CharField(max_length=100)
-    meta_description = models.CharField(max_length=100)
-    meta_title = models.CharField(max_length=100)
-    meta_tag = models.CharField(max_length=100)
+    description = models.CharField(max_length=500, default="N/A")
+    meta_description = models.CharField(max_length=100, default="N/A")
+    meta_title = models.CharField(max_length=100, default="N/A")
+    meta_tag = models.CharField(max_length=100, default="N/A")
     image = models.ImageField(upload_to="category",default="maincategory.jpg")
-    icon_img = models.ImageField(upload_to="categoryicon",default="maincategoryicon.jpg")
+    banner_image = models.ImageField(upload_to="category",default="maincategorybanner.jpg")
 
     class Meta:
         verbose_name_plural = "Main Categories"
 
     def main_category_image(self):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+    
+    def main_category_banner_image(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.banner_image.url))
     
     def main_category_icon_image(self):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.icon_img.url))

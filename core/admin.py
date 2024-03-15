@@ -33,13 +33,13 @@ class ProductVarientAdmin(admin.StackedInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin, ProductSeoAdmin, ProductVarientAdmin, ProductVariantImagesAdmin]
-    list_display = ['main_category', 'category', 'title', 'product_slug', 'price', 'featured', 'product_status']
+    list_display = ['main_category','title', 'product_slug', 'packing_size', 'price', 'product_status']
     list_filter = ['main_category', 'category', 'featured', 'product_status'] 
     search_fields = ['title', 'description'] 
 
 
 class MainCategoryAdmin(admin.ModelAdmin):
-    list_display = ['main_title', 'meta_description', 'meta_title', 'meta_tag', 'image', 'icon_img']     
+    list_display = ['main_title', 'image', 'description', 'banner_image']     
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['main_category', 'cat_title', 'meta_description', 'meta_title', 'meta_tag', 'image', 'big_image']
