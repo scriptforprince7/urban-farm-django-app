@@ -23,7 +23,7 @@ class ProductImagesAdmin(admin.TabularInline):
     extra = 0
 
 class ProductVariantImagesAdmin(admin.StackedInline):
-    model = ProductVariantImages
+    model = ProductVariantTypes
     extra = 0  # This allows adding multiple images at once in the admin
 
 class ProductVarientAdmin(admin.StackedInline):

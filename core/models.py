@@ -120,13 +120,10 @@ class Product(models.Model):
     hsn_code = models.CharField(max_length=100, default="5305")
     product_slug = models.SlugField(unique=True, max_length=150, blank=True, null=True)
     description = models.TextField(max_length=500, null=True, blank=True, default="This is the product")
-    bottom_page_description = HTMLField(default="N/A")
     price = models.DecimalField(max_digits=9999, decimal_places=2, default="1")
     old_price = models.DecimalField(max_digits=9999, decimal_places=2, default="2")
     specifications = models.TextField(max_length=500,null=True, blank=True, default="N/A")
-    # tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
     product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
-    color = models.CharField(choices=COLOR, max_length=10, default="black")
     status = models.BooleanField(default=True)
     in_stock = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
@@ -185,28 +182,18 @@ class ProductSeo(models.Model):
 
 
 class ProductVarient(models.Model):
-    pid = ShortUUIDField(unique=True, max_length=30, prefix="sub_cat", alphabet="abcdefgh12345") 
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    image = models.ImageField(upload_to=user_directory_path, default="productvarient.jpg")
+    pvid = ShortUUIDField(unique=True, max_length=30, prefix="pvid", alphabet="abcdefgh12345") 
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=500, default="Product Varient")
-    description = models.TextField(max_length=500, null=True, blank=True, default="This is the product")
-    price = models.DecimalField(max_digits=99999999999999, decimal_places=2, default="1.99")
-    old_price = models.DecimalField(max_digits=99999999999, decimal_places=2, default="2.99")
-    specifications = models.TextField(max_length=500, null=True, blank=True)
-    product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
-    color = models.CharField(choices=COLOR, max_length=10, default="black")
     status = models.BooleanField(default=True)
     in_stock = models.BooleanField(default=True)
     sku = ShortUUIDField(unique=True, max_length=50, prefix="sku", alphabet="12345678900")
-    date = models.DateField(auto_now_add=True)
-
 
     class Meta:
         verbose_name_plural = "Product Varient"
 
     def variant_images(self):
-        return ProductVariantImages.objects.filter(product_variant=self)
+        return ProductVariantTypes.objects.filter(product_variant=self)
     
     def __str__(self):
         return self.title
@@ -215,15 +202,16 @@ class ProductVarient(models.Model):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
     
 
-class ProductVariantImages(models.Model):
+class ProductVariantTypes(models.Model):
     product_variant = models.ForeignKey(ProductVarient, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=user_directory_path, default="productvarient.jpg")
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    variant_title = models.CharField(max_length=500, default="Product Varient")
+    varient_price = models.DecimalField(max_digits=9999, decimal_places=2, default="1")
+    packaging_size = models.CharField(max_length=100, default="Packaging Size")
     date = models.DateField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = "Product Variant Images"
+        verbose_name_plural = "Product Variant Types"
 
 class CartOrder(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
