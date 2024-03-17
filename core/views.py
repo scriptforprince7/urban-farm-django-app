@@ -36,8 +36,6 @@ def category(request, main_title):
     main_categories = Main_category.objects.get(main_title=main_title)
     products = Product.objects.filter(main_category=main_categories)
     product_images = ProductImages.objects.filter(product__in=products)
-    product_variants = ProductVarient.objects.filter(product__in=products)
-    product_variant_types = ProductVariantTypes.objects.filter(product_variant__in=product_variants)
     
     prices = products.values_list('price', flat=True)
     min_price = min(prices) if prices else 0
@@ -54,11 +52,8 @@ def category(request, main_title):
         "product_images": product_images,
         "min_price": min_price,
         "max_price": max_price,
-        "product_variants": product_variants,
-        "product_variant_types": product_variant_types,
     }
     return render(request, "core/category.html", context)
-
 
 def main_category(request):
     return render(request, "core/main_category.html")
@@ -120,8 +115,8 @@ def search_view(request):
 
     products = Product.objects.filter(title__icontains=query).order_by("-date")
     related_main_categories = Main_category.objects.filter(product__in=products).distinct()
+    product_images = ProductImages.objects.filter(product__in=products)
     
-    # Calculate the percentage of items shown
     total_products_count = Product.objects.count()
     if total_products_count == 0:
         percentage = 0
@@ -132,7 +127,8 @@ def search_view(request):
         "products": products,
         "query": query,
         "related_main_categories": related_main_categories,
-        "percentage": percentage,  # Pass the percentage to the context
+        "percentage": percentage, 
+        "product_images": product_images,
     }
 
     return render(request, "core/search.html", context)
@@ -173,8 +169,6 @@ def update_cart(request):
 
     context = render_to_string("core/cart.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
     return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])}) 
-
-
 
 @login_required
 def checkout_view(request):
