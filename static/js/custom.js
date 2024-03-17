@@ -1,14 +1,15 @@
 
 $(document).ready(function(){
-    $("#add-to-cart-btn").on("click", function(){
+    $(".add-to-cart-btn").on("click", function(){
     
-        let quantity = $("#product-quantity").val();
-        let product_title = $(".product-title").val();
-        let product_id = $(".product-id").val();
-        let product_price = $(".product-price").val();
-        let product_sku = $(".product-sku").val();
-        let product_image = $(".product-image").val();
         let this_val = $(this)
+        let index = this_val.attr("data-index")
+        let quantity = $(".product-quantity-" + index).val();
+        let product_title = $(".product-title-" + index).val();
+        let product_id = $(".product-id-" + index).val();
+        let product_price = $(".product-price-" + index).val();
+        let product_sku = $(".product-sku-" + index).val();
+        let product_image = $(".product-image-" + index).val();
     
         console.log("Quantity:", quantity);
         console.log("Title:", product_title);
@@ -16,6 +17,7 @@ $(document).ready(function(){
         console.log("ID:", product_id);
         console.log("Image:", product_image);
         console.log("Sku:", product_sku);
+        console.log("Index:", index);
         console.log("Current Element:", this_val);
 
         $.ajax({

@@ -355,9 +355,17 @@
                     <use href="#icon_next_sm" /></svg
                 ></span>
               </div>
+      <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.pid}}">
+      <input type="hidden" value="{{product.pid}}" class="product-id-{{product.pid}}">
+      <input type="hidden" value="{{product.title}}" class="product-title-{{product.pid}}">
+      <input type="hidden" value="{{product.price}}" class="product-price-{{product.pid}}">
+      <input type="hidden" value="{{product.sku}}" class="product-sku-{{product.pid}}">
+      <input type="hidden" value="{{product.image.url}}" class="product-image-{{product.pid}}">
               <button
-                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
+                class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside add-to-cart-btn"
                 data-aside="cartDrawer"
+                id="add-to-cart-btn"
+                data-index="{{product.pid}}"
                 title="Add To Cart"
               >
                 Add To Cart
