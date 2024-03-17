@@ -36,7 +36,7 @@ def category(request, main_title):
     main_categories = Main_category.objects.get(main_title=main_title)
     products = Product.objects.filter(main_category=main_categories)
     product_images = ProductImages.objects.filter(product__in=products)
-    product_variants = ProductVarient.objects.filter(product=products)
+    product_variants = ProductVarient.objects.filter(product__in=products)
     product_variant_types = ProductVariantTypes.objects.filter(product_variant__in=product_variants)
     
     prices = products.values_list('price', flat=True)
