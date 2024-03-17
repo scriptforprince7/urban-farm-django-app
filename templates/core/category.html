@@ -332,17 +332,15 @@
                     /></a>
                   </div>
                   <!-- /.pc__img-wrapper -->
-                  <div class="swiper-slide">
-                    <a href="{% url 'core:product_new' product.title %}"
-                      ><img
-                        loading="lazy"
-                        src="{{product.image.url}}"
-                        width="330"
-                        height="400"
-                        alt="{{product.title}}"
-                        class="pc__img"
-                    /></a>
-                  </div>
+                  {% for image in product_images %}
+                  {% if image.product == product %}
+                    <div class="swiper-slide">
+                      <a href="{% url 'core:product_new' product.title %}">
+                        <img loading="lazy" src="{{ image.images.url }}" width="330" height="400" alt="{{ product.title }}" class="pc__img">
+                      </a>
+                    </div>
+                  {% endif %}
+                {% endfor %}
                   <!-- /.pc__img-wrapper -->
                 </div>
                 <span class="pc__img-prev"

@@ -35,6 +35,9 @@ def index(request):
 def category(request, main_title):
     main_categories = Main_category.objects.get(main_title=main_title)
     products = Product.objects.filter(main_category=main_categories)
+    product_images = ProductImages.objects.filter(product__in=products)
+    product_variants = ProductVarient.objects.filter(product=products)
+    product_variant_types = ProductVariantTypes.objects.filter(product_variant__in=product_variants)
     
     prices = products.values_list('price', flat=True)
     min_price = min(prices) if prices else 0
@@ -48,8 +51,11 @@ def category(request, main_title):
     context = {
         "main_categories": main_categories,
         "products": products,
+        "product_images": product_images,
         "min_price": min_price,
         "max_price": max_price,
+        "product_variants": product_variants,
+        "product_variant_types": product_variant_types,
     }
     return render(request, "core/category.html", context)
 
