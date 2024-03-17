@@ -37,6 +37,12 @@ def category(request, main_title):
     products = Product.objects.filter(main_category=main_categories)
     product_images = ProductImages.objects.filter(product__in=products)
     
+    materials = Product.objects.filter(main_category=main_categories).values_list('material', flat=True).distinct()
+
+    selected_material = request.GET.get('material')
+    if selected_material:
+        products = products.filter(material=selected_material)
+
     prices = products.values_list('price', flat=True)
     min_price = min(prices) if prices else 0
     max_price = max(prices) if prices else 0
@@ -53,7 +59,12 @@ def category(request, main_title):
         "min_price": min_price,
         "max_price": max_price,
     }
+    
+    if materials:
+        context["materials"] = materials
+
     return render(request, "core/category.html", context)
+
 
 def main_category(request):
     return render(request, "core/main_category.html")
