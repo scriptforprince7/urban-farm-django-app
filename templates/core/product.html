@@ -250,6 +250,7 @@
                 type="number"
                 name="quantity"
                 value="1"
+                id="product-quantity"
                 min="1"
                 class="qty-control__number text-center"
               />
@@ -257,8 +258,14 @@
               <div class="qty-control__increase">+</div>
             </div>
             <!-- .qty-control -->
+            <input type="hidden" value="{{products.pid}}" class="product-id">
+            <input type="hidden" value="{{products.title}}" class="product-title">
+            <input type="hidden" value="{{products.price}}" class="product-price">
+            <input type="hidden" value="{{products.sku}}" class="product-sku">
+            <input type="hidden" value="{{products.image.url}}" class="product-image">
             <button
               type="submit"
+              id="add-to-cart-btn"
               class="btn btn-primary btn-addtocart js-open-aside"
               data-aside="cartDrawer"
             >
