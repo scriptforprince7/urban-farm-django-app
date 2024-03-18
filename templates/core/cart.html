@@ -41,35 +41,36 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for product_id, item in cart_data.items  %}
                         <tr>
                             <td>
                                 <div class="shopping-cart__product-item">
-                                    <img loading="lazy" src="./images/cart-item-1.jpg" width="120" height="120"
+                                    <img loading="lazy" src="{{item.image}}" width="120" height="120"
                                         alt="" />
                                 </div>
                             </td>
                             <td>
                                 <div class="shopping-cart__product-item__detail">
-                                    <h4>Zessi Dresses</h4>
+                                   <a href="{% url 'core:product_new' item.title %}"><h4>{{item.title}}</h4></a> 
                                     <ul class="shopping-cart__product-item__options">
-                                        <li>Color: Yellow</li>
-                                        <li>Size: L</li>
+                                        <li>Sku ID: {{item.sku}}</li>
+                                        {% comment %} <li>PID: {{item.product_id}}</li> {% endcomment %}
                                     </ul>
                                 </div>
                             </td>
                             <td>
-                                <span class="shopping-cart__product-price">$99</span>
+                                <span class="shopping-cart__product-price">₹ {{item.price}}</span>
                             </td>
                             <td>
                                 <div class="qty-control position-relative">
-                                    <input type="number" name="quantity" value="3" min="1"
+                                    <input type="number" name="quantity" value="{{item.qty}}" min="1"
                                         class="qty-control__number text-center" />
                                     <div class="qty-control__reduce">-</div>
                                     <div class="qty-control__increase">+</div>
                                 </div>
                             </td>
                             <td>
-                                <span class="shopping-cart__subtotal">$297</span>
+                                <span class="shopping-cart__subtotal">₹ {% widthratio item.price 1 item.qty%}</span>
                             </td>
                             <td>
                                 <a href="#" class="remove-cart">
@@ -83,14 +84,10 @@
                                 </a>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <div class="cart-table-footer">
-                    <form action="https://uomo-html.flexkitux.com/Demo2/" class="position-relative bg-body">
-                        <input class="form-control" type="text" name="coupon_code" placeholder="Coupon Code" />
-                        <input class="btn-link fw-medium position-absolute top-0 end-0 h-100 px-4" type="submit"
-                            value="APPLY COUPON" />
-                    </form>
                     <button class="btn btn-light">UPDATE CART</button>
                 </div>
             </div>
@@ -98,43 +95,30 @@
                 <div class="sticky-content">
                     <div class="shopping-cart__totals">
                         <h3>Cart Totals</h3>
+                        <p>You Have <b>{{totalcartitems}}</b>  Products in your cart</p>
                         <table class="cart-totals">
                             <tbody>
                                 <tr>
                                     <th>Subtotal</th>
-                                    <td>$1300</td>
+                                    <td>₹ {{ cart_total_amount }}</td>
                                 </tr>
                                 <tr>
                                     <th>Shipping</th>
                                     <td>
                                         <div class="form-check">
                                             <input class="form-check-input form-check-input_fill" type="checkbox"
-                                                value="" id="free_shipping" />
+                                                value="" id="free_shipping" checked/>
                                             <label class="form-check-label" for="free_shipping">Free shipping</label>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input form-check-input_fill" type="checkbox"
-                                                value="" id="flat_rate" />
-                                            <label class="form-check-label" for="flat_rate">Flat rate: $49</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input form-check-input_fill" type="checkbox"
-                                                value="" id="local_pickup" />
-                                            <label class="form-check-label" for="local_pickup">Local pickup: $8</label>
-                                        </div>
-                                        <div>Shipping to AL.</div>
+                                        <div>Shipping to Karnataka.</div>
                                         <div>
                                             <a href="#" class="menu-link menu-link_us-s">CHANGE ADDRESS</a>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>VAT</th>
-                                    <td>$19</td>
-                                </tr>
-                                <tr>
                                     <th>Total</th>
-                                    <td>$1319</td>
+                                    <td>₹ {{ cart_total_amount }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -144,6 +128,13 @@
                             <button class="btn btn-primary btn-checkout">
                                 PROCEED TO CHECKOUT
                             </button>
+                        </div>
+                    </div> <br>
+                    <div class="mobile_fixed-btn_wrapper" style="border: 1.5px solid black;">
+                        <div class="button-wrapper container">
+                          <a href="/shop-category"><button class="btn btn-checkout">
+                            Continue Shopping
+                        </button></a>  
                         </div>
                     </div>
                 </div>
