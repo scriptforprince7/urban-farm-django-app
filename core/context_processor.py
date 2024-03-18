@@ -21,3 +21,19 @@ def defaultOne(request):
     return {
         "products_count": products,
     }
+
+def cart_context(request):
+    cart_total_amount = 0
+    total_cart_items = 0
+
+    if 'cart_data_obj' in request.session:
+        for p_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+            total_cart_items += int(item['qty'])
+
+    return {
+        'cart_total_amount': cart_total_amount,
+        'total_cart_items': total_cart_items
+    }
+
+

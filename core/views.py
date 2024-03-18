@@ -69,9 +69,6 @@ def category(request, main_title):
 def main_category(request):
     return render(request, "core/main_category.html")
 
-def cart(request):
-    return render(request, "core/cart.html")
-
 def checkout(request):
     return render(request, "core/checkout.html")
 
