@@ -1,0 +1,147 @@
+
+<main id="cart-list">
+    <div class="mb-4 pb-4"></div>
+    <section class="shop-checkout container">
+        <h2 class="page-title">Cart</h2>
+        <div class="checkout-steps">
+            <a href="" class="checkout-steps__item active">
+                <span class="checkout-steps__item-number">01</span>
+                <span class="checkout-steps__item-title">
+                    <span>Shopping Bag</span>
+                    <em>Manage Your Items List</em>
+                </span>
+            </a>
+            <a href="/checkout" class="checkout-steps__item">
+                <span class="checkout-steps__item-number">02</span>
+                <span class="checkout-steps__item-title">
+                    <span>Shipping and Checkout</span>
+                    <em>Checkout Your Items List</em>
+                </span>
+            </a>
+            <a href="/confirmation" class="checkout-steps__item">
+                <span class="checkout-steps__item-number">03</span>
+                <span class="checkout-steps__item-title">
+                    <span>Confirmation</span>
+                    <em>Review And Submit Your Order</em>
+                </span>
+            </a>
+        </div>
+        <div class="shopping-cart">
+            <div class="cart-table__wrapper">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th></th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product_id, item in cart_data.items  %}
+                        <tr>
+                            <td>
+                                <div class="shopping-cart__product-item">
+                                    <img loading="lazy" src="{{item.image}}" width="120" height="120"
+                                        alt="" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="shopping-cart__product-item__detail">
+                                   <a href="{% url 'core:product_new' item.title %}"><h4>{{item.title}}</h4></a> 
+                                    <ul class="shopping-cart__product-item__options">
+                                        <li>Sku ID: {{item.sku}}</li>
+                                        {% comment %} <li>PID: {{item.product_id}}</li> {% endcomment %}
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="shopping-cart__product-price">₹ {{item.price}}</span>
+                            </td>
+                            <td>
+                                <div class="qty-control position-relative">
+                                    <input type="number" name="quantity" value="{{item.qty}}" min="1"
+                                        class="qty-control__number text-center" />
+                                    <div class="qty-control__reduce">-</div>
+                                    <div class="qty-control__increase">+</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="shopping-cart__subtotal">₹ {% widthratio item.price 1 item.qty%}</span>
+                            </td>
+                            <td>
+                               <button href="#" class="remove-cart delete-product" data-product="{{product_id}}" style="background-color: white; border: none;">
+                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="#767676"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0.259435 8.85506L9.11449 0L10 0.885506L1.14494 9.74056L0.259435 8.85506Z" />
+                                        <path
+                                            d="M0.885506 0.0889838L9.74057 8.94404L8.85506 9.82955L0 0.97449L0.885506 0.0889838Z" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="cart-table-footer">
+                    <button class="btn btn-light">UPDATE CART</button>
+                </div>
+            </div>
+            <div class="shopping-cart__totals-wrapper">
+                <div class="sticky-content">
+                    <div class="shopping-cart__totals">
+                        <h3>Cart Totals</h3>
+                        <p>You Have <b>{{totalcartitems}}</b>  Products in your cart</p>
+                        <table class="cart-totals">
+                            <tbody>
+                                <tr>
+                                    <th>Subtotal</th>
+                                    <td>₹ {{ cart_total_amount }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Shipping</th>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input form-check-input_fill" type="checkbox"
+                                                value="" id="free_shipping" checked/>
+                                            <label class="form-check-label" for="free_shipping">Free shipping</label>
+                                        </div>
+                                        <div>Shipping to Karnataka.</div>
+                                        <div>
+                                            <a href="#" class="menu-link menu-link_us-s">CHANGE ADDRESS</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <td>₹ {{ cart_total_amount }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if totalcartitems %}
+                    <div class="mobile_fixed-btn_wrapper">
+                        <div class="button-wrapper container">
+                            <button class="btn btn-primary btn-checkout">
+                                PROCEED TO CHECKOUT
+                            </button>
+                        </div>
+                    </div>
+                    {% endif %} <br>
+                    <div class="mobile_fixed-btn_wrapper" style="border: 1.5px solid black;">
+                        <div class="button-wrapper container">
+                          <a href="/shop-category"><button class="btn btn-checkout">
+                            Continue Shopping
+                        </button></a>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="mb-5 pb-xl-5"></div>

@@ -1,6 +1,6 @@
 {% extends "partials/base.html" %} {% load static %} {% block main %}
 
-<main>
+<main id="cart-list">
     <div class="mb-4 pb-4"></div>
     <section class="shop-checkout container">
         <h2 class="page-title">Cart</h2>
@@ -73,7 +73,7 @@
                                 <span class="shopping-cart__subtotal">₹ {% widthratio item.price 1 item.qty%}</span>
                             </td>
                             <td>
-                                <a href="#" class="remove-cart">
+                               <button href="#" class="remove-cart delete-product" data-product="{{product_id}}" style="background-color: white; border: none;">
                                     <svg width="10" height="10" viewBox="0 0 10 10" fill="#767676"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -81,7 +81,7 @@
                                         <path
                                             d="M0.885506 0.0889838L9.74057 8.94404L8.85506 9.82955L0 0.97449L0.885506 0.0889838Z" />
                                     </svg>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         {% endfor %}
@@ -123,13 +123,16 @@
                             </tbody>
                         </table>
                     </div>
+                    {% if totalcartitems %}
                     <div class="mobile_fixed-btn_wrapper">
                         <div class="button-wrapper container">
-                            <button class="btn btn-primary btn-checkout">
-                                PROCEED TO CHECKOUT
-                            </button>
+                         <a href="/checkout"><button class="btn btn-primary btn-checkout">
+                            PROCEED TO CHECKOUT
+                        </button></a>   
                         </div>
-                    </div> <br>
+                    </div>
+                    {% endif %}
+                    <br>
                     <div class="mobile_fixed-btn_wrapper" style="border: 1.5px solid black;">
                         <div class="button-wrapper container">
                           <a href="/shop-category"><button class="btn btn-checkout">

@@ -55,7 +55,7 @@ $(document).ready(function(){
     
     
     $(document).ready(function(){
-        $(".delete-it-now").on("click", function(){
+        $(".delete-product").on("click", function(){
             let product_id = $(this).attr("data-product");
             let this_val = $(this);
     
