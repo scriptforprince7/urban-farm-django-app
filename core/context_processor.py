@@ -25,15 +25,20 @@ def defaultOne(request):
 def cart_context(request):
     cart_total_amount = 0
     total_cart_items = 0
+    cart_data = {}
 
     if 'cart_data_obj' in request.session:
-        for p_id, item in request.session['cart_data_obj'].items():
+        cart_data = request.session['cart_data_obj']
+
+        for p_id, item in cart_data.items():
             cart_total_amount += int(item['qty']) * float(item['price'])
             total_cart_items += int(item['qty'])
 
     return {
         'cart_total_amount': cart_total_amount,
-        'total_cart_items': total_cart_items
+        'total_cart_items': total_cart_items,
+        'cart_data': cart_data  # Include cart_data in the context
     }
+
 
 

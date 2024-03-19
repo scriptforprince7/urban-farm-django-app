@@ -956,7 +956,7 @@
         {% for product_id, item in cart_data.items  %}
           <div class="cart-drawer-item d-flex position-relative">
               <div class="position-relative">
-                  <img loading="lazy" class="cart-drawer-item__img" src="{{item.image}}" alt="" />
+                  <img loading="lazy" class="cart-drawer-item__img" src="{{item.image}}" alt="{{item.title}}" />
               </div>
               <div class="cart-drawer-item__info flex-grow-1">
                 <a href="{% url 'core:product_new' item.title %}"><h6 class="cart-drawer-item__title fw-normal">{{item.title}}</h6></a>  
@@ -982,7 +982,7 @@
       <div class="cart-drawer-actions position-absolute start-0 bottom-0 w-100">
           <hr class="cart-drawer-divider" />
           <div class="d-flex justify-content-between">
-              <h6 class="fs-base fw-medium">SUBTOTAL:</h6>
+              <h6 class="fs-base fw-medium">SUBTOTAL: </h6>
               <span class="cart-subtotal fw-medium">₹ </span>
           </div>
           <a href="/cart" class="btn btn-light mt-3 d-block">View Cart</a>
