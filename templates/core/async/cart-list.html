@@ -36,7 +36,8 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Subtotal</th>
-                            <th></th>
+                            <th>Remove</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,8 +63,8 @@
                             </td>
                             <td>
                                 <div class="qty-control position-relative">
-                                    <input type="number" name="quantity" value="{{item.qty}}" min="1"
-                                        class="qty-control__number text-center" />
+                                    <input type="number" name="" value="{{item.qty}}"
+                                        class="qty-control__number text-center product-qty-{{product_id}}" />
                                     <div class="qty-control__reduce">-</div>
                                     <div class="qty-control__increase">+</div>
                                 </div>
@@ -82,13 +83,22 @@
                                     </svg>
                                 </button>
                             </td>
+                            <td>
+                                <button href="#" class=" update-product" data-product="{{product_id}}" style="background-color: white; border: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#767676">
+                                        <path d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M4 4v4h2V6.83l5.59 5.59L10 13l-6-6zm13.59 4.41L14 10l6 6V14h-1.59l-2.5-2.5C15.54 10.71 13.85 10 12 10c-3.31 0-6 2.69-6 6s2.69 6 6 6a5.98 5.98 0 0 0 4.59-2.09l1.42 1.42A7.969 7.969 0 0 1 12 22c-4.42 0-8-3.58-8-8s3.58-8 8-8c2.05 0 3.91.78 5.34 2.05z"/>
+                                      </svg>
+                                      
+                                 </button>
+                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <div class="cart-table-footer">
-                    <button class="btn btn-light">UPDATE CART</button>
-                </div>
+                {% comment %} <div class="cart-table-footer">
+                    <button class="btn btn-light update-product" data-product="{{product_id}}">UPDATE CART</button>
+                </div> {% endcomment %}
             </div>
             <div class="shopping-cart__totals-wrapper">
                 <div class="sticky-content">
@@ -125,12 +135,13 @@
                     {% if totalcartitems %}
                     <div class="mobile_fixed-btn_wrapper">
                         <div class="button-wrapper container">
-                            <button class="btn btn-primary btn-checkout">
-                                PROCEED TO CHECKOUT
-                            </button>
+                         <a href="/checkout"><button class="btn btn-primary btn-checkout">
+                            PROCEED TO CHECKOUT
+                        </button></a>   
                         </div>
                     </div>
-                    {% endif %} <br>
+                    {% endif %}
+                    <br>
                     <div class="mobile_fixed-btn_wrapper" style="border: 1.5px solid black;">
                         <div class="button-wrapper container">
                           <a href="/shop-category"><button class="btn btn-checkout">
