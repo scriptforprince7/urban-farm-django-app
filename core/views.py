@@ -75,9 +75,6 @@ def checkout(request):
 def confirmation(request):
     return render(request, "core/confirmation.html")
 
-def search(request):
-    return render(request, "core/search.html")
-
 
 def add_to_cart(request):
     cart_product = {}
@@ -258,18 +255,3 @@ def product_new(request, title):
     }
 
     return render(request, "core/product.html", context)
-
-
-
-
-
-
-
-
-        
-    
-
-
-
-
-

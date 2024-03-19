@@ -159,6 +159,7 @@
                     <div class="sticky-content">
                         <div class="checkout__totals">
                             <h3>Your Order</h3>
+                            <p>You have total <b>{{totalcartitems}}</b>  products</p>
                             <table class="checkout-cart-items">
                                 <thead>
                                     <tr>
@@ -167,33 +168,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for product_id, item in cart_data.items  %}
                                     <tr>
-                                        <td>Zessi Dresses x 2</td>
-                                        <td>$32.50</td>
+                                        <td><img src="{{item.image}}" width="40px" /> <a href="{% url 'core:product_new' item.title %}">{{item.title}}</a>  x {{item.qty}} <br> {{item.sku}}</td>
+                                        <td>₹ {% widthratio item.price 1 item.qty%}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Kirby T-Shirt</td>
-                                        <td>$29.90</td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                             <table class="checkout-totals">
                                 <tbody>
                                     <tr>
                                         <th>SUBTOTAL</th>
-                                        <td>$62.40</td>
+                                        <td>₹ {{cart_total_amount}}</td>
                                     </tr>
                                     <tr>
                                         <th>SHIPPING</th>
                                         <td>Free shipping</td>
                                     </tr>
                                     <tr>
-                                        <th>VAT</th>
-                                        <td>$19</td>
+                                        <th>GST</th>
+                                        <td>₹ 1354</td>
                                     </tr>
                                     <tr>
                                         <th>TOTAL</th>
-                                        <td>$81.40</td>
+                                        <td>₹ {{cart_total_amount}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -214,35 +213,9 @@
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input form-check-input_fill" type="radio"
-                                    name="checkout_payment_method" id="checkout_payment_method_2" />
-                                <label class="form-check-label" for="checkout_payment_method_2">
-                                    Check payments
-                                    <span class="option-detail d-block">
-                                        Phasellus sed volutpat orci. Fusce eget lore mauris
-                                        vehicula elementum gravida nec dui. Aenean aliquam
-                                        varius ipsum, non ultricies tellus sodales eu. Donec
-                                        dignissim viverra nunc, ut aliquet magna posuere eget.
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input form-check-input_fill" type="radio"
                                     name="checkout_payment_method" id="checkout_payment_method_3" />
                                 <label class="form-check-label" for="checkout_payment_method_3">
                                     Cash on delivery
-                                    <span class="option-detail d-block">
-                                        Phasellus sed volutpat orci. Fusce eget lore mauris
-                                        vehicula elementum gravida nec dui. Aenean aliquam
-                                        varius ipsum, non ultricies tellus sodales eu. Donec
-                                        dignissim viverra nunc, ut aliquet magna posuere eget.
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input form-check-input_fill" type="radio"
-                                    name="checkout_payment_method" id="checkout_payment_method_4" />
-                                <label class="form-check-label" for="checkout_payment_method_4">
-                                    Paypal
                                     <span class="option-detail d-block">
                                         Phasellus sed volutpat orci. Fusce eget lore mauris
                                         vehicula elementum gravida nec dui. Aenean aliquam
