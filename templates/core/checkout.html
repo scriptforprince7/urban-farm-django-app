@@ -244,20 +244,19 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     var options = {
-        "key": "rzp_test_rQ8h1gyxiMhZ7A", // Enter the Key ID generated from the Dashboard
-        "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "key": "rzp_test_rQ8h1gyxiMhZ7A",
+        "amount": "{{payment.amount}}",
         "currency": "INR",
         "name": "Urban Farm",
         "description": "Test Transaction - Smart for Sustainability",
         "image": "http://127.0.0.1:8000/static/images/logo_org.png",
-        "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "order_id": "{{payment.id}}",
         "handler": function (response){
-            alert(response.razorpay_payment_id);
-            alert(response.razorpay_order_id);
-            alert(response.razorpay_signature)
+
+        window.location.href = `http://127.0.0.1:8000/confirmation/?razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}`;
         },
         "theme": {
-            "color": "#3399cc"
+            "color": "#004818"
         }
     };
     var rzp1 = new Razorpay(options);
