@@ -158,10 +158,8 @@ EMAIL_HOST_USER = 'princesachdeva@nationalmarketingprojects.com'
 EMAIL_HOST_PASSWORD = 'Prince_django_autuh_admin_panel_49494'
 DEFAULT_FROM_EMAIL = 'princesachdeva@nationalmarketingprojects.com'  # Use the same email as HOST_USER
 
-
-PAYPAL_RECEIVER_EMAIL = 'sprince1500@gmail.com'
-PAYPAL_TEST =True
-
+KEY = 'rzp_test_rQ8h1gyxiMhZ7A'
+SECRET = 'dOBd5O2UnENMPCZQu2J7GIah'
 
 
 

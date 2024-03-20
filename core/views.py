@@ -14,6 +14,8 @@ import os
 import requests
 from django.db.models import Case, When, Value, IntegerField
 from django.views.generic import View
+import razorpay
+from django.db import transaction
 
 
 def index(request):
@@ -175,26 +177,32 @@ def update_cart(request):
 
 @login_required
 def checkout_view(request):
-    host = request.get_host()
-    paypal_dict = {
-        'business' : settings.PAYPAL_RECEIVER_EMAIL,
-        'amount' : '200',
-        'item_name' : "Order-item No. 3",
-        'invoice' : "INVOICE_NO_3",
-        'currency_code' : "INR",
-        'notify_url' : 'http://{}{}'.format(host, reverse('core:paypal-ipn')),
-        'return_url' : 'http://{}{}'.format(host, reverse('core:payment-completed')),
-        'cancel_url' : 'http://{}{}'.format(host, reverse('core:payment-failed')),
+    cart_total_amount = 0
+
+    if 'cart_data_obj' in request.session:
+        with transaction.atomic():
+            for p_id, item in request.session['cart_data_obj'].items():
+                cart_total_amount += int(item['qty']) * float(item['price'])
+                product = Product.objects.get(pid=p_id) 
+                client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
+                payment = client.order.create({'amount': int(item['qty']) * float(item['price']) * 100, 'currency': 'INR', 'payment_capture': 1})
+                product.razor_pay_order_id = payment['id']
+                product.save()
+
+    client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
+    payment = client.order.create({'amount': cart_total_amount * 100, 'currency': 'INR', 'payment_capture': 1})
+
+    print(payment)
+
+    context = {
+        "payment": payment,
     }
 
-    paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
-     
-    cart_total_amount = 0
-    if 'cart_data_obj' in request.session:
-        for p_id, item in request.session['cart_data_obj'].items():
-            cart_total_amount += int(item['qty']) * float(item['price'])
+    return render(request, "core/checkout.html", {'cart_data': request.session.get('cart_data_obj', {}),
+                                                  'totalcartitems': len(request.session.get('cart_data_obj', {})),
+                                                  'cart_total_amount': cart_total_amount,
+                                                  **context})
 
-    return render(request, "core/checkout.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount, 'paypal_payment_button': paypal_payment_button})
 
 @login_required
 def payment_completed_view(request):
