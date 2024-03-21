@@ -45,15 +45,15 @@
                 </div>
                 <div class="order-info__item">
                     <label>Date</label>
-                    <span>27/10/2023</span>
+                    <span>{{current_datetime}}</span>
                 </div>
                 <div class="order-info__item">
                     <label>Total</label>
-                    <span>$81.40</span>
+                    <span>₹ {{cart_total_amount}}</span>
                 </div>
                 <div class="order-info__item">
-                    <label>Paymetn Method</label>
-                    <span>Direct Bank Transfer</span>
+                    <label>Payment Method</label>
+                    <span>UPI</span>
                 </div>
             </div>
             <div class="checkout__totals-wrapper">
@@ -63,37 +63,37 @@
                         <thead>
                             <tr>
                                 <th>PRODUCT</th>
+                                <th>Unit Price</th>
                                 <th>SUBTOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for product_id, item in cart_data.items  %}
                             <tr>
-                                <td>Zessi Dresses x 2</td>
-                                <td>$32.50</td>
+                                <td>{{item.title}} x {{item.qty}}</td>
+                                <td>₹ {{item.price}}</td>
+                                <td>₹ {% widthratio item.price 1 item.qty%}</td>
                             </tr>
-                            <tr>
-                                <td>Kirby T-Shirt</td>
-                                <td>$29.90</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     <table class="checkout-totals">
                         <tbody>
                             <tr>
                                 <th>SUBTOTAL</th>
-                                <td>$62.40</td>
+                                <td>₹ {{cart_total_amount}}</td>
                             </tr>
                             <tr>
                                 <th>SHIPPING</th>
                                 <td>Free shipping</td>
                             </tr>
                             <tr>
-                                <th>VAT</th>
-                                <td>$19</td>
+                                <th>GST</th>
+                                <td>₹ 19</td>
                             </tr>
                             <tr>
                                 <th>TOTAL</th>
-                                <td>$81.40</td>
+                                <td>₹ {{cart_total_amount}}</td>
                             </tr>
                         </tbody>
                     </table>

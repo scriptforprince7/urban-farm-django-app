@@ -16,6 +16,7 @@ from django.db.models import Case, When, Value, IntegerField
 from django.views.generic import View
 import razorpay
 from django.db import transaction
+from datetime import datetime
 
 
 def index(request):
@@ -74,8 +75,8 @@ def main_category(request):
 def checkout(request):
     return render(request, "core/checkout.html")
 
-def confirmation(request):
-    return render(request, "core/confirmation.html")
+def payment_failed_view(request):
+    return render(request, "core/confirmation-failed.html")
 
 
 def add_to_cart(request):
@@ -203,14 +204,18 @@ def checkout_view(request):
                                                   'cart_total_amount': cart_total_amount,
                                                   **context})
 
-
 @login_required
 def payment_completed_view(request):
     cart_total_amount = 0
     if 'cart_data_obj' in request.session:
         for p_id, item in request.session['cart_data_obj'].items():
             cart_total_amount += int(item['qty']) * float(item['price'])
-    return render(request, "core/payment-completed.html")
+        context = request.POST
+    current_datetime = datetime.now()
+            
+    return render(request, "core/confirmation.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount, 'current_datetime': current_datetime})
+
+
 
 @login_required
 def payment_failed_view(request):

@@ -19599,9 +19599,7 @@ a.add-to-wishlist.active .flaticon.flaticon-heart {
 .order-complete .checkout__totals {
   width: 100%;
 }
-.order-complete .checkout__totals .checkout-cart-items thead th:last-child {
-  text-align: right;
-}
+
 
 .order-tracking {
   width: 31.25rem;
