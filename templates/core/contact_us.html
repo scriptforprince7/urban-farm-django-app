@@ -1,63 +1,43 @@
 {% extends "partials/base.html" %} {% load static %} {% block main %}
 
 <main>
-  <div class="mb-4 pb-4"></div>
-  <section class="contact-us container">
-    <div class="mw-930">
-      <h2 class="page-title">CONTACT US</h2>
-    </div>
-  </section>
+    <div class="mb-4 pb-4"></div>
+    <section class="store-location container">
+        <h2 class="page-title">STORE LOCATOR</h2>
 
-  <section class="contact-us container">
-    <div class="mw-930">
-      <div class="row mb-8">
-        <div class="col-lg-12">
-          <h3 class="mb-4">Store in India</h3>
-          <p class="mb-4">Galla No. B41, Kohinoor Complex, Plot No. J7-J9, Opp. Hindalco, 
-            MIDC Taloja, Panvel, Maharashtra-410208
-            </p>
-          <p class="mb-4">sale@urbanfarm.com<br />+91-8879658654</p>
+        <div class="row">
+            <div class="col-lg-4">
+                <form action="https://uomo-html.flexkitux.com/Demo2/search.php" method="GET">
+                    
+
+                    <div class="store-location__search-result">
+                        <div class="store-location__search-result__item">
+                            <h5>Store in Mumbai</h5>
+                            <p>
+                              Galla No. B41, Kohinoor Complex, Plot No. J7-J9, Opp. Hindalco, MIDC Taloja, Panvel, Maharashtra-410208
+                            </p>
+                            <p>
+                              sale@urbanfarm.com
+                            </p>
+                            <p>
+                              +91-8879658654
+                            </p>
+                            <a id="store_selector_1" href="https://www.google.com/maps/place/Kohinoor+Complex/@19.0129481,73.0952295,17z/data=!4m10!1m2!2m1!1sGalla+No.+B41,+Kohinoor+Complex,+Plot+No.+J7-J9,+Opp.+Hindalco,+MIDC+Taloja,+Panvel,+Maharashtra-410208!3m6!1s0x3be7e82cc86d75d5:0xc9c572ed9aeb3428!8m2!3d19.0129481!4d73.0952295!15sCmdHYWxsYSBOby4gQjQxLCBLb2hpbm9vciBDb21wbGV4LCBQbG90IE5vLiBKNy1KOSwgT3BwLiBIaW5kYWxjbywgTUlEQyBUYWxvamEsIFBhbnZlbCwgTWFoYXJhc2h0cmEtNDEwMjA4IgOIAQGSARNjb25kb21pbml1bV9jb21wbGV44AEA!16s%2Fg%2F11b69bdj7m?entry=ttu">See on the map</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-8">
+                
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.1536912365073!2d73.09522948730387!3d19.012948101932153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e82cc86d75d5%3A0xc9c572ed9aeb3428!2sKohinoor%20Complex!5e0!3m2!1sen!2sin!4v1711024640058!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+               
+            </div>
         </div>
-      </div>
-      <div class="contact-us__form">
-        <form name="contact-us-form" class="needs-validation" novalidate>
-          <h3 class="mb-5">Get In Touch</h3>
-          <div class="form-floating my-4">
-            <input
-              type="text"
-              class="form-control"
-              id="contact_us_name"
-              placeholder="Name *"
-              required
-            />
-            <label for="contact_us_name">Name *</label>
-          </div>
-          <div class="form-floating my-4">
-            <input
-              type="email"
-              class="form-control"
-              id="contact_us_email"
-              placeholder="Email address *"
-              required
-            />
-            <label for="contact_us_name">Email address *</label>
-          </div>
-          <div class="my-4">
-            <textarea
-              class="form-control form-control_gray"
-              placeholder="Your Message"
-              cols="30"
-              rows="8"
-              required
-            ></textarea>
-          </div>
-          <div class="my-4">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
+    </section>
 </main>
+
 <div class="mb-5 pb-xl-5"></div>
-{% endblock main %}
+
+
+  {% endblock main %}

@@ -1,0 +1,55 @@
+{% extends "partials/base.html" %} {% load static %} {% block main %}
+
+<main>
+    <div class="mb-4 pb-4"></div>
+    <section class="my-account container">
+        <h2 class="page-title">Orders</h2>
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="account-nav">
+                    <li>
+                        <a href="/dashboard" class="menu-link menu-link_us-s">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/myorders" class="menu-link menu-link_us-s menu-link_active">Orders</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/myaddress" class="menu-link menu-link_us-s">Addresses</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'userauths:sign-out' %}" class="menu-link menu-link_us-s">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div class="page-content my-account__orders-list">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for o in orders %}
+                            <tr>
+                                <td>#{{o.id}}</td>
+                                <td>{{o.order_date}}</td>
+                                <td>{{o.product_status}}</td>
+                                <td>{{o.price}} for 3 items</td>
+                                <td><button class="btn btn-primary">VIEW</button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="mb-5 pb-xl-5"></div>
+{% endblock main %}

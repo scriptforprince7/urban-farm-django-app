@@ -689,7 +689,7 @@
       <div class="header-tools__item hover-container">
         <a
           class="header-tools__item"
-          href="{% if user.is_authenticated %}{% url 'userauths:sign-out' %}{% else %}{% url 'userauths:sign-in' %}{% endif %}"
+          href="{% if user.is_authenticated %}{% url 'core:dashboard' %}{% else %}{% url 'userauths:sign-in' %}{% endif %}"
           data-aside="customerForms"
         >
           <svg

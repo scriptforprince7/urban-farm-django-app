@@ -59,7 +59,7 @@ def send_verification_email(user, token):
 def login_view(request):
     if request.user.is_authenticated:
         if request.user.email_verified:
-            return redirect("core:index")
+            return redirect("core:dashboard")
         else:
             messages.warning(request, "Your email is not verified yet. Please verify your email before logging in.")
             return redirect("userauths:sign-in")
@@ -76,7 +76,7 @@ def login_view(request):
                 if user is not None:
                     login(request, user)
                     messages.success(request, "You are logged in.")
-                    return redirect("core:index")
+                    return redirect("core:dashboard")
                 else:
                     messages.warning(request, "Invalid credentials.")
             else:

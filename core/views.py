@@ -202,7 +202,7 @@ def checkout_view(request):
                 price = item['price'],
                 total = float(item['qty']) * float(item['price'])
             )
-            
+
     cart_total_amount = 0        
     if 'cart_data_obj' in request.session:
         with transaction.atomic():
@@ -258,6 +258,22 @@ def write_to_ceo(request):
 
 def blogs(request):
     return render(request, "core/blog.html")
+
+@login_required
+def dashboard(request):
+    return render(request, "core/account_dashboard.html")
+
+@login_required
+def orders(request):
+    orders = CartOrder.objects.filter(user=request.user)
+    context = {
+        "orders": orders
+    }
+    return render(request, "core/account_orders.html", context)
+
+@login_required
+def address(request):
+    return render(request, "core/account_address.html")
 
 def privacypolicy(request):
     privacy_policy = PrivacyPolicy.objects.first()  # Assuming you have a PrivacyPolicy instance

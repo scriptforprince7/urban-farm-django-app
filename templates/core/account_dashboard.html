@@ -1,0 +1,43 @@
+{% extends "partials/base.html" %} {% load static %} {% block main %}
+
+<main>
+    <div class="mb-4 pb-4"></div>
+    <section class="my-account container">
+        <h2 class="page-title">My Account</h2>
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="account-nav">
+                    <li>
+                        <a href="/dashboard" class="menu-link menu-link_us-s menu-link_active">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/myorders" class="menu-link menu-link_us-s">Orders</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/myaddress" class="menu-link menu-link_us-s">Addresses</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'userauths:sign-out' %}" class="menu-link menu-link_us-s">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div class="page-content my-account__dashboard">
+                    <p>
+                        Hello <strong>{{request.user|title}}</strong> (not <strong>{{request.user|title}}?</strong>
+                        <a href="{% url 'userauths:sign-out' %}">Log out</a>)
+                    </p>
+                    <p>
+                        From your account dashboard you can view your
+                        <a class="unerline-link" href="/dashboard/myorders">recent orders</a>, manage your
+                        <a class="unerline-link" href="/dashboard/myaddress">shipping and billing addresses</a>, and
+                        <a class="unerline-link" href="{% url 'userauths:sign-out' %}">logout</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div class="mb-5 pb-xl-5"></div>
+
+{% endblock main %}
