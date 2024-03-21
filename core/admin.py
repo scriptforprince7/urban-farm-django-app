@@ -46,8 +46,8 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['main_category']  # Fields to filter by
 
 class CartOrderAdmin(admin.ModelAdmin):
-    list_display = ['razor_pay_order_id', 'razor_pay_payment_id', 'razor_pay_payment_signature', 'price', 'order_date', 'product_status']
-
+    list_editable = ['paid_status', 'product_status']
+    list_display = ['user', 'price', 'paid_status', 'order_date', 'product_status']
 
 class CartOrderItemsAdmin(admin.ModelAdmin):
     list_display = ['order', 'invoice_no', 'item', 'image', 'qty', 'price', 'total']

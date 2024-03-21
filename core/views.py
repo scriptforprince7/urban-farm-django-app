@@ -179,7 +179,31 @@ def update_cart(request):
 @login_required
 def checkout_view(request):
     cart_total_amount = 0
+    total_amount = 0
 
+    if 'cart_data_obj' in request.session:
+        for p_id, item in request.session['cart_data_obj'].items():
+            total_amount += int(item['qty']) * float(item['price'])
+
+    order = CartOrder.objects.create(
+        user = request.user,
+        price = total_amount
+    )
+
+    for p_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+
+            cart_order_products = CartOrderItems.objects.create(
+                order= order,
+                invoice_no = "order_id-" + str(order.id),
+                item = item['title'],
+                image = item['image'],
+                qty = item['qty'],
+                price = item['price'],
+                total = float(item['qty']) * float(item['price'])
+            )
+            
+    cart_total_amount = 0        
     if 'cart_data_obj' in request.session:
         with transaction.atomic():
             for p_id, item in request.session['cart_data_obj'].items():
@@ -192,8 +216,6 @@ def checkout_view(request):
 
     client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
     payment = client.order.create({'amount': cart_total_amount * 100, 'currency': 'INR', 'payment_capture': 1})
-
-    print(payment)
 
     context = {
         "payment": payment,
