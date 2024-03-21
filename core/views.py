@@ -265,11 +265,20 @@ def dashboard(request):
 
 @login_required
 def orders(request):
-    orders = CartOrder.objects.filter(user=request.user)
+    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
     context = {
         "orders": orders
     }
     return render(request, "core/account_orders.html", context)
+
+def order_detail(request, id):
+    order = CartOrder.objects.filter(user=request.user, id=id)
+    products = CartOrderItems.objects.filter(order=order)
+
+    context = {
+        "products": products,
+    }
+    return render(request, "core/order-detail.html", context)
 
 @login_required
 def address(request):
