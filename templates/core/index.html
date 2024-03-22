@@ -415,23 +415,24 @@
               }
             }'>
                             <div class="swiper-wrapper">
+                                {% for best_picks in summer_sale %}
                                 <div class="swiper-slide product-card product-card_style3">
                                     <div class="pc__img-wrapper">
-                                        <a href=" ">
+                                        <a href="{% url 'core:product_new' best_picks.title %}">
                                             <img loading="lazy"
-                                                src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}"
+                                                src="{{best_picks.image.url}}"
                                                 width="258" height="313" alt="NFT Channel" class="pc__img">
                                             <img loading="lazy"
-                                                src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}"
+                                                src="{{best_picks.image.url}}"
                                                 width="258" height="313" alt="NFT Channel"
                                                 class="pc__img pc__img-second">
                                         </a>
                                     </div>
 
                                     <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href=" ">NFT Channel</a></h6>
+                                        <h6 class="pc__title"><a href=" ">{{best_picks.title}}</a></h6>
                                         <div class="product-card__price d-flex">
-                                            <span class="money price text-secondary">₹29</span>
+                                            <span class="money price text-secondary">₹ {{best_picks.price}}</span>
                                         </div>
 
                                         <div
@@ -450,322 +451,10 @@
                                                         <use href="#icon_view" />
                                                     </svg></span>
                                             </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="swiper-slide product-card product-card_style3">
-                                    <div class="pc__img-wrapper">
-                                        <a href=" ">
-                                            <img loading="lazy"
-                                                src="{% static 'images/urbanfarm_images/upvc-hydroponic-pipes.jpg' %}" width="258"
-                                                height="313" alt="NFT Channel" class="pc__img">
-                                            <img loading="lazy"
-                                                src="{% static 'images/urbanfarm_images/upvc-hydroponic-pipes.jpg' %}" width="258"
-                                                height="313" alt="NFT Channel" class="pc__img pc__img-second">
-                                        </a>
-                                    </div>
-
-                                    <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href=" ">Oasis Cube</a></h6>
-                                        <div class="product-card__price d-flex">
-                                            <span class="money price text-secondary">₹62</span>
-                                        </div>
-
-                                        <div
-                                            class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#quickView"
-                                                title="Quick view">
-                                                <span class="d-none d-xxl-block">Quick View</span>
-                                                <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                        viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <use href="#icon_view" />
-                                                    </svg></span>
-                                            </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-card product-card_style3">
-                                    <div class="pc__img-wrapper">
-                                        <a href=" ">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/Online Dripper.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel" class="pc__img">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/Online Dripper.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel"
-                                                class="pc__img pc__img-second">
-                                        </a>
-                                    </div>
-
-                                    <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href=" ">Seedling Tray</a></h6>
-                                        <div class="product-card__price d-flex">
-                                            <span class="money price text-secondary">₹62</span>
-                                        </div>
-
-                                        <div
-                                            class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#quickView"
-                                                title="Quick view">
-                                                <span class="d-none d-xxl-block">Quick View</span>
-                                                <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                        viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <use href="#icon_view" />
-                                                    </svg></span>
-                                            </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-card product-card_style3">
-                                    <div class="pc__img-wrapper">
-                                        <a href=" ">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/nursery-grow-bag.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel" class="pc__img">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/nursery-grow-bag.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel"
-                                                class="pc__img pc__img-second">
-                                        </a>
-                                    </div>
-
-                                    <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href=" ">Regular Net Pots</a></h6>
-                                        <div class="product-card__price d-flex align-items-center">
-                                            <span class="money price-old">₹129</span>
-                                            <span class="money price text-secondary">₹99</span>
-                                        </div>
-
-                                        <div
-                                            class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#quickView"
-                                                title="Quick view">
-                                                <span class="d-none d-xxl-block">Quick View</span>
-                                                <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                        viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <use href="#icon_view" />
-                                                    </svg></span>
-                                            </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-card product-card_style3">
-                                    <div class="pc__img-wrapper">
-                                        <a href=" ">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/Online Dripper.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel" class="pc__img">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/Online Dripper.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel"
-                                                class="pc__img pc__img-second">
-                                        </a>
-                                    </div>
-
-                                    <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href=" ">NFT Channel</a></h6>
-                                        <div class="product-card__price d-flex">
-                                            <span class="money price text-secondary">₹29</span>
-                                        </div>
-
-                                        <div
-                                            class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#quickView"
-                                                title="Quick view">
-                                                <span class="d-none d-xxl-block">Quick View</span>
-                                                <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                        viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <use href="#icon_view" />
-                                                    </svg></span>
-                                            </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-card product-card_style3">
-                                    <div class="pc__img-wrapper">
-                                        <a href="#">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/peat-moss.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel" class="pc__img">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/peat-moss.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel"
-                                                class="pc__img pc__img-second">
-                                        </a>
-                                    </div>
-
-                                    <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href="#">Oasis Cube</a></h6>
-                                        <div class="product-card__price d-flex">
-                                            <span class="money price text-secondary">₹62</span>
-                                        </div>
-
-                                        <div
-                                            class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#quickView"
-                                                title="Quick view">
-                                                <span class="d-none d-xxl-block">Quick View</span>
-                                                <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                        viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <use href="#icon_view" />
-                                                    </svg></span>
-                                            </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-card product-card_style3">
-                                    <div class="pc__img-wrapper">
-                                        <a href="#">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/pumic.jpg' %}" width="258"
-                                                height="313" alt="NFT Channel" class="pc__img">
-                                            <img loading="lazy" src="{% static 'images/urbanfarm_images/pumic.jpg' %}" width="258"
-                                                height="313" alt="NFT Channel" class="pc__img pc__img-second">
-                                        </a>
-                                    </div>
-
-                                    <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href="images/urbanfarm_images/pumic.jpg">Seedling
-                                                Tray</a></h6>
-                                        <div class="product-card__price d-flex">
-                                            <span class="money price text-secondary">₹62</span>
-                                        </div>
-
-                                        <div
-                                            class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#quickView"
-                                                title="Quick view">
-                                                <span class="d-none d-xxl-block">Quick View</span>
-                                                <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                        viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <use href="#icon_view" />
-                                                    </svg></span>
-                                            </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide product-card product-card_style3">
-                                    <div class="pc__img-wrapper">
-                                        <a href="#">
-                                            <img loading="lazy"
-                                                src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel" class="pc__img">
-                                            <img loading="lazy"
-                                                src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}"
-                                                width="258" height="313" alt="NFT Channel"
-                                                class="pc__img pc__img-second">
-                                        </a>
-                                    </div>
-
-                                    <div class="pc__info position-relative">
-                                        <h6 class="pc__title"><a href="#">Regular Net Pots</a></h6>
-                                        <div class="product-card__price d-flex align-items-center">
-                                            <span class="money price-old">₹129</span>
-                                            <span class="money price text-secondary">₹99</span>
-                                        </div>
-
-                                        <div
-                                            class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                            <button
-                                                class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                data-bs-toggle="modal" data-bs-target="#quickView"
-                                                title="Quick view">
-                                                <span class="d-none d-xxl-block">Quick View</span>
-                                                <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                        viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <use href="#icon_view" />
-                                                    </svg></span>
-                                            </button>
-                                            <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                title="Add To Wishlist">
-                                                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_heart" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div><!-- /.swiper-wrapper -->
                         </div><!-- /.swiper-container js-swiper-slider -->
                     </div><!-- /.position-relative -->
@@ -785,13 +474,14 @@
         </h2>
 
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
+            {% for new_arrivals in new_arrival %}
             <div class="product-card-wrapper overflow-hidden">
                 <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
                     <div class="pc__img-wrapper">
                         <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/net-pots.jpg' %}" width="330" height="400"
+                            <img loading="lazy" src="{{new_arrivals.image.url}}" width="330" height="400"
                                 alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/net-pots.jpg' %}" width="330" height="400"
+                            <img loading="lazy" src="{{new_arrivals.image.url}}" width="330" height="400"
                                 alt="NFT Channel" class="pc__img pc__img-second">
                         </a>
                     </div>
@@ -799,16 +489,9 @@
                     <div class="pc__info position-relative bg-body">
                         <div class="position-relative">
                             <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href=" ">NFT Channel</a></h6>
+                            <h6 class="pc__title"><a href=" ">{{new_arrivals.title}}</a></h6>
                             <div class="product-card__price d-flex">
-                                <span class="money price">₹29</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
+                                <span class="money price">₹ {{new_arrivals.price}}</span>
                             </div>
 
                             <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
@@ -824,378 +507,12 @@
                                             <use href="#icon_view" />
                                         </svg></span>
                                 </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="product-card-wrapper overflow-hidden">
-                <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
-                    <div class="pc__img-wrapper">
-                        <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/net-pots.jpg' %}" width="330" height="400"
-                                alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/net-pots.jpg' %}" width="330" height="400"
-                                alt="NFT Channel" class="pc__img pc__img-second">
-                        </a>
-                    </div>
-
-                    <div class="pc__info position-relative bg-body">
-                        <div class="position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href="#">Oasis Cube</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">₹62</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                            </div>
-
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
-                                    class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
-                                    data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                    <span class="d-none d-xxl-block">Quick View</span>
-                                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_view" />
-                                        </svg></span>
-                                </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card-wrapper overflow-hidden">
-                <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
-                    <div class="pc__img-wrapper">
-                        <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/NFT Channels.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/NFT Channels.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img pc__img-second">
-                        </a>
-                    </div>
-
-                    <div class="pc__info position-relative bg-body">
-                        <div class="position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href=" ">Seedling Tray</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">₹17</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                            </div>
-
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
-                                    class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
-                                    data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                    <span class="d-none d-xxl-block">Quick View</span>
-                                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_view" />
-                                        </svg></span>
-                                </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card-wrapper overflow-hidden">
-                <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
-                    <div class="pc__img-wrapper">
-                        <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/oasis-cube.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/oasis-cube.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img pc__img-second">
-                        </a>
-                    </div>
-
-                    <div class="pc__info position-relative bg-body">
-                        <div class="position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href=" ">Regular Net Pots</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price price-old">₹129</span>
-                                <span class="money price price-sale">₹99</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                            </div>
-
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
-                                    class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
-                                    data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                    <span class="d-none d-xxl-block">Quick View</span>
-                                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_view" />
-                                        </svg></span>
-                                </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card-wrapper overflow-hidden">
-                <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
-                    <div class="pc__img-wrapper">
-                        <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/thermocol-floating-bed.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/thermocol-floating-bed.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img pc__img-second">
-                        </a>
-                    </div>
-
-                    <div class="pc__info position-relative bg-body">
-                        <div class="position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href=" ">Colorful Jacket</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">₹29</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                            </div>
-
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
-                                    class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
-                                    data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                    <span class="d-none d-xxl-block">Quick View</span>
-                                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_view" />
-                                        </svg></span>
-                                </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card-wrapper overflow-hidden">
-                <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
-                    <div class="pc__img-wrapper">
-                        <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/Submersible Pump HQB Series.jpg' %}"
-                                width="330" height="400" alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/Submersible Pump HQB Series.jpg' %}"
-                                width="330" height="400" alt="NFT Channel" class="pc__img pc__img-second">
-                        </a>
-                    </div>
-
-                    <div class="pc__info position-relative bg-body">
-                        <div class="position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href=" ">Shirt In Botanical Cheetah Print</a>
-                            </h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">₹62</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                            </div>
-
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
-                                    class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
-                                    data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                    <span class="d-none d-xxl-block">Quick View</span>
-                                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_view" />
-                                        </svg></span>
-                                </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card-wrapper overflow-hidden">
-                <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
-                    <div class="pc__img-wrapper">
-                        <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/seedling-tray.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/seedling-tray.jpg' %}" width="330"
-                                height="400" alt="NFT Channel" class="pc__img pc__img-second">
-                        </a>
-                    </div>
-
-                    <div class="pc__info position-relative bg-body">
-                        <div class="position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href=" ">Seedling Tray</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price">₹17</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                            </div>
-
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
-                                    class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
-                                    data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                    <span class="d-none d-xxl-block">Quick View</span>
-                                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_view" />
-                                        </svg></span>
-                                </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card-wrapper overflow-hidden">
-                <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
-                    <div class="pc__img-wrapper">
-                        <a href=" ">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/rectangular-NFT-channels.jpg' %}"
-                                width="330" height="400" alt="NFT Channel" class="pc__img">
-                            <img loading="lazy" src="{% static 'images/urbanfarm_images/rectangular-NFT-channels.jpg' %}"
-                                width="330" height="400" alt="NFT Channel" class="pc__img pc__img-second">
-                        </a>
-                    </div>
-
-                    <div class="pc__info position-relative bg-body">
-                        <div class="position-relative">
-                            <p class="pc__category">Dresses</p>
-                            <h6 class="pc__title"><a href=" ">Ractangular NFT Channels</a></h6>
-                            <div class="product-card__price d-flex">
-                                <span class="money price price-old">₹129</span>
-                                <span class="money price price-sale">₹99</span>
-                            </div>
-
-                            <div class="hover__content d-flex align-items-center top-0 end-0 bg-body w-auto">
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #f5e6e0"></a>
-                                <a href="#" class="swatch-color swatch_active pc__swatch-color"
-                                    style="color: #b9a16b"></a>
-                                <a href="#" class="swatch-color pc__swatch-color" style="color: #222222"></a>
-                            </div>
-
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                <button
-                                    class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
-                                    data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                    <span class="d-none d-xxl-block">Quick View</span>
-                                    <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_view" />
-                                        </svg></span>
-                                </button>
-                                <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                    title="Add To Wishlist">
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#icon_heart" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div><!-- /.row -->
         <div class="text-center mt-2">
             <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="/category">See
@@ -1208,268 +525,354 @@
     <div class="mb-5 pb-4"></div>
 
     <section class="product-single container product-single__type-9">
+        {% for deal in deal_of_week %}
         <div class="row">
-
             <h2 class="section-title text-uppercase mb-1 mb-md-3 pb-xl-2 mb-xl-4">Deal of the
                 <strong style="color:#004818 !important">Week</strong>
             </h2>
-
-            <div class="col-lg-7">
-                <div class="product-single__media" data-media-type="vertical-thumbnail">
-                    <div class="product-single__image">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="674"
-                                        height="674" alt="" />
-                                    <a data-fancybox="gallery"
-                                        href="images/urbanfarm_images/rectangular-plastic-container.jpg"
-                                        data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_zoom" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="674"
-                                        height="674" alt="" />
-                                    <a data-fancybox="gallery"
-                                        href="images/urbanfarm_images/rectangular-plastic-container.jpg"
-                                        data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_zoom" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="674"
-                                        height="674" alt="" />
-                                    <a data-fancybox="gallery"
-                                        href="images/urbanfarm_images/rectangular-plastic-container.jpg"
-                                        data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_zoom" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="674"
-                                        height="674" alt="" />
-                                    <a data-fancybox="gallery"
-                                        href="images/urbanfarm_images/rectangular-plastic-container.jpg"
-                                        data-bs-toggle="tooltip" data-bs-placement="left" title="Zoom">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_zoom" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-button-prev">
-                                <svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_prev_sm" />
-                                </svg>
-                            </div>
-                            <div class="swiper-button-next">
-                                <svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#icon_next_sm" />
-                                </svg>
-                            </div>
-                        </div>
+          <div class="col-lg-7">
+            <div class="product-single__media" data-media-type="vertical-thumbnail">
+              <div class="product-single__image">
+                <div class="swiper-container">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide product-single__image-item">
+                      <img
+                        loading="lazy"
+                        class="h-auto"
+                        src="{{deal.image.url}}"
+                        width="674"
+                        height="674"
+                        alt=""
+                      />
+                      <a
+                        data-fancybox="gallery"
+                        href="{{deal.image.url}}"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="left"
+                        title="Zoom"
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <use href="#icon_zoom" />
+                        </svg>
+                      </a>
                     </div>
-                    <div class="product-single__thumbnail">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="104"
-                                        height="104" alt="" />
-                                </div>
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="104"
-                                        height="104" alt="" />
-                                </div>
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="104"
-                                        height="104" alt="" />
-                                </div>
-                                <div class="swiper-slide product-single__image-item">
-                                    <img loading="lazy" class="h-auto"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="104"
-                                        height="104" alt="" />
-                                </div>
-                            </div>
-                        </div>
+                    {% for image in product_images %}
+                    <div class="swiper-slide product-single__image-item">
+                      <img
+                        loading="lazy"
+                        class="h-auto"
+                        src="{{ image.images.url }}"
+                        width="674"
+                        height="674"
+                        alt=""
+                      />
+                      <a
+                        data-fancybox="gallery"
+                        href="{{ image.images.url }}"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="left"
+                        title="Zoom"
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <use href="#icon_zoom" />
+                        </svg>
+                      </a>
                     </div>
+                    {% endfor %}
+    
+                  </div>
+                  <div class="swiper-button-prev">
+                    <svg
+                      width="7"
+                      height="11"
+                      viewBox="0 0 7 11"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <use href="#icon_prev_sm" />
+                    </svg>
+                  </div>
+                  <div class="swiper-button-next">
+                    <svg
+                      width="7"
+                      height="11"
+                      viewBox="0 0 7 11"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <use href="#icon_next_sm" />
+                    </svg>
+                  </div>
                 </div>
+              </div>
+              <div class="product-single__thumbnail">
+                <div class="swiper-container">
+                  <div class="swiper-wrapper">
+    
+                    <div class="swiper-slide product-single__image-item">
+    
+                      <img
+                        loading="lazy"
+                        class="h-auto"
+                        src="{{deal.image.url}}"
+                        width="104"
+                        height="104"
+                        alt=""
+                      />
+                    </div>
+                    {% for image in product_images %}
+                    <div class="swiper-slide product-single__image-item">
+    
+                      <img
+                        loading="lazy"
+                        class="h-auto"
+                        src="{{ image.images.url }}"
+                        width="104"
+                        height="104"
+                        alt=""
+                      />
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-5">
+          </div>
+          <div class="col-lg-5">
 
-                <h1 class="product-single__name">Cocopeat Block</h1>
-                <div class="product-single__rating">
-                    <div class="reviews-group d-flex">
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_star" />
-                        </svg>
-                    </div>
-                    <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
-                </div>
-                <div class="product-single__price">
-                    <span class="current-price">₹449</span>
-                </div>
-                <div class="product-single__short-desc">
-                    <p>
-                        Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui.
-                        Aenean aliquam
-                        varius ipsum, non
-                        ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.
-                    </p>
-                </div>
-                <form name="addtocart-form" method="post">
-                    <div class="product-single__swatches">
-                        <div class="product-swatch text-swatches">
-                            <label>Sizes</label>
-                            <div class="swatch-list">
-                                <input type="radio" name="size" id="swatch-1" />
-                                <label class="swatch js-swatch" for="swatch-1" aria-label="Extra Small"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Small">XS</label>
-                                <input type="radio" name="size" id="swatch-2" checked />
-                                <label class="swatch js-swatch" for="swatch-2" aria-label="Small"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Small">S</label>
-                                <input type="radio" name="size" id="swatch-3" />
-                                <label class="swatch js-swatch" for="swatch-3" aria-label="Middle"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Middle">M</label>
-                                <input type="radio" name="size" id="swatch-4" />
-                                <label class="swatch js-swatch" for="swatch-4" aria-label="Large"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Large">L</label>
-                                <input type="radio" name="size" id="swatch-5" />
-                                <label class="swatch js-swatch" for="swatch-5" aria-label="Extra Large"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Extra Large">XL</label>
-                            </div>
-                            <a href="#" class="sizeguide-link" data-bs-toggle="modal"
-                                data-bs-target="#sizeGuide">Size Guide</a>
-                        </div>
-                        <div class="product-swatch color-swatches">
-                            <label>Color</label>
-                            <div class="swatch-list">
-                                <input type="radio" name="color" id="swatch-11" />
-                                <label class="swatch swatch-image js-swatch" for="swatch-11" aria-label="Red"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Red">
-                                    <img loading="lazy"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="60"
-                                        height="60" alt="" />
-                                </label>
-                                <input type="radio" name="color" id="swatch-12" checked />
-                                <label class="swatch swatch-image js-swatch" for="swatch-12" aria-label="Blue"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Blue">
-                                    <img loading="lazy"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="60"
-                                        height="60" alt="" />
-                                </label>
-                                <input type="radio" name="color" id="swatch-13" />
-                                <label class="swatch swatch-image js-swatch" for="swatch-13" aria-label="Black"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Black">
-                                    <img loading="lazy"
-                                        src="{% static 'images/urbanfarm_images/rectangular-plastic-container.jpg' %}" width="60"
-                                        height="60" alt="" />
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-single__addtocart">
-                        <div class="qty-control position-relative">
-                            <input type="number" name="quantity" value="1" min="1"
-                                class="qty-control__number text-center" />
-                            <div class="qty-control__reduce">-</div>
-                            <div class="qty-control__increase">+</div>
-                        </div>
-                        <!-- .qty-control -->
-                        <button type="submit" class="btn btn-primary btn-addtocart js-open-aside"
-                            data-aside="cartDrawer">Add to
-                            Cart</button>
-                    </div>
-                </form>
-                <div class="product-single__addtolinks">
-                    <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16"
-                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_heart" />
-                        </svg><span>Add to Wishlist</span></a>
-                    <share-button class="share-button">
-                        <button
-                            class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center">
-                            <svg width="16" height="19" viewBox="0 0 16 19" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <use href="#icon_sharing" />
-                            </svg>
-                            <span>Share</span>
-                        </button>
-                        <details id="Details-share-template__main" class="m-1 xl:m-1.5" hidden="">
-                            <summary class="btn-solid m-1 xl:m-1.5 pt-3.5 pb-3 px-5">+</summary>
-                            <div id="Article-share-template__main"
-                                class="share-button__fallback flex items-center absolute top-full left-0 w-full px-2 py-4 bg-container shadow-theme border-t z-10">
-                                <div class="field grow mr-4">
-                                    <label class="field__label sr-only" for="url">Link</label>
-                                    <input type="text" class="field__input w-full" id="url"
-                                        value="https://uomo-crystal.myshopify.com/blogs/news/go-to-wellness-tips-for-mental-health"
-                                        placeholder="Link" onclick="this.select();" readonly="" />
-                                </div>
-                                <button class="share-button__copy no-js-hidden">
-                                    <svg class="icon icon-clipboard inline-block mr-1" width="11" height="13"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                        focusable="false" viewBox="0 0 11 13">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z"
-                                            fill="currentColor"></path>
-                                    </svg>
-                                    <span class="sr-only">Copy link</span>
-                                </button>
-                            </div>
-                        </details>
-                    </share-button>
-                    <script src="{% static 'js/details-disclosure.js' %}" defer="defer"></script>
-                    <script src="{% static 'js/share.js' %}" defer="defer"></script>
-                </div>
+            <h1 class="product-single__name">{{deal.title}}</h1>
+            <div class="product-single__rating">
+              <div class="reviews-group d-flex">
+                <svg
+                  class="review-star"
+                  viewBox="0 0 9 9"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#icon_star" />
+                </svg>
+                <svg
+                  class="review-star"
+                  viewBox="0 0 9 9"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#icon_star" />
+                </svg>
+                <svg
+                  class="review-star"
+                  viewBox="0 0 9 9"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#icon_star" />
+                </svg>
+                <svg
+                  class="review-star"
+                  viewBox="0 0 9 9"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#icon_star" />
+                </svg>
+                <svg
+                  class="review-star"
+                  viewBox="0 0 9 9"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#icon_star" />
+                </svg>
+              </div>
+              <span class="reviews-note text-lowercase text-secondary ms-1"
+                >5 star rated
+              </span>
             </div>
+            <div class="product-single__price">
+              <span class="current-price">₹ {{deal.price}} <span class="old_price" style="text-decoration: line-through; text-decoration-color: red;">₹{{deal.old_price}}</span> </span>
+              <img src="{% static 'images/deal_of_the_week.jpg' %}" width="100px"/>
+            </div>
+    
+            <div class="product-single__meta-info">
+              <div class="meta-item">
+                <label>SKU:</label>
+                <span>{{deal.sku}}</span>
+              </div>
+              <div class="meta-item">
+                <label>HSN Code:</label>
+                <span>{{deal.hsn_code}}</span>
+              </div>
+              <div class="meta-item">
+                <label>Application:</label>
+                <span>{{deal.application}}</span>
+              </div>
+              <div class="meta-item">
+                <label>Packing size:</label>
+                <span>{{deal.packing_size}}</span>
+              </div>
+              <div class="meta-item">
+                <label>Material:</label>
+                <span>{{deal.material}}</span>
+              </div>
+              <div class="meta-item">
+                <label>Specifications:</label>
+                <span>{{deal.specifications}}</span>
+              </div>
+            </div>
+            <form name="addtocart-form" method="post">
+    
+              {% for variant in product_variants %}
+              <div class="product-single__swatches">
+                <div class="product-swatch text-swatches">
+                  <label>{{ variant.title }}</label>
+    
+                  <div class="swatch-list">
+                    {% for variant_type in product_variant_types %}
+                    {% if variant_type.product_variant == variant %}
+                    <input type="radio" name="size" id="swatch-1" />
+                    <label
+                      class="swatch js-swatch"
+                      for="swatch-1"
+                      aria-label="{{ variant_type.variant_title }}"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="{{ variant_type.variant_title }}"
+                      >{{ variant_type.variant_title }}</label
+                    >
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+    
+                </div>
+              </div>
+              {% endfor %}
+              <div class="product-single__addtocart">
+                <div class="qty-control position-relative">
+                  <input
+                    type="number"
+                    name="quantity"
+                    value="1"
+                    id="product-quantity-{{products.pid}}"
+                    min="1"
+                    class="qty-control__number text-center product-quantity-{{products.pid}}"
+                  />
+                  <div class="qty-control__reduce">-</div>
+                  <div class="qty-control__increase">+</div>
+                </div>
+                <!-- .qty-control -->
+                <input type="hidden" value="{{deal.pid}}" class="product-id-{{deal.pid}}">
+                <input type="hidden" value="{{deal.title}}" class="product-title-{{products.pid}}">
+                <input type="hidden" value="{{deal.price}}" class="product-price-{{deal.pid}}">
+                <input type="hidden" value="{{deal.sku}}" class="product-sku-{{deal.pid}}">
+                <input type="hidden" value="{{deal.image.url}}" class="product-image-{{deal.pid}}">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-addtocart js-open-aside add-to-cart-btn"
+                  id="add-to-cart-btn"
+                  data-index="{{deal.pid}}"
+                  data-aside="cartDrawer"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </form>
+            <div class="product-single__addtolinks">
+              <share-button class="share-button">
+                <button
+                  class="menu-link menu-link_us-s to-share border-0 bg-transparent d-flex align-items-center"
+                >
+                  <svg
+                    width="16"
+                    height="19"
+                    viewBox="0 0 16 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <use href="#icon_sharing" />
+                  </svg>
+                  <span>Share</span>
+                </button>
+                <details
+                  id="Details-share-template__main"
+                  class="m-1 xl:m-1.5"
+                  hidden=""
+                >
+                  <summary class="btn-solid m-1 xl:m-1.5 pt-3.5 pb-3 px-5">
+                    +
+                  </summary>
+                  <div
+                    id="Article-share-template__main"
+                    class="share-button__fallback flex items-center absolute top-full left-0 w-full px-2 py-4 bg-container shadow-theme border-t z-10"
+                  >
+                    <div class="field grow mr-4">
+                      <label class="field__label sr-only" for="url">Link</label>
+                      <input
+                        type="text"
+                        class="field__input w-full"
+                        id="url"
+                        value=""
+                        placeholder="Link"
+                        onclick="this.select();"
+                        readonly=""
+                      />
+                    </div>
+                    <button class="share-button__copy no-js-hidden">
+                      <svg
+                        class="icon icon-clipboard inline-block mr-1"
+                        width="11"
+                        height="13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                        viewBox="0 0 11 13"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M2 1a1 1 0 011-1h7a1 1 0 011 1v9a1 1 0 01-1 1V1H2zM1 2a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V3a1 1 0 00-1-1H1zm0 10V3h7v9H1z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>
+                      <span class="sr-only">Copy link</span>
+                    </button>
+                  </div>
+                </details>
+              </share-button>
+              <script
+                src="{% static 'js/details-disclosure.js' %}"
+                defer="defer"
+              ></script>
+              <script src="{% static 'js/share.js' %}" defer="defer"></script>
+            </div>
+            <div class="product-single__meta-info">
+              <div class="meta-item">
+                <label>Categories:</label>
+                <span></span>
+              </div>
+              <div class="meta-item">
+                <label>Tags:</label>
+                <span>Plants, Grow Media, Grow, Atmoshpehere</span>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+        {% endfor %}
+      </section>
 
     <div class="container">
 
 
-        <h2 class="section-title text-uppercase text-center mb-1 mb-md-3 pb-xl-2 mb-xl-4">Deal of the
-            <strong style="color:#004818 !important">Week</strong>
+        <h2 class="section-title text-uppercase text-center mb-1 mb-md-3 pb-xl-2 mb-xl-4">Net Pots: 
+            <strong style="color:#004818 !important">Interactive Infographic Showcase</strong>
         </h2>
         <p class="text-center">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita consectetur, ab, cumque saepe sequi
-            odit
-            corrupti repudiandae voluptate vero, ullam fugiat! Quas voluptatibus vitae repudiandae dolore nam in
-            atque
-            ducimus.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo pariatur modi distinctio itaque officiis
-            neque
-            earum! Corporis, sequi aspernatur. Cum quo repellat earum harum dolorum veniam adipisci quas nesciunt
-            sit.
+            Dive into our interactive Net Pots Infographic Showcase, where you can explore the intricacies of this innovative system at your fingertips. Discover the hidden depths of hydroponic gardening with detailed visuals and informative tooltips. From setup to maintenance, our curated collection provides insights to help you cultivate your green oasis with confidence. Embark on a journey of knowledge and empowerment as you uncover the secrets of successful hydroponic cultivation through our interactive gallery.
         </p>
     </div>
 
@@ -1581,19 +984,12 @@
 
             <div class="col-lg-3">
                 <br>
-                <h2 class="text-uppercase">Heading <strong style="color:#004818 !important">Two</strong></h2>
+                <h2 class="text-uppercase">Visual Insights:  <strong style="color:#004818 !important">Explore Our Infographic Collection</strong></h2>
                 <p>
                     <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam maiores impedit repudiandae
-                    incidunt,
-                    tenetur corporis asperiores ab esse! Ratione ab non porro quod dicta tenetur deserunt amet
-                    excepturi omnis
-                    laborum? <br>
+                    Delve into our curated collection of informative infographics, offering visual insights into a variety of topics. From complex data to step-by-step guides, our infographics provide an engaging way to learn and understand. Explore this visual journey to gain valuable knowledge and discover new perspectives on a range of subjects <br>
                     <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam maiores impedit repudiandae
-                    incidunt, tenetur corporis asperiores ab esse! Ratione ab non porro quod dicta tenetur deserunt
-                    amet
-                    excepturi omnis laborum? <br>
+                    Immerse yourself in a world of visual storytelling with our diverse array of infographics. From captivating statistics to practical how-tos, each image is a gateway to understanding complex concepts at a glance. Whether you're seeking inspiration or in-depth analysis, our infographic collection offers something for everyone. Start exploring today and unlock a wealth of knowledge in a single glance. <br>
                 </p>
             </div>
             <div class="col-lg-9">
