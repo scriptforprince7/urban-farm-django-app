@@ -377,7 +377,7 @@
                         </div>
                     </div>
 
-                    <a href="#" class="btn-link default-underline text-uppercase fw-medium mt-3">View All</a>
+                    <a href="/shop-category" class="btn-link default-underline text-uppercase fw-medium mt-3">View All</a>
                 </div>
                 <div class="col-md-6 col-lg-8 col-xl-80per">
                     <div class="position-relative">
@@ -478,7 +478,7 @@
             <div class="product-card-wrapper overflow-hidden">
                 <div class="product-card product-card_style6 hover-container mb-3 mb-md-4">
                     <div class="pc__img-wrapper">
-                        <a href=" ">
+                        <a href="{% url 'core:product_new' new_arrivals.title %}">
                             <img loading="lazy" src="{{new_arrivals.image.url}}" width="330" height="400"
                                 alt="NFT Channel" class="pc__img">
                             <img loading="lazy" src="{{new_arrivals.image.url}}" width="330" height="400"
@@ -515,7 +515,7 @@
             {% endfor %}
         </div><!-- /.row -->
         <div class="text-center mt-2">
-            <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="/category">See
+            <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="/shop-category">See
                 All
                 Products</a>
         </div>

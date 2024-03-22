@@ -66,6 +66,8 @@ def category(request, main_title):
     if price_range:
         min_price, max_price = map(float, price_range.split(','))
         products = products.filter(price__range=(min_price, max_price))
+
+    categories = Category.objects.filter(main_category=main_categories)
     
     context = {
         "main_categories": main_categories,
@@ -73,6 +75,7 @@ def category(request, main_title):
         "product_images": product_images,
         "min_price": min_price,
         "max_price": max_price,
+        "categories": categories,
     }
     
     if materials:

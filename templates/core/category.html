@@ -214,6 +214,7 @@
     <!-- /.shop-sidebar -->
 
     <div class="shop-list flex-grow-1">
+<!-- loop if main category have category inside it otherwise keep it like this -->
       <div class="d-flex justify-content-between mb-4 pb-md-2">
         <div class="category_custom mb-0 d-none d-md-block flex-grow-1">
           <h2>{{main_categories.main_title}}</h2>
@@ -298,8 +299,6 @@
         </div>
         <!-- /.shop-acs -->
       </div>
-      <!-- /.d-flex justify-content-between -->
-
       <div
         class="products-grid row row-cols-2 row-cols-md-4"
         id="products-grid"
@@ -444,7 +443,7 @@
         <h6 class="pc__title">No Products Found</h6>
         {% endif %}
       </div>
-
+<!-- loop if main category have category inside it otherwise keep it like this -->
       {% if products %}
       <nav
         class="shop-pages d-flex justify-content-between mt-3"
@@ -466,15 +465,6 @@
           <li class="page-item">
             <a class="btn-link px-1 mx-2 btn-link_active" href="#">1</a>
           </li>
-          <li class="page-item">
-            <a class="btn-link px-1 mx-2" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="btn-link px-1 mx-2" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="btn-link px-1 mx-2" href="#">4</a>
-          </li>
         </ul>
         <a href="#" class="btn-link d-inline-flex align-items-center">
           <span class="fw-medium me-1">NEXT</span>
@@ -490,7 +480,9 @@
       </nav>
       {% endif %}
     </div>
+    
   </section>
+  
   <!-- /.shop-main container -->
 </main>
   <script>
