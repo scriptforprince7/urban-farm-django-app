@@ -37,7 +37,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['main_category', 'category', 'featured', 'product_status'] 
     search_fields = ['title', 'description'] 
 
-
 class MainCategoryAdmin(admin.ModelAdmin):
     list_display = ['main_title', 'image', 'description', 'banner_image']     
 
@@ -51,7 +50,6 @@ class CartOrderAdmin(admin.ModelAdmin):
 
 class CartOrderItemsAdmin(admin.ModelAdmin):
     list_display = ['order', 'invoice_no', 'item', 'image', 'qty', 'price', 'total']
-
 
 class ProductReviewAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'review', 'rating'] 
@@ -78,7 +76,4 @@ admin.site.register(Wishlist, wishlistAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(PrivacyPolicy, PrivacyPolicyAdmin)
 admin.site.register(Blogs, BlogsAdmin)
-
-    
-
 

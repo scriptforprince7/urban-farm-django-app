@@ -118,6 +118,7 @@ class Product(models.Model):
     application = models.CharField(max_length=100, default="starter/seed")
     material = models.CharField(max_length=100, default="Cocopith")
     hsn_code = models.CharField(max_length=100, default="5305")
+    gst_rate = models.CharField(max_length=100, default="18%")
     product_slug = models.SlugField(unique=True, max_length=150, blank=True, null=True)
     description = models.TextField(max_length=500, null=True, blank=True, default="This is the product")
     price = models.DecimalField(max_digits=9999, decimal_places=2, default="1")
