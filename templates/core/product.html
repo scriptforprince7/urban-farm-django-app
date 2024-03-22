@@ -9,11 +9,17 @@
           <div class="product-single__image">
             <div class="swiper-container">
               <div class="swiper-wrapper">
-
+                <style>
+                  .product-image {
+                    max-width: 97%; /* Adjust this value to your preference */
+                    max-height: 83%; /* Adjust this value to your preference */
+                  }
+                  
+                </style>
                 <div class="swiper-slide product-single__image-item">
                   <img
                     loading="lazy"
-                    class="h-auto"
+                    class="h-auto product-image"
                     src="{{products.image.url}}"
                     width="674"
                     height="674"
