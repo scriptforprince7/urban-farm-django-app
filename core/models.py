@@ -24,6 +24,11 @@ STATUS = (
     ("published", "Published"),
 )
 
+ACTIVE_STATUS = (
+    ("disabled", "Disabled"),
+    ("published", "Published"),
+)
+
 RATING = (
     ("1", "★"),
     ("2", "★★"),
@@ -53,6 +58,7 @@ class Main_category(models.Model):
     meta_description = models.CharField(max_length=100, default="N/A")
     meta_title = models.CharField(max_length=100, default="N/A")
     meta_tag = models.CharField(max_length=100, default="N/A")
+    active_status = models.CharField(choices=ACTIVE_STATUS, max_length=10, default="disabled")
     image = models.ImageField(upload_to="category",default="maincategory.jpg")
     banner_image = models.ImageField(upload_to="category",default="maincategorybanner.jpg")
 
@@ -211,6 +217,7 @@ class ProductVariantTypes(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variant_title = models.CharField(max_length=500, default="Product Varient")
     varient_price = models.DecimalField(max_digits=9999, decimal_places=2, default="1")
+    gst_rate = models.CharField(max_length=12, default="5%")
     packaging_size = models.CharField(max_length=100, default="Packaging Size")
     date = models.DateField(auto_now_add=True)
 

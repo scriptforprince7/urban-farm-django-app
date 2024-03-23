@@ -20,7 +20,7 @@ from datetime import datetime
 
 
 def index(request):
-    main_categories = Main_category.objects.all()
+    main_categories = Main_category.objects.filter(active_status='published')
     new_arrival = Product.objects.filter(new_arrival=True)
     deal_of_week = Product.objects.filter(deal_of_week=True)
     summer_sale = Product.objects.filter(summer_sale=True)
