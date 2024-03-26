@@ -16,7 +16,9 @@ from django.db.models import Case, When, Value, IntegerField
 from django.views.generic import View
 import razorpay
 from django.db import transaction
-from datetime import datetime
+from datetime import datetime 
+from decimal import Decimal, ROUND_HALF_UP
+import re
 
 
 def index(request):
@@ -46,11 +48,13 @@ def index(request):
     }
     return render(request, 'core/index.html', context)
 
-
 def category(request, main_title):
     main_categories = Main_category.objects.get(main_title=main_title)
     products = Product.objects.filter(main_category=main_categories)
     product_images = ProductImages.objects.filter(product__in=products)
+
+    product_variants = ProductVarient.objects.filter(product__in=products)
+    variant_types = ProductVariantTypes.objects.filter(product_variant__in=product_variants)
     
     materials = Product.objects.filter(main_category=main_categories).values_list('material', flat=True).distinct()
 
@@ -69,6 +73,31 @@ def category(request, main_title):
 
     categories = Category.objects.filter(main_category=main_categories)
     
+    for product in products:
+        # Check if the product has variants
+        product_has_variants = product.productvarient_set.exists()
+
+        if product_has_variants:
+            # Get the first variant
+            first_variant = product.productvarient_set.first()
+            # Calculate default price without GST
+            price_wo_gst = first_variant.productvarianttypes_set.first().varient_price
+            # Fetching GST rate
+            gst_rate = first_variant.productvarianttypes_set.first().gst_rate
+            # Calculate default price including GST
+            base_price = first_variant.productvarianttypes_set.first().varient_price
+            # Calculate GST amount
+            gst_amount = base_price * Decimal(gst_rate.strip('%')) / 100
+            # Calculate total price including GST and round off to two decimal places
+            product.gst_inclusive_price = round(base_price + gst_amount, 2)
+            # Include original variant price in the context
+            product.variant_price = price_wo_gst
+        else:
+            # Use the existing GST-inclusive price for the product
+            product.gst_inclusive_price = product.price * (1 + Decimal(product.gst_rate.strip('%')) / 100)
+            # If the product doesn't have variants, set variant_price to None
+            product.variant_price = None
+
     context = {
         "main_categories": main_categories,
         "products": products,
@@ -76,13 +105,14 @@ def category(request, main_title):
         "min_price": min_price,
         "max_price": max_price,
         "categories": categories,
+        "product_variants": product_variants,
+        "variant_types": variant_types,
     }
     
     if materials:
         context["materials"] = materials
 
     return render(request, "core/category.html", context)
-
 
 def main_category(request):
     return render(request, "core/main_category.html")
@@ -102,6 +132,7 @@ def add_to_cart(request):
         'price': request.GET['price'],
         'image': request.GET['image'],
         'sku': request.GET['sku'],
+        'price_wo_gst': request.GET['price_wo_gst'],
     }
 
     if 'cart_data_obj' in request.session:
@@ -320,6 +351,30 @@ def product_new(request, title):
     product = Product.objects.get(title=title)
     product_variants = ProductVarient.objects.filter(product=product)
     product_variant_types = ProductVariantTypes.objects.filter(product_variant__in=product_variants)
+
+    # fetching rate without gst
+    price_wo_gst = product_variant_types.first().varient_price if product_variant_types.exists() else product.price
+
+    # Fetching GST rate
+    if product_variant_types.exists():
+        gst_rate = product_variant_types.first().gst_rate
+    else:
+        gst_rate = product.gst_rate
+
+    # Calculating default price including GST
+    if product_variant_types.exists():
+        base_price = product_variant_types.first().varient_price
+    else:
+        base_price = product.price
+
+    # Calculate GST amount
+    gst_amount = base_price * Decimal(gst_rate.strip('%')) / 100
+
+    # Calculate total price including GST and round off to two decimal places
+    total_price = round(base_price + gst_amount, 2)
+
+    default_packaging_size = product_variant_types.first().packaging_size if product_variant_types.exists() else product.packing_size
+
     product_images = ProductImages.objects.filter(product=product)
 
     context = {
@@ -327,6 +382,9 @@ def product_new(request, title):
         "product_variants": product_variants,
         "product_variant_types": product_variant_types,
         "product_images": product_images,
+        "default_price": total_price,
+        "price_wo_gst": price_wo_gst,
+        "default_packaging_size": default_packaging_size,
     }
 
     return render(request, "core/product.html", context)

@@ -18351,7 +18351,7 @@ textarea.form-control.is-invalid {
 .product-single__price {
   font-size: 1.375rem;
   font-weight: 500;
-  margin-bottom: 1.6875rem;
+  margin-bottom: 0.6875rem;
 }
 .product-single__price span.old-price {
   font-size: 1rem;

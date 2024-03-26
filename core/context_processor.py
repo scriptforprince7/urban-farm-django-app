@@ -1,7 +1,7 @@
 from core.models import *
 
 def default(request):
-    main_categories = Main_category.objects.all()
+    main_categories = Main_category.objects.filter(active_status='published')
 
     halfway_index = len(main_categories) // 2
 

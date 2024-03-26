@@ -358,7 +358,11 @@
       <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.pid}}">
       <input type="hidden" value="{{product.pid}}" class="product-id-{{product.pid}}">
       <input type="hidden" value="{{product.title}}" class="product-title-{{product.pid}}">
-      <input type="hidden" value="{{product.price}}" class="product-price-{{product.pid}}">
+      {% with price_wo_gst=product.variant_price|default:product.price %}
+      <input type="hidden" value="{{ price_wo_gst }}" class="product-price-wo-gst-{{ product.pid }}">
+      {% endwith %}
+      <input type="hidden" value="{{ product.gst_inclusive_price }}" class="product-price-{{ product.pid }}">
+
       <input type="hidden" value="{{product.sku}}" class="product-sku-{{product.pid}}">
       <input type="hidden" value="{{product.image.url}}" class="product-image-{{product.pid}}">
               <button
@@ -378,7 +382,9 @@
                 <a href="{% url 'core:product_new' product.title %}">{{product.title}}</a>
               </h6>
               <div class="product-card__price d-flex">
-                <span class="money price">₹ {{product.price}}</span>
+                <span class="money price">₹ {{ product.gst_inclusive_price }}</span>
+                <span class="money price">₹ {{ product.variant_price }}</span>
+                <span class="money price">₹ {{ product.price }}</span>
               </div>
               <div class="product-card__review d-flex align-items-center">
                 <div class="reviews-group d-flex">
