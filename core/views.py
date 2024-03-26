@@ -237,7 +237,7 @@ def checkout_view(request):
         for p_id, item in request.session['cart_data_obj'].items():
             total_amount += int(item['qty']) * float(item['price'])
             price_wo_gst_total += int(item['qty']) * float(item.get('price_wo_gst', item['price']))
-            total_gst += Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))
+            total_gst += (Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))) * int(item['qty'])  # Multiply GST by quantity
 
     order = CartOrder.objects.create(
         user=request.user,
@@ -281,6 +281,7 @@ def checkout_view(request):
                                                   'totalcartitems': len(request.session.get('cart_data_obj', {})),
                                                   'cart_total_amount': cart_total_amount,
                                                   **context})
+
 
 
 
