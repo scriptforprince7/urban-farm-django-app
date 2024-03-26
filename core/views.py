@@ -156,10 +156,15 @@ def cart_view(request):
         for p_id, item in request.session['cart_data_obj'].items():
             cart_total_amount += int(item['qty']) * float(item['price'])
 
-        return render(request, "core/cart.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
+        return render(request, "core/cart.html", {
+            "cart_data": request.session['cart_data_obj'], 
+            'totalcartitems': len(request.session['cart_data_obj']), 
+            'cart_total_amount': cart_total_amount
+        })
     else:
         messages.warning(request, "Your cart is empty")
         return redirect("core:main_category")
+
 
 
 def search_view(request):
@@ -221,40 +226,43 @@ def update_cart(request):
     context = render_to_string("core/async/cart-list.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
     return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])}) 
 
-
 @login_required
 def checkout_view(request):
     cart_total_amount = 0
     total_amount = 0
+    price_wo_gst_total = 0
+    total_gst = 0
 
     if 'cart_data_obj' in request.session:
         for p_id, item in request.session['cart_data_obj'].items():
             total_amount += int(item['qty']) * float(item['price'])
+            price_wo_gst_total += int(item['qty']) * float(item.get('price_wo_gst', item['price']))
+            total_gst += Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))
 
     order = CartOrder.objects.create(
-        user = request.user,
-        price = total_amount
+        user=request.user,
+        price=total_amount
     )
 
     for p_id, item in request.session['cart_data_obj'].items():
-            cart_total_amount += int(item['qty']) * float(item['price'])
+        cart_total_amount += int(item['qty']) * float(item['price'])
 
-            cart_order_products = CartOrderItems.objects.create(
-                order= order,
-                invoice_no = "order_id-" + str(order.id),
-                item = item['title'],
-                image = item['image'],
-                qty = item['qty'],
-                price = item['price'],
-                total = float(item['qty']) * float(item['price'])
-            )
+        cart_order_products = CartOrderItems.objects.create(
+            order=order,
+            invoice_no="order_id-" + str(order.id),
+            item=item['title'],
+            image=item['image'],
+            qty=item['qty'],
+            price=item['price'],
+            total=float(item['qty']) * float(item['price'])
+        )
 
-    cart_total_amount = 0        
+    cart_total_amount = 0
     if 'cart_data_obj' in request.session:
         with transaction.atomic():
             for p_id, item in request.session['cart_data_obj'].items():
                 cart_total_amount += int(item['qty']) * float(item['price'])
-                product = Product.objects.get(pid=p_id) 
+                product = Product.objects.get(pid=p_id)
                 client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
                 payment = client.order.create({'amount': int(item['qty']) * float(item['price']) * 100, 'currency': 'INR', 'payment_capture': 1})
                 product.razor_pay_order_id = payment['id']
@@ -265,12 +273,16 @@ def checkout_view(request):
 
     context = {
         "payment": payment,
+        "price_wo_gst_total": price_wo_gst_total,
+        "total_gst": total_gst,
     }
 
     return render(request, "core/checkout.html", {'cart_data': request.session.get('cart_data_obj', {}),
                                                   'totalcartitems': len(request.session.get('cart_data_obj', {})),
                                                   'cart_total_amount': cart_total_amount,
                                                   **context})
+
+
 
 @login_required
 def payment_completed_view(request):

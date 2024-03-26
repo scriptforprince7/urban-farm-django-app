@@ -170,6 +170,7 @@
                                 <thead>
                                     <tr>
                                         <th>PRODUCT</th>
+                                        <th>Unit Price</th>
                                         <th>SUBTOTAL</th>
                                     </tr>
                                 </thead>
@@ -177,7 +178,8 @@
                                     {% for product_id, item in cart_data.items  %}
                                     <tr>
                                         <td><img src="{{item.image}}" width="40px" /> <a href="{% url 'core:product_new' item.title %}">{{item.title}}</a>  x {{item.qty}} <br> {{item.sku}}</td>
-                                        <td>₹ {% widthratio item.price 1 item.qty%}</td>
+                                        <td>₹ {{ item.price_wo_gst }}</td>
+                                        <td>₹ <b>{% widthratio item.price_wo_gst 1 item.qty%}.00</b></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -186,7 +188,7 @@
                                 <tbody>
                                     <tr>
                                         <th>SUBTOTAL</th>
-                                        <td>₹ {{cart_total_amount}}</td>
+                                        <td>₹ {{ price_wo_gst_total }}</td>
                                     </tr>
                                     <tr>
                                         <th>SHIPPING</th>
@@ -194,7 +196,7 @@
                                     </tr>
                                     <tr>
                                         <th>GST</th>
-                                        <td>₹ 1354</td>
+                                        <td>₹ {{ total_gst }}</td>
                                     </tr>
                                     <tr>
                                         <th>TOTAL</th>

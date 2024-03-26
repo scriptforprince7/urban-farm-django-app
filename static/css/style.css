@@ -19496,7 +19496,7 @@ a.add-to-wishlist.active .flaticon.flaticon-heart {
 .checkout__totals {
   border: 1px solid #222;
   margin-bottom: 1.25rem;
-  padding: 2.5rem 2.5rem 0.5rem;
+  padding: 2.5rem 0.9rem 0.5rem;
   width: 26.25rem;
 }
 @media (max-width: 1199.98px) {
