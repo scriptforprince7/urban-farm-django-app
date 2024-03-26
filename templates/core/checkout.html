@@ -47,82 +47,31 @@
                             </div>
                         </div>
                         <div class="col-md-12">
+                            <div class="form-check mt-3">
+                                <input class="form-check-input form-check-input_fill" type="checkbox" value=""
+                                    id="create_account" />
+                                <label class="form-check-label" for="create_account">HAVING GST?</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 company-fields">
                             <div class="form-floating my-3">
                                 <input type="text" class="form-control" id="checkout_company_name"
                                     placeholder="Company Name (optional)" />
-                                <label for="checkout_company_name">Company Name (optional)</label>
+                                <label for="checkout_company_name">Company Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 company-fields">
+                            <div class="form-floating my-3">
+                                <input type="text" class="form-control" id="checkout_gst_number"
+                                    placeholder="GST Number (optional)" />
+                                <label for="checkout_gst_number">GST Number</label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-floating my-3">
-                                <input type="text" class="form-control" id="checkout_company_name"
-                                    placeholder="Company Name (optional)" />
-                                <label for="checkout_company_name">GST Number (optional)</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="search-field my-3">
-                                <div class="form-label-fixed hover-container">
-                                    <label for="search-dropdown" class="form-label">State/ Region*</label>
-                                    <div class="js-hover__open">
-                                        <input type="text"
-                                            class="form-control form-control-lg search-field__actor search-field__arrow-down"
-                                            id="search-dropdown" name="search-keyword" readonly
-                                            placeholder="Choose a location..." />
-                                    </div>
-                                    <div class="filters-container js-hidden-content mt-2">
-                                        <div class="search-field__input-wrapper">
-                                            <input type="text"
-                                                class="search-field__input form-control form-control-sm bg-lighter border-lighter"
-                                                placeholder="Search" />
-                                        </div>
-                                        <style>
-                                            .search-suggestion {
-                                                max-height: 300px; /* Adjust the height as needed */
-                                                overflow-y: auto;
-                                            }
-                                        </style>
-                                        <ul class="search-suggestion list-unstyled">
-                                            <li class="search-suggestion__item js-search-select">Andhra Pradesh</li>
-                                            <li class="search-suggestion__item js-search-select">Arunachal Pradesh</li>
-                                            <li class="search-suggestion__item js-search-select">Assam</li>
-                                            <li class="search-suggestion__item js-search-select">Bihar</li>
-                                            <li class="search-suggestion__item js-search-select">Chhattisgarh</li>
-                                            <li class="search-suggestion__item js-search-select">Delhi</li> <!-- Add Delhi here -->
-                                            <li class="search-suggestion__item js-search-select">Goa</li>
-                                            <li class="search-suggestion__item js-search-select">Gujarat</li>
-                                            <li class="search-suggestion__item js-search-select">Haryana</li>
-                                            <li class="search-suggestion__item js-search-select">Himachal Pradesh</li>
-                                            <li class="search-suggestion__item js-search-select">Jharkhand</li>
-                                            <li class="search-suggestion__item js-search-select">Karnataka</li>
-                                            <li class="search-suggestion__item js-search-select">Kerala</li>
-                                            <li class="search-suggestion__item js-search-select">Madhya Pradesh</li>
-                                            <li class="search-suggestion__item js-search-select">Maharashtra</li>
-                                            <li class="search-suggestion__item js-search-select">Manipur</li>
-                                            <li class="search-suggestion__item js-search-select">Meghalaya</li>
-                                            <li class="search-suggestion__item js-search-select">Mizoram</li>
-                                            <li class="search-suggestion__item js-search-select">Nagaland</li>
-                                            <li class="search-suggestion__item js-search-select">Odisha (Orissa)</li>
-                                            <li class="search-suggestion__item js-search-select">Punjab</li>
-                                            <li class="search-suggestion__item js-search-select">Rajasthan</li>
-                                            <li class="search-suggestion__item js-search-select">Sikkim</li>
-                                            <li class="search-suggestion__item js-search-select">Tamil Nadu</li>
-                                            <li class="search-suggestion__item js-search-select">Telangana</li>
-                                            <li class="search-suggestion__item js-search-select">Tripura</li>
-                                            <li class="search-suggestion__item js-search-select">Uttar Pradesh</li>
-                                            <li class="search-suggestion__item js-search-select">Uttarakhand</li>
-                                            <li class="search-suggestion__item js-search-select">West Bengal</li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="checkout_street_address"
-                                    placeholder="Street Address *" />
-                                <label for="checkout_company_name">Street Address *</label>
+                                <input type="text" class="form-control" id="checkout_zipcode"
+                                    placeholder="Postcode / ZIP *" />
+                                <label for="checkout_zipcode">Postcode / ZIP *</label>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -133,10 +82,10 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-floating my-3">
-                                <input type="text" class="form-control" id="checkout_zipcode"
-                                    placeholder="Postcode / ZIP *" />
-                                <label for="checkout_zipcode">Postcode / ZIP *</label>
+                            <div class="form-floating mt-3 mb-3">
+                                <input type="text" class="form-control" id="checkout_street_address"
+                                    placeholder="Street Address *" />
+                                <label for="checkout_street_address">Street Address *</label>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -152,13 +101,6 @@
                                 <label for="checkout_email">Your Mail *</label>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-check mt-3">
-                                <input class="form-check-input form-check-input_fill" type="checkbox" value=""
-                                    id="create_account" />
-                                <label class="form-check-label" for="create_account">NOT LOGGED IN?</label>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="checkout__totals-wrapper">
@@ -170,7 +112,7 @@
                                 <thead>
                                     <tr>
                                         <th>PRODUCT</th>
-                                        <th>Unit Price</th>
+                                        <th>UNIT PRICE</th>
                                         <th>SUBTOTAL</th>
                                     </tr>
                                 </thead>
@@ -226,7 +168,7 @@
                                 <a href="terms.php" target="_blank">privacy policy</a>.
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="rzp-button1">
+                        <button type="button" class="btn btn-primary" id="rzp-button1">
                             PLACE ORDER
                         </button>
                     </div>
@@ -237,6 +179,7 @@
 </main>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var options = {
         "key": "rzp_test_rQ8h1gyxiMhZ7A",
@@ -264,11 +207,70 @@
             alert(response.error.metadata.order_id);
             alert(response.error.metadata.payment_id);
     });
-    document.getElementById('rzp-button1').onclick = function(e){
-        rzp1.open();
-        e.preventDefault();
+
+    function validateForm() {
+        var firstName = document.getElementById("checkout_first_name").value.trim();
+        var lastName = document.getElementById("checkout_last_name").value.trim();
+        var streetAddress = document.getElementById("checkout_street_address").value.trim();
+        var city = document.getElementById("checkout_city").value.trim();
+        var zipcode = document.getElementById("checkout_zipcode").value.trim();
+        var phone = document.getElementById("checkout_phone").value.trim();
+        var email = document.getElementById("checkout_email").value.trim();
+
+        if (firstName === '' || lastName === '' || streetAddress === '' || city === '' || zipcode === '' || phone === '' || email === '') {
+            alert('Please fill in all details.');
+            return false;
+        }
+
+        return true;
     }
-    </script>
+
+    document.getElementById('rzp-button1').onclick = function(e){
+        if (!validateForm()) {
+            e.preventDefault(); // Prevent the default form submission if validation fails
+            return;
+        }
+        rzp1.open(); // Open the Razorpay payment modal
+    }
+
+    function fetchAddressDetails(zipcode) {
+        $.getJSON('https://nominatim.openstreetmap.org/search?postalcode=' + zipcode + '&format=json', function(data) {
+            if (data.length > 0) {
+                var address = data[0];
+                var townCity = address['display_name']; // Extract the town/city from the fetched address
+                $('#checkout_city').val(townCity); // Set the value of town/city input field
+            }
+        });
+    }
+
+    $('#checkout_zipcode').on('input', function() {
+        var zipcode = $(this).val().trim();
+        if (zipcode !== '') {
+            fetchAddressDetails(zipcode); // Call the function to fetch address details
+        }
+    });
+
+    function toggleGstFields() {
+        var isChecked = document.getElementById("create_account").checked;
+        var companyFields = document.querySelectorAll(".company-fields");
+
+        if (isChecked) {
+            companyFields.forEach(function(field) {
+                field.style.display = "block";
+            });
+        } else {
+            companyFields.forEach(function(field) {
+                field.style.display = "none";
+            });
+        }
+    }
+
+    toggleGstFields();
+
+    // Add event listener to the "HAVING GST?" checkbox
+    document.getElementById("create_account").addEventListener("change", toggleGstFields);
+</script>
+
 
 <div class="mb-5 pb-xl-5"></div>
 {% endblock main %}

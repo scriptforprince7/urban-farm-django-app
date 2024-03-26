@@ -283,8 +283,6 @@ def checkout_view(request):
                                                   **context})
 
 
-
-
 @login_required
 def payment_completed_view(request):
     cart_total_amount = 0
