@@ -56,64 +56,15 @@
                     <span>UPI</span>
                 </div>
             </div>
-            <div class="checkout__totals-wrapper">
-                <div class="checkout__totals">
-                    <h3>Order Details</h3>
-                    <table class="checkout-cart-items">
-                        <thead>
-                            <tr>
-                                <th>PRODUCT</th>
-                                <th>Unit Price</th>
-                                <th>SUBTOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for product_id, item in cart_data.items  %}
-                            <tr>
-                                <td><b>{{item.title}}</b> x {{item.qty}} <br>{{item.sku}}</td>
-                                <td>₹ {{item.price}}</td>
-                                <td>₹ {% widthratio item.price 1 item.qty%}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="checkout-totals">
-                        <tbody>
-                            <tr>
-                                <th>SUBTOTAL</th>
-                                <td>₹ {{cart_total_amount}}</td>
-                            </tr>
-                            <tr>
-                                <th>SHIPPING</th>
-                                <td>Free shipping</td>
-                            </tr>
-                            <tr>
-                                <th>GST</th>
-                                <td>₹ 19</td>
-                            </tr>
-                            <tr>
-                                <th>TOTAL</th>
-                                <td>₹ {{cart_total_amount}}</td>
-                            </tr>
-                            <tr>
-                                <th>INVOICE TO</th>
-                                <td>{{request.user|title}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <p style="text-align:center;">This is computer generated receipt and does not require physical signature.</p>
-            <button id="printButton" class="btn btn-primary">Print</button>
         </div>
     </section>
 </main>
 
 <div class="mb-5 pb-xl-5"></div>
 <script>
-    document.getElementById("printButton").addEventListener("click", function() {
-        window.print();
-    });
+    setTimeout(function() {
+        window.location.href = '/payment-invoice';
+    }, 2000);
 </script>
 
 {% endblock main %}

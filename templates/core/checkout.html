@@ -27,7 +27,8 @@
                 </span>
             </a>
         </div>
-        <form name="checkout-form" action="">
+        <form name="checkout-form" action="{% url 'core:checkout' %}" method="post">
+            {% csrf_token %}
             <div class="checkout-form">
                 <div class="billing-info__wrapper">
                     <h4>BILLING DETAILS</h4>
@@ -191,7 +192,20 @@
         "order_id": "{{payment.id}}",
         "handler": function (response){
 
-        window.location.href = `http://127.0.0.1:8000/confirmation/?razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}`;
+            var formData = {
+                'first_name': document.getElementById("checkout_first_name").value.trim(),
+                'last_name': document.getElementById("checkout_last_name").value.trim(),
+                'company_name': document.getElementById("checkout_company_name").value.trim(),
+                'gst_number': document.getElementById("checkout_gst_number").value.trim(),
+                'zipcode': document.getElementById("checkout_zipcode").value.trim(),
+                'city': document.getElementById("checkout_city").value.trim(),
+                'street_address': document.getElementById("checkout_street_address").value.trim(),
+                'phone': document.getElementById("checkout_phone").value.trim(),
+                'email': document.getElementById("checkout_email").value.trim(),
+            };
+
+            var queryParams = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
+            window.location.href = `http://127.0.0.1:8000/payment-invoice/?razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}&${queryParams}`;
         },
         "theme": {
             "color": "#004818"

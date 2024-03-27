@@ -25,4 +25,5 @@ urlpatterns = [
     path("dashboard/myorders", orders, name="orders"),
     path("dashboard/myaddress", address, name="address"),
     path("dashboard/myorders/<int:id>", order_detail, name="order_detail"),
+    path("payment-invoice/", payment_invoice, name="payment_invoice"),
 ]
