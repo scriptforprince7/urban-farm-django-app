@@ -389,17 +389,133 @@ def payment_invoice(request):
                         "410201", "410202", "410203", "410204", "410205", "410206", "410207", "410208", "410209", "410210",
                         # Add more zip codes as needed
                         ]
-  # Add all Mumbai zipcodes here
 
     # Check if user's zipcode is in Maharashtra
     if zipcode in maharashtra_zipcodes:
         # Maharashtra zipcode logic
-        cgst_factor = Decimal('0.5')  # CGST and SGST will be 50% each
-        igst_factor = Decimal('0')     # IGST will be 0%
+        cgst_factor = Decimal('0.025')  # CGST rate for Maharashtra (2.5%)
+        sgst_factor = Decimal('0.025')  # SGST rate for Maharashtra (2.5%)
+        igst_factor = Decimal('0')      # IGST will be 0%
     else:
         # Non-Maharashtra zipcode logic
-        cgst_factor = Decimal('0')     # CGST will be 0%
-        igst_factor = Decimal('1')     # IGST will be 100%
+        cgst_factor = Decimal('0.09')   # CGST rate for other states (9%)
+        sgst_factor = Decimal('0.09')   # SGST rate for other states (9%)
+        igst_factor = Decimal('1')      # IGST will be 100%
+
+    if 'cart_data_obj' in request.session:
+        # Initialize dictionaries to store CGST and SGST amounts for each product
+        cgst_amounts = {}
+        sgst_amounts = {}
+
+        # Calculate total amount, price without GST, and total GST
+        for p_id, item in request.session['cart_data_obj'].items():
+            total_amount += int(item['qty']) * float(item['price'])
+            price_wo_gst_total += int(item['qty']) * float(item.get('price_wo_gst', item['price']))
+            item_gst = (Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))) * int(
+                item['qty'])  # Calculate GST for this item
+            
+            # Divide the GST amount by 2 to get CGST and SGST separately
+            cgst_amount = item_gst / Decimal(2)
+            sgst_amount = item_gst / Decimal(2)
+            
+            # Store CGST and SGST amounts for this product
+            cgst_amounts[p_id] = cgst_amount
+            sgst_amounts[p_id] = sgst_amount
+
+            total_gst += item_gst  # Add GST to total GST
+
+    order = CartOrder.objects.create(
+        user=request.user,
+        price=total_amount
+    )
+
+    for p_id, item in request.session['cart_data_obj'].items():
+        cart_total_amount += int(item['qty']) * float(item['price'])
+
+        cart_order_products = CartOrderItems.objects.create(
+            order=order,
+            invoice_no="order_id-" + str(order.id),
+            item=item['title'],
+            image=item['image'],
+            qty=item['qty'],
+            price=item['price'],
+            total=float(item['qty']) * float(item['price'])
+        )
+
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        with transaction.atomic():
+            for p_id, item in request.session['cart_data_obj'].items():
+                cart_total_amount += int(item['qty']) * float(item['price'])
+                product = Product.objects.get(pid=p_id)
+                client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
+                payment = client.order.create(
+                    {'amount': int(item['qty']) * float(item['price']) * 100, 'currency': 'INR',
+                     'payment_capture': 1})
+                product.razor_pay_order_id = payment['id']
+                product.save()
+
+    client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
+    payment = client.order.create({'amount': cart_total_amount * 100, 'currency': 'INR', 'payment_capture': 1})
+
+    context = {
+    "payment": payment,
+    "price_wo_gst_total": price_wo_gst_total,
+    "total_gst": total_gst,
+    "cgst_amounts": cgst_amounts,  # Add CGST amounts to context
+    "sgst_amounts": sgst_amounts,  # Add SGST amounts to context
+    "zipcode": zipcode,
+    "maharashtra_zipcodes": maharashtra_zipcodes,
+    'razorpay_payment_id': razorpay_payment_id,
+    'razorpay_order_id': razorpay_order_id,
+    'razorpay_signature': razorpay_signature,
+    'first_name': first_name,
+    'last_name': last_name,
+    'company_name': company_name,
+    'gst_number': gst_number,
+    'zipcode': zipcode,
+    'city': city,
+    'street_address': street_address,
+    'phone': phone,
+    'email': email,
+    "cgst_amount": cgst_amount,
+    "sgst_amount": sgst_amount,
+}
+
+
+    subject = 'Payment Invoice'
+    from_email = 'princesachdeva@nationalmarketingprojects.com'
+    to_email = email  # Assuming 'email' contains the user's email address
+    html_message = render_to_string('core/payment_invoice.html', {'context': context})
+    plain_message = strip_tags(html_message)
+
+    send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
+
+    return render(request, "core/payment_invoice.html", {'current_datetime': current_datetime, 'cart_data': request.session.get('cart_data_obj', {}), 'totalcartitems': len(request.session.get('cart_data_obj', {})), 'cart_total_amount': cart_total_amount, **context})
+
+
+@login_required
+def checkout_view(request):
+    cart_total_amount = 0
+    total_amount = 0
+    price_wo_gst_total = 0
+    total_gst = 0
+    user_zipcode = request.POST.get("checkout_zipcode")  # Get user's zipcode from the form
+
+    # Define Maharashtra zipcodes
+    maharashtra_zipcodes = ["400012", "400067", "400004", "400033", ...]  # Add all Mumbai zipcodes here
+
+    # Check if user's zipcode is in Maharashtra
+    if user_zipcode in maharashtra_zipcodes:
+        # Maharashtra zipcode logic
+        cgst_factor = Decimal('0.025')  # CGST rate for Maharashtra (2.5%)
+        sgst_factor = Decimal('0.025')  # SGST rate for Maharashtra (2.5%)
+        igst_factor = Decimal('0')      # IGST will be 0%
+    else:
+        # Non-Maharashtra zipcode logic
+        cgst_factor = Decimal('0.09')   # CGST rate for other states (9%)
+        sgst_factor = Decimal('0.09')   # SGST rate for other states (9%)
+        igst_factor = Decimal('1')      # IGST will be 100%
 
     if 'cart_data_obj' in request.session:
         # Calculate total amount, price without GST, and total GST
@@ -409,12 +525,12 @@ def payment_invoice(request):
             item_gst = (Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))) * int(
                 item['qty'])  # Calculate GST for this item
 
-            # Calculate CGST, SGST, and IGST for each product based on the user's zipcode
+            # Calculate CGST and SGST for each product based on the user's zipcode
             cgst = item_gst * cgst_factor
-            sgst = item_gst * cgst_factor  # Separate calculation for SGST
+            sgst = item_gst * sgst_factor
             igst = item_gst * igst_factor
 
-            total_gst += (cgst + sgst)  # Add CGST and SGST to total GST
+            total_gst += item_gst  # Add item's GST to total GST
 
             # Do whatever you want with CGST, SGST, and IGST here
 
@@ -452,42 +568,19 @@ def payment_invoice(request):
     client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
     payment = client.order.create({'amount': cart_total_amount * 100, 'currency': 'INR', 'payment_capture': 1})
 
-    # Divide total_gst by 2 if user's zipcode is in Maharashtra
-    if zipcode in maharashtra_zipcodes:
-        total_gst /= 2
-    else:
-        total_gst = item_gst  
-        
-
     context = {
         "payment": payment,
         "price_wo_gst_total": price_wo_gst_total,
         "total_gst": total_gst,
-        "zipcode": zipcode,
+        "user_zipcode": user_zipcode,
         "maharashtra_zipcodes": maharashtra_zipcodes,
-        'razorpay_payment_id': razorpay_payment_id,
-        'razorpay_order_id': razorpay_order_id,
-        'razorpay_signature': razorpay_signature,
-        'first_name': first_name,
-        'last_name': last_name,
-        'company_name': company_name,
-        'gst_number': gst_number,
-        'zipcode': zipcode,
-        'city': city,
-        'street_address': street_address,
-        'phone': phone,
-        'email': email,
     }
 
-    subject = 'Payment Invoice'
-    from_email = 'princesachdeva@nationalmarketingprojects.com'
-    to_email = email  # Assuming 'email' contains the user's email address
-    html_message = render_to_string('core/payment_invoice.html', {'context': context})
-    plain_message = strip_tags(html_message)
-
-    send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
-
-    return render(request, "core/payment_invoice.html", {'current_datetime': current_datetime, 'cart_data': request.session.get('cart_data_obj', {}), 'totalcartitems': len(request.session.get('cart_data_obj', {})), 'cart_total_amount': cart_total_amount, **context})
+    return render(request, "core/checkout.html",
+                  {'cart_data': request.session.get('cart_data_obj', {}),
+                   'totalcartitems': len(request.session.get('cart_data_obj', {})),
+                   'cart_total_amount': cart_total_amount,
+                   **context})
 
 @login_required
 def dashboard(request):
@@ -572,3 +665,4 @@ def product_new(request, title):
     }
 
     return render(request, "core/product.html", context)
+
