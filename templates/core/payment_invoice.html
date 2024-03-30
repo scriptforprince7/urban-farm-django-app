@@ -110,10 +110,14 @@
                   </tr>
                     {% endfor %}
 
+                    {% for p_id, igst_amount in igst_amounts.items %}
                     <tr class="cs-border_left">
-                        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add IGST</td>
-                        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ </td>
+                        {% if zipcode not in maharashtra_zipcodes %}
+                        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add IGST ({{ igst_factor }}%)</td>
+                        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ igst_amount }}</td>
+                        {% endif %}
                     </tr>
+                    {% endfor %}
                 </tbody>
                                     
                 </table>
