@@ -9,6 +9,7 @@ $(document).ready(function(){
         let product_id = $(".product-id-" + index).val();
         let product_price = $(".product-price-" + index).val();
         let product_price_wo_gst = $(".product-price-wo-gst-" + index).val();
+        let gst_rate = $(".gst_rate-" + index).val();
         let product_sku = $(".product-sku-" + index).val();
         let product_image = $(".product-image-" + index).val();
     
@@ -16,6 +17,7 @@ $(document).ready(function(){
         console.log("Title:", product_title);
         console.log("Price:", product_price);
         console.log("Price Without Gst:", product_price_wo_gst);
+        console.log("gst_rate:", gst_rate);
         console.log("ID:", product_id);
         console.log("Image:", product_image);
         console.log("Sku:", product_sku);
@@ -31,6 +33,7 @@ $(document).ready(function(){
                 'title': product_title,
                 'price': product_price,
                 'price_wo_gst': product_price_wo_gst,
+                'gst_rate': gst_rate,
                 'sku' : product_sku,
             },
             dataType: 'json',

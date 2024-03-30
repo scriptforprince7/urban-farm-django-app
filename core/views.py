@@ -100,6 +100,7 @@ def category(request, main_title):
         else:
             # Use the existing GST-inclusive price for the product
             product.gst_inclusive_price = product.price * (1 + Decimal(product.gst_rate.strip('%')) / 100)
+            gst_rate = product.gst_rate
             # If the product doesn't have variants, set variant_price to None
             product.variant_price = None
 
@@ -112,6 +113,7 @@ def category(request, main_title):
         "categories": categories,
         "product_variants": product_variants,
         "variant_types": variant_types,
+        "gst_rate": gst_rate,
     }
     
     if materials:
@@ -138,6 +140,7 @@ def add_to_cart(request):
         'image': request.GET['image'],
         'sku': request.GET['sku'],
         'price_wo_gst': request.GET['price_wo_gst'],
+        'gst_rate': request.GET['gst_rate'],
     }
 
     if 'cart_data_obj' in request.session:
@@ -662,6 +665,7 @@ def product_new(request, title):
         "default_price": total_price,
         "price_wo_gst": price_wo_gst,
         "default_packaging_size": default_packaging_size,
+        "gst_rate": gst_rate,
     }
 
     return render(request, "core/product.html", context)

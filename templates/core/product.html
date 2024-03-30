@@ -196,7 +196,7 @@
         <div class="product-single__price">
           <span class="current-price">₹ {{ default_price }}</span> 
         </div>
-        <p>(Includes taxes)</p>
+        <p class="gst_rate">(Includes {{ gst_rate }} GST)</p>
 
         <div class="product-single__meta-info">
           <div class="meta-item">
@@ -269,6 +269,7 @@
             <input type="hidden" value="{{products.title}}" class="product-title-{{products.pid}}">
             <input type="hidden" value="{{default_price}}" class="product-price-{{products.pid}}">
             <input type="hidden" value="{{price_wo_gst}}" class="product-price-wo-gst-{{products.pid}}">
+            <input type="hidden" value="{{gst_rate}}" class="gst_rate-{{products.pid}}">
             <input type="hidden" value="{{products.sku}}" class="product-sku-{{products.pid}}">
             <input type="hidden" value="{{products.image.url}}" class="product-image-{{products.pid}}">
             <button

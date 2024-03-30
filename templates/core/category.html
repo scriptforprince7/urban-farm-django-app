@@ -361,6 +361,13 @@
       {% with price_wo_gst=product.variant_price|default:product.price %}
       <input type="hidden" value="{{ price_wo_gst }}" class="product-price-wo-gst-{{ product.pid }}">
       {% endwith %}
+      {% if product.productvarient_set.exists %}
+                {% with first_variant=product.productvarient_set.first %}
+                <input type="hidden" value="{{ first_variant.productvarianttypes_set.first.gst_rate }}" class="gst_rate-{{ product.pid }}">
+                {% endwith %}
+            {% else %}
+            <input type="hidden" value="{{ product.gst_rate }}" class="gst_rate-{{ product.pid }}">
+            {% endif %}
       <input type="hidden" value="{{ product.gst_inclusive_price }}" class="product-price-{{ product.pid }}">
 
       <input type="hidden" value="{{product.sku}}" class="product-sku-{{product.pid}}">
@@ -383,6 +390,7 @@
               </h6>
               <div class="product-card__price d-flex">
                 <span class="money price">₹ {{ product.gst_inclusive_price }}</span>
+
               </div>
               <div class="product-card__review d-flex align-items-center">
                 <div class="reviews-group d-flex">
