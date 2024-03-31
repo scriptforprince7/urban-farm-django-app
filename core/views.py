@@ -412,6 +412,8 @@ def payment_invoice(request):
             else:
                gst_rates_final = Decimal('0')
             
+            item['gst_rates_final'] = gst_rates_final
+            
             print(gst_rates_final)
             
             # Divide the GST amount by 2 to get CGST and SGST separately
@@ -494,6 +496,7 @@ def payment_invoice(request):
     "sgst_amount": sgst_amount,
     "igst_amount" : igst_amount,
     "igst_amounts" : igst_amounts,
+    "gst_rates_final": gst_rates_final,
     "gst_rates_final": gst_rates_final,
 }
     subject = 'Payment Invoice'

@@ -72,7 +72,7 @@
                     <td class="cs-width_4">{{ item.title }}</td>
                     <td class="cs-width_2">235</td>
                     <td class="cs-width_1">{{ item.qty }}</td>
-                    <td class="cs-width_2 cs-text_right">₹{{ item.price_wo_gst }} (gstrate)</td>
+                    <td class="cs-width_2 cs-text_right">₹{{ item.price_wo_gst }} <b>({{item.gst_rates_final|floatformat:"2"}}%)</b></td>
                     <td class="cs-width_2 cs-text_right">₹{% widthratio item.price_wo_gst 1 item.qty%}.00</td>
                   </tr>
                   {% endfor %}
