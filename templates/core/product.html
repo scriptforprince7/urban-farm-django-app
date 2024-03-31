@@ -194,9 +194,9 @@
           </span>
         </div>
         <div class="product-single__price">
-          <span class="current-price">₹ {{ default_price }}</span> 
+          <span class="current-price">₹ <span id="product-price" class="current-price">{{ default_price }}</span></span>
         </div>
-        <p class="gst_rate">(Includes {{ gst_rate }} GST)</p>
+        <p class="gst_rate">(Includes <span id="gst_rate">{{ gst_rate }}</span> GST)</p>
 
         <div class="product-single__meta-info">
           <div class="meta-item">
@@ -225,32 +225,32 @@
           </div>
         </div>
         <form name="addtocart-form" method="post">
+          <style>
+            
+            .selected-swatch {
+              background-color: yellow;
+          }
+          
 
+          </style>
           {% for variant in product_variants %}
           <div class="product-single__swatches">
-            <div class="product-swatch text-swatches">
-              <label>{{ variant.title }}</label>
-
-              <div class="swatch-list">
-                {% for variant_type in product_variant_types %}
-                {% if variant_type.product_variant == variant %}
-                <input type="radio" name="size" id="swatch-1" />
-                <label
-                  class="swatch js-swatch"
-                  for="swatch-1"
-                  aria-label="{{ variant_type.variant_title }}"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title="{{ variant_type.variant_title }}"
-                  >{{ variant_type.variant_title }}</label
-                >
-                {% endif %}
-                {% endfor %}
+              <div class="product-swatch text-swatches">
+                  <label>{{ variant.title }}</label>
+          
+                  <div class="swatch-list">
+                    {% for variant_type in product_variant_types %}
+                    {% if variant_type.product_variant == variant %}
+                    <input type="radio" name="size" id="swatch-{{ variant_type.id }}" {% if variant_type.id == 1 %}checked{% endif %} data-price="{{ variant_type.varient_price }}" data-gst="{{ variant_type.gst_rate }}" />
+                    <label class="swatch js-swatch {% if variant_type.id == 1 %}selected-swatch{% endif %}" for="swatch-{{ variant_type.id }}" aria-label="{{ variant_type.variant_title }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ variant_type.variant_title }}">{{ variant_type.variant_title }}</label>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+          
               </div>
-
-            </div>
           </div>
           {% endfor %}
+          
           <div class="product-single__addtocart">
             <div class="qty-control position-relative">
               <input
@@ -577,4 +577,43 @@
   <!-- /.products-carousel container -->
 </main>
 <div class="mb-5 pb-xl-5"></div>
+<script>
+  // Get all radio inputs
+  var radioInputs = document.querySelectorAll('input[name="size"]');
+
+  // Add click event listener to each radio input
+  radioInputs.forEach(function(input) {
+      input.addEventListener('click', function() {
+        
+          // Check if the radio input is checked
+          if (this.checked) {
+              // Remove 'selected-swatch' class from all labels
+              document.querySelectorAll('.swatch').forEach(function(label) {
+                  label.classList.remove('selected-swatch');
+              });
+              
+              // Add 'selected-swatch' class to the clicked label
+              this.nextElementSibling.classList.add('selected-swatch');
+
+              // Get the ID and title of the selected variant
+              var variantId = this.id.replace('swatch-', '');
+              var variantTitle = this.nextElementSibling.textContent.trim();
+              var price = parseFloat(this.dataset.price);
+              var gstRate = parseFloat(this.dataset.gst);
+
+              // Calculate price including GST
+              var totalPrice = price + (price * (gstRate / 100));
+
+              // Update the displayed price
+              document.getElementById('product-price').textContent = totalPrice.toFixed(2);
+
+              // Log the ID and title to the console
+              console.log("Selected Variant ID:", variantId);
+              console.log("Selected Variant Title:", variantTitle);
+          }
+      });
+  });
+</script>
+
+
 {% endblock main %}
