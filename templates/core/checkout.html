@@ -90,6 +90,13 @@
                             </div>
                         </div>
                         <div class="col-md-12">
+                            <div class="form-floating mt-3 mb-3">
+                                <input type="text" class="form-control" id="checkout_shipping_address"
+                                    placeholder="Shipping Address *" />
+                                <label for="checkout_shipping_address">Shipping Address *</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-floating my-3">
                                 <input type="text" class="form-control" id="checkout_phone" placeholder="Phone *" />
                                 <label for="checkout_phone">Phone *</label>
@@ -200,6 +207,7 @@
                 'zipcode': document.getElementById("checkout_zipcode").value.trim(),
                 'city': document.getElementById("checkout_city").value.trim(),
                 'street_address': document.getElementById("checkout_street_address").value.trim(),
+                'shipping_address': document.getElementById("checkout_shipping_address").value.trim(),
                 'phone': document.getElementById("checkout_phone").value.trim(),
                 'email': document.getElementById("checkout_email").value.trim(),
             };
@@ -226,12 +234,13 @@
         var firstName = document.getElementById("checkout_first_name").value.trim();
         var lastName = document.getElementById("checkout_last_name").value.trim();
         var streetAddress = document.getElementById("checkout_street_address").value.trim();
+        var shippingAddress = document.getElementById("checkout_shipping_address").value.trim();
         var city = document.getElementById("checkout_city").value.trim();
         var zipcode = document.getElementById("checkout_zipcode").value.trim();
         var phone = document.getElementById("checkout_phone").value.trim();
         var email = document.getElementById("checkout_email").value.trim();
 
-        if (firstName === '' || lastName === '' || streetAddress === '' || city === '' || zipcode === '' || phone === '' || email === '') {
+        if (firstName === '' || lastName === '' || streetAddress === '' || shippingAddress === '' || city === '' || zipcode === '' || phone === '' || email === '') {
             alert('Please fill in all details.');
             return false;
         }

@@ -31,7 +31,6 @@
                                 <th>Status</th>
                                 <th>Payment Status</th>
                                 <th>Total</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +45,6 @@
                                 <td><i class="fa-solid fa-xmark" style="color: red;"></i></td>
                                 {% endif %}
                                 <td>{{o.price}}</td>
-                                <td><a href="{% url 'core:order_detail' o.id %}"><button class="btn btn-primary">VIEW</button></a></td>
                             </tr>
                             {% endfor %}
                         </tbody>

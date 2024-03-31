@@ -24,7 +24,7 @@ from django.http import QueryDict
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags    
-
+from num2words import num2words
 
 def index(request):
     main_categories = Main_category.objects.filter(active_status='published')
@@ -369,6 +369,7 @@ def payment_invoice(request):
     zipcode = query_params.get('zipcode')
     city = query_params.get('city')
     street_address = query_params.get('street_address')
+    shipping_address = query_params.get('shipping_address')
     phone = query_params.get('phone')
     email = query_params.get('email')
     cart_total_amount = 0
@@ -470,6 +471,16 @@ def payment_invoice(request):
 
     client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
     payment = client.order.create({'amount': cart_total_amount * 100, 'currency': 'INR', 'payment_capture': 1})
+    cart_total_amount_rounded = round(cart_total_amount, 2)
+    cart_total_amount_words = num2words(cart_total_amount_rounded, lang='en_IN')
+
+    invoice_number, created = InvoiceNumber.objects.get_or_create()
+
+    # Increment the invoice number
+    invoice_number.increment()
+
+    # Use the incremented invoice number for the current invoice
+    invoice_no = str(invoice_number)
     
 
     context = {
@@ -498,6 +509,9 @@ def payment_invoice(request):
     "igst_amounts" : igst_amounts,
     "gst_rates_final": gst_rates_final,
     "gst_rates_final": gst_rates_final,
+    "shipping_address": shipping_address,
+    "cart_total_amount_words": cart_total_amount_words,
+    'invoice_no': invoice_no,
 }
     subject = 'Payment Invoice'
     from_email = 'princesachdeva@nationalmarketingprojects.com'

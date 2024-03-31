@@ -945,7 +945,7 @@
                           <div class="qty-control__reduce text-start">-</div>
                           <div class="qty-control__increase text-end">+</div>
                       </div>
-                      <span class="cart-drawer-item__price money price">₹ {{item.price}}</span>
+                      <span class="cart-drawer-item__price money price">₹ {{item.price|floatformat:"2"}}</span>
                   </div>
               </div>
   
@@ -960,7 +960,7 @@
           <hr class="cart-drawer-divider" />
           <div class="d-flex justify-content-between">
               <h6 class="fs-base fw-medium">SUBTOTAL: </h6>
-              <span class="cart-subtotal fw-medium">₹ {{cart_total_amount}}</span>
+              <span class="cart-subtotal fw-medium">₹ {{cart_total_amount|floatformat:"2"}}</span>
           </div>
           <a href="/cart" class="btn btn-light mt-3 d-block">View Cart</a>
           <a href="/checkout" class="btn btn-primary mt-3 d-block">Checkout</a>

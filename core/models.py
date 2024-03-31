@@ -321,3 +321,13 @@ class Blogs(models.Model):
 
     class Meta:
         verbose_name_plural = "Blogs"
+
+class InvoiceNumber(models.Model):
+    number = models.IntegerField(default=1)
+
+    def increment(self):
+        self.number += 1
+        self.save()
+
+    def __str__(self):
+        return f'Invoice No: INW2324-{self.number:04d}'
