@@ -401,10 +401,18 @@ def payment_invoice(request):
 
         # Calculate total amount, price without GST, and total GST
         for p_id, item in request.session['cart_data_obj'].items():
-            total_amount += int(item['qty']) * float(item['price'])
-            price_wo_gst_total += int(item['qty']) * float(item.get('price_wo_gst', item['price']))
+            total_amount += int(item['qty']) * Decimal(item['price'])
+            price_wo_gst_total += int(item['qty']) * Decimal(item.get('price_wo_gst', item['price']))
+            price_wo_gst_final = int(item['qty']) * Decimal(item.get('price_wo_gst', item['price']))
             item_gst = (Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))) * int(
                 item['qty'])  # Calculate GST for this item
+            
+            if price_wo_gst_final != 0:
+               gst_rates_final = (item_gst / price_wo_gst_final) * 100
+            else:
+               gst_rates_final = Decimal('0')
+            
+            print(gst_rates_final)
             
             # Divide the GST amount by 2 to get CGST and SGST separately
             if zipcode in maharashtra_zipcodes:
@@ -424,7 +432,6 @@ def payment_invoice(request):
             igst_amounts[p_id] = igst_amount
 
             total_gst += item_gst
-            print("IGST Amounts:", igst_amounts)
 
     order = CartOrder.objects.create(
         user=request.user,
