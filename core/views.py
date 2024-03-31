@@ -603,6 +603,12 @@ def checkout_view(request):
 def dashboard(request):
     return render(request, "core/account_dashboard.html")
 
+def faq(request):
+    return render(request, "core/faq.html")
+
+def shipping_policy(request):
+    return render(request, "core/shipping-policy.html")
+
 @login_required
 def orders(request):
     orders = CartOrder.objects.filter(user=request.user).order_by("-id")

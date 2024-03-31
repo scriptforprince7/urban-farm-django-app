@@ -493,14 +493,10 @@
                                 <span class="money price">₹ {{new_arrivals.price}}</span>
                             </div>
 
-                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0">
-                                <button
-                                    class="btn-link btn-link_lg me-auto me-xxl-4 text-uppercase fw-medium js-add-cart js-open-aside custom"
-                                    data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                              <a href="{% url 'core:product_new' new_arrivals.title %}"><button
+                            <div class="d-flex align-items-center hover__content position-relative mt-3 mt-sm-0"><button
                                 class="btn-link btn-link_lg me-auto text-uppercase fw-medium js-quick-view custom"
                                  title="Quick view">
-                                <span class="d-none d-xxl-block">Quick View</span>
+                               <a><span class="d-none d-xxl-block">Quick View</span></a> 
                                 <span class="d-block d-xxl-none"><svg width="18" height="18" viewBox="0 0 18 18"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <use href="#icon_view" />
