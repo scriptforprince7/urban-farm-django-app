@@ -111,7 +111,7 @@
                             <tbody>
                                 <tr>
                                     <th>Subtotal</th>
-                                    <td>₹ {{ cart_total_amount }}</td>
+                                    <td>₹ {{cart_total_amount|floatformat:"2"}}</td>
                                 </tr>
                                 <tr>
                                     <th>Shipping</th>
@@ -125,7 +125,7 @@
                                 </tr>
                                 <tr>
                                     <th>Total</th>
-                                    <td>₹ {{ cart_total_amount }}</td>
+                                    <td>₹ {{cart_total_amount|floatformat:"2"}}</td>
                                 </tr>
                             </tbody>
                         </table>

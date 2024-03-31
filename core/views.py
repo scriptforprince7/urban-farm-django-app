@@ -420,16 +420,18 @@ def payment_invoice(request):
                  cgst_amount = item_gst / Decimal(2)
                  sgst_amount = item_gst / Decimal(2)
                  igst_amount = Decimal('0')  # IGST will be 0
+                 gst_rates_final = gst_rates_final / Decimal(2)
             else:
             # For non-Maharashtra zip codes, IGST will be double of CGST
                  cgst_amount = Decimal('0')  # CGST will be 0
                  sgst_amount = Decimal('0')  # SGST will be 0
                  igst_amount = item_gst  
+                 gst_rates_final = gst_rates_final
             
             # Store CGST and SGST amounts for this product
-            cgst_amounts[p_id] = cgst_amount
-            sgst_amounts[p_id] = sgst_amount
-            igst_amounts[p_id] = igst_amount
+            cgst_amounts[p_id] = (cgst_amount, gst_rates_final)
+            sgst_amounts[p_id] = (sgst_amount, gst_rates_final)
+            igst_amounts[p_id] = (igst_amount, gst_rates_final)
 
             total_gst += item_gst
 
@@ -492,6 +494,7 @@ def payment_invoice(request):
     "sgst_amount": sgst_amount,
     "igst_amount" : igst_amount,
     "igst_amounts" : igst_amounts,
+    "gst_rates_final": gst_rates_final,
 }
     subject = 'Payment Invoice'
     from_email = 'princesachdeva@nationalmarketingprojects.com'
