@@ -322,19 +322,6 @@ def checkout_view(request):
 
 
 @login_required
-def payment_completed_view(request):
-    cart_total_amount = 0
-    if 'cart_data_obj' in request.session:
-        for p_id, item in request.session['cart_data_obj'].items():
-            cart_total_amount += int(item['qty']) * float(item['price'])
-        context = request.POST
-    current_datetime = datetime.now()
-            
-    return render(request, "core/confirmation.html", {"cart_data": request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount, 'current_datetime': current_datetime})
-
-
-
-@login_required
 def payment_failed_view(request):
     return render(request, "core/payment-failed.html")
 

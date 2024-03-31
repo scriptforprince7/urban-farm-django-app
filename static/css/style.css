@@ -19123,6 +19123,7 @@ a.add-to-wishlist.active .flaticon.flaticon-heart {
   padding-bottom: 1rem;
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
+  justify-content: center;
 }
 .shop-checkout .checkout-steps__item-number {
   font-size: 1.125rem;

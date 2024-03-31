@@ -19,7 +19,6 @@ urlpatterns = [
     path("blog/", blogs, name="blogs"),
     path("privacy-policy/", privacypolicy, name="privacypolicy"),
     path("cart/", cart_view, name="cart_view"),
-    path("confirmation/", payment_completed_view, name="payment_completed_view"),
     path("payment-failed/", payment_failed_view, name="payment_failed_view"),
     path("dashboard/", dashboard, name="dashboard"),
     path("dashboard/myorders", orders, name="orders"),
