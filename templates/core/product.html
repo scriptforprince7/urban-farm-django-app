@@ -265,6 +265,7 @@
               <div class="qty-control__increase">+</div>
             </div>
             <!-- .qty-control -->
+            <input type="hidden" value="{{products.pid}}" class="product-id">
             <input type="hidden" value="{{products.pid}}" class="product-id-{{products.pid}}">
             <input type="hidden" value="{{products.title}}" class="product-title-{{products.pid}}">
             <input type="hidden" value="{{default_price}}" class="product-price-{{products.pid}}">
@@ -607,13 +608,23 @@
               // Update the displayed price
               document.getElementById('product-price').textContent = totalPrice.toFixed(2);
 
+              // Update the hidden input field for the product price with the selected variant price
+              var productIdInput = document.querySelector('.product-id');
+              if (productIdInput) {
+              var productId = productIdInput.value;
+              document.querySelector('.product-price-' + productId).value = totalPrice.toFixed(2);
+              document.querySelector('.product-price-wo-gst-' + productId).value = price.toFixed(2);
+                        }
+
               // Log the ID and title to the console
               console.log("Selected Variant ID:", variantId);
               console.log("Selected Variant Title:", variantTitle);
+              console.log("Selected Variant Price:", price);
           }
       });
   });
 </script>
+
 
 
 {% endblock main %}
