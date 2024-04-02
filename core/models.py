@@ -214,7 +214,7 @@ class ProductVarient(models.Model):
 
 class ProductVariantTypes(models.Model):
     product_variant = models.ForeignKey(ProductVarient, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     variant_title = models.CharField(max_length=500, default="Product Varient")
     varient_price = models.DecimalField(max_digits=9999, decimal_places=2, default="1")
     gst_rate = models.CharField(max_length=12, default="5%")

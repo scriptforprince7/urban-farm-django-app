@@ -34,53 +34,64 @@
           <div class="cs-invoice_left">
             <b class="cs-primary_color">Shipped By:</b>
             <p>
-              Galla No. B137, First Floor,<br> Kohinoor Industrial Complex, <br> Plot No. J7-J9, Opp. Hindalco, <br> MIDC Taloja, Panvel, Maharashtra-410208<br><b>GSTIN</b>: 27AAHFU1116G1ZE<br><b>PAN Number</b>: AAHFU1116G<br><b>Email</b>: sales.urbanfarm@gmail.com
+             <b>URBAN FARM SYSTEMS <br> AND TECHNOLOGIES LLP</b> <br>
+             B/41, Ground Floor, Kohinoor Galla No. <br> B137, First Floor, Kohinoor Industrial Complex, Plot No. J7-J9, Opp. Hindalco, MIDC Taloja, Panvel, Maharashtra-410208
+              <br><b>GSTIN</b>: 27AAHFU1116G1ZE<br><b>PAN Number</b>: AAHFU1116G<br><b>Email</b>: sales.urbanfarm@gmail.com <br><b>Mobile</b>:8879658654
 
             </p>
           </div>
-          {% if gst_number %}
-          <div class="cs-invoice_right cs-text_right">
+          <div class="cs-invoice_right">
+            <b class="cs-primary_color">Bill To:</b>
+            <p>
+             <b>{{first_name}} {{last_name}}</b>  <br> {{street_address}}<br> {{zipcode}}
+            </p>
+          </div>
+          <div class="cs-invoice_right">
+            <b class="cs-primary_color">Ship To:</b>
+            <p>
+             <b>{{shipping_address}}</b>  <br>{{zipcode}}
+            </p>
+            {% if gst_number %}
             <b class="cs-primary_color">GST Details:</b>
             <p>
              <b>GSTIN:</b> {{gst_number}} <br><b>Company Name</b>: {{company_name}} 
             </p>
-          </div>
-          {% endif %}
-          <div class="cs-invoice_right cs-text_right">
-            <b class="cs-primary_color">Bill To:</b>
-            <p>
-             <b>{{first_name}} {{last_name}}</b>  <br> {{city}}<br> {{zipcode}}
-            </p>
-            <b class="cs-primary_color">Ship  To:</b>
-            <p>
-              {{shipping_address}} <br> {{zipcode}}
-            </p>
+            {% endif %}
           </div>
         
         </div>
         <div class="cs-table cs-style1">
           <div class="cs-round_border">
             <div class="cs-table_responsive">
+              <style>
+                .cs-center {
+                  text-align: center;
+                }
+              </style>
               <table>
-                <thead>
-                  <tr>
-                    <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">Sr. No.</th>
-                    <th class="cs-width_4 cs-semi_bold cs-primary_color cs-focus_bg">Description of Goods</th>
-                    <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">HSN/SAC Code</th>
-                    <th class="cs-width_2 cs-semi_bold cs-primary_color cs-focus_bg">Qty</th>
-                    <th class="cs-width_2 cs-semi_bold cs-primary_color cs-focus_bg">Rate (Per Unit)</th>
-                    <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">Amount</th>
-                  </tr>
+                <tr>
+                  <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg cs-center">Sr. No.</th>
+                  <th class="cs-width_4 cs-semi_bold cs-primary_color cs-focus_bg cs-center">Description of Goods</th>
+                  <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg cs-center">HSN/SAC Code</th>
+                  <th class="cs-width_2 cs-semi_bold cs-primary_color cs-focus_bg cs-center">Qty</th>
+                  <th class="cs-width_2 cs-semi_bold cs-primary_color cs-focus_bg cs-center">Rate (Per Unit)</th>
+                  <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg cs-center">Amount</th>
+                </tr>
                 </thead>
+                <style>
+                  .cs-width_1, .cs-width_4, .cs-width_2 {
+                    border: 1px solid grey; /* Adjust border style as needed */
+                  }
+                </style>
                 <tbody>
                   {% for product_id, item in cart_data.items  %}
                   <tr>
-                    <td class="cs-width_3">{{ forloop.counter }}</td>
-                    <td class="cs-width_4"><b>{{ item.title }}</b></td>
-                    <td class="cs-width_2">235</td>
-                    <td class="cs-width_1">{{ item.qty }}</td>
-                    <td class="cs-width_2 cs-text_right">₹{{ item.price_wo_gst }} <b>({{item.gst_rates_final|floatformat:"2"}}%)</b></td>
-                    <td class="cs-width_2 cs-text_right">₹{% widthratio item.price_wo_gst 1 item.qty%}.00</td>
+                    <td class="cs-width_1 cs-center">{{ forloop.counter }}</td>
+                    <td class="cs-width_4 cs-center"><b>{{ item.title }}</b></td>
+                    <td class="cs-width_2 cs-center">235</td>
+                    <td class="cs-width_1 cs-center">{{ item.qty }}</td>
+                    <td class="cs-width_2 cs-center">₹{{ item.price_wo_gst }} <b>({{item.gst_rates_final|floatformat:"2"}}%)</b></td>
+                    <td class="cs-width_2 cs-text_right">₹<b>{% widthratio item.price_wo_gst 1 item.qty%}.00</b></td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -104,13 +115,7 @@
                     </li>
                   </ul>
                 </p>
-                <p class="cs-mb0"><b class="cs-primary_color">Additional Information
-                  :</b></p>
-                  <p class="cs-m0"><b>Order Id: </b>{{razorpay_order_id}} <br>
-                    <b> Bill To: </b> {{first_name}} {{last_name}} <br>
-                   <b>  Shipping Address: </b>{{city}}
-                     
-                     </p>
+
               </div>
               
               <div class="cs-right_footer">
@@ -175,6 +180,12 @@
           <div class="cs-note_right">
             <p class="cs-mb0"><b class="cs-primary_color cs-bold">Paid Amount:</b></p>
             <p class="cs-m0"> <p><b>{{ cart_total_amount_words }}</b> rupees only/-</p> </p>
+            <p class="cs-mb0"><b class="cs-primary_color cs-bold">Additional Information:</b></p>
+            <p class="cs-m0"> <p class="cs-m0"><b>Order Id: </b>{{razorpay_order_id}} <br>
+              <b> Bill To: </b> {{first_name}} {{last_name}} <br>
+             <b>  Shipping Address: </b>{{city}}
+               
+               </p> </p>
           </div>
         </div><!-- .cs-note -->
       </div>
@@ -231,10 +242,5 @@
     }
     </script>
 
-<script>
-  setTimeout(function() {
-      window.location.href = '/dashboard/myorders';
-  }, 20000);
-</script>
 </body>
 </html>
