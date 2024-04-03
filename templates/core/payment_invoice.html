@@ -125,33 +125,35 @@
                         <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Total Taxable Value</td>
                         <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ price_wo_gst_total }}</td>
                     </tr>
-                    {% for p_id, cgst_info in cgst_amounts.items %}
-    <tr class="cs-border_left">
-        {% if zipcode in maharashtra_zipcodes %}
-        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add CGST ({{ cgst_info.1|floatformat:"2" }})%</td>
-        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ cgst_info.0 }}</td>
-        {% endif %}
-    </tr>
-    <tr class="cs-border_left">
-        {% if zipcode in maharashtra_zipcodes %}
-        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add SGST ({{ cgst_info.1|floatformat:"2" }})%</td>
-        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ cgst_info.0 }}</td>
-        {% endif %}
-    </tr>
-{% endfor %}
-
-{% for p_id, igst_info in igst_amounts.items %}
-    <tr class="cs-border_left">
-        {% if zipcode not in maharashtra_zipcodes %}
-        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add IGST ({{ igst_info.1|floatformat:"2" }})%</td>
-        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ igst_info.0 }}</td>
-        {% endif %}
-    </tr>
-{% endfor %}
-
-
-                </tbody>
-                                    
+                    {% for gst_rate, cgst_amount in cgst_amounts.items %}
+                    <tr class="cs-border_left">
+                        {% if zipcode in maharashtra_zipcodes %}
+                        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add CGST ({{ gst_rate }})%</td>
+                        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ cgst_amount }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                
+                {% for gst_rate, sgst_amount in sgst_amounts.items %}
+                    <tr class="cs-border_left">
+                        {% if zipcode in maharashtra_zipcodes %}
+                        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add SGST ({{ gst_rate }})%</td>
+                        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ sgst_amount }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                
+                    
+                
+                    {% for gst_rate, igst_amount in gst_amounts.items %}
+                    <tr class="cs-border_left">
+                        {% if zipcode not in maharashtra_zipcodes %}
+                        <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Add IGST ({{ gst_rate }})%</td>
+                        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">₹ {{ igst_amount }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>                    
                 </table>
               </div>
             </div>
@@ -241,6 +243,7 @@
         URL.revokeObjectURL(url);
     }
     </script>
+    
 
 </body>
 </html>

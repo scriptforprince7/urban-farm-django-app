@@ -382,48 +382,72 @@ def payment_invoice(request):
                         ]
 
     if 'cart_data_obj' in request.session:
-        # Initialize dictionaries to store CGST and SGST amounts for each product
-        cgst_amounts = {}
-        sgst_amounts = {}
-        igst_amounts = {} 
+    # Initialize dictionaries to store CGST, SGST, and IGST amounts for each product
+       cgst_amounts = {}
+       sgst_amounts = {}
+       igst_amounts = {}
+       gst_amounts = {}  # Dictionary to store aggregated GST amounts
 
-        # Calculate total amount, price without GST, and total GST
-        for p_id, item in request.session['cart_data_obj'].items():
-            total_amount += int(item['qty']) * Decimal(item['price'])
-            price_wo_gst_total += int(item['qty']) * Decimal(item.get('price_wo_gst', item['price']))
-            price_wo_gst_final = int(item['qty']) * Decimal(item.get('price_wo_gst', item['price']))
-            item_gst = (Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))) * int(
-                item['qty'])  # Calculate GST for this item
-            
-            if price_wo_gst_final != 0:
-               gst_rates_final = (item_gst / price_wo_gst_final) * 100
-            else:
-               gst_rates_final = Decimal('0')
-            
-            item['gst_rates_final'] = gst_rates_final
-            
-            print(gst_rates_final)
-            
-            # Divide the GST amount by 2 to get CGST and SGST separately
-            if zipcode in maharashtra_zipcodes:
+    # Calculate total amount, price without GST, and total GST
+    for p_id, item in request.session['cart_data_obj'].items():
+        total_amount += int(item['qty']) * Decimal(item['price'])
+        price_wo_gst_total += int(item['qty']) * Decimal(item.get('price_wo_gst', item['price']))
+        price_wo_gst_final = int(item['qty']) * Decimal(item.get('price_wo_gst', item['price']))
+        item_gst = (Decimal(item['price']) - Decimal(item.get('price_wo_gst', item['price']))) * int(
+            item['qty'])  # Calculate GST for this item
+
+        # Calculate GST rates
+        if price_wo_gst_final != 0:
+            gst_rates_final = (item_gst / price_wo_gst_final) * 100
+        else:
+            gst_rates_final = Decimal('0')
+
+        item['gst_rates_final'] = gst_rates_final
+
+        # Divide the GST amount by 2 to get CGST and SGST separately
+        if zipcode in maharashtra_zipcodes:
             # For Maharashtra zip codes, calculate CGST and SGST separately
-                 cgst_amount = item_gst / Decimal(2)
-                 sgst_amount = item_gst / Decimal(2)
-                 igst_amount = Decimal('0')  # IGST will be 0
-                 gst_rates_final = gst_rates_final / Decimal(2)
-            else:
+            igst_amount = Decimal('0')  # IGST will be 0
+            gst_rates_final = gst_rates_final / Decimal(2)
+        else:
             # For non-Maharashtra zip codes, IGST will be double of CGST
-                 cgst_amount = Decimal('0')  # CGST will be 0
-                 sgst_amount = Decimal('0')  # SGST will be 0
-                 igst_amount = item_gst  
-                 gst_rates_final = gst_rates_final
-            
-            # Store CGST and SGST amounts for this product
-            cgst_amounts[p_id] = (cgst_amount, gst_rates_final)
-            sgst_amounts[p_id] = (sgst_amount, gst_rates_final)
-            igst_amounts[p_id] = (igst_amount, gst_rates_final)
+            igst_amount = item_gst
+            gst_rates_final = gst_rates_final
+       
 
-            total_gst += item_gst
+        # Aggregate GST amounts based on GST rates
+        if gst_rates_final in gst_amounts:
+            gst_amounts[gst_rates_final] += item_gst
+        else:
+            gst_amounts[gst_rates_final] = item_gst
+
+        total_gst += item_gst
+
+    # Print CGST Amounts
+    print("CGST Amounts:")
+    for gst_rate, total_gst_amount in gst_amounts.items():
+        cgst_amount = total_gst_amount / Decimal(2)
+        print(f"CGST Amount: {cgst_amount}, GST Rate: {gst_rate}")
+
+    # Print SGST Amounts
+    print("\nSGST Amounts:")
+    for gst_rate, total_gst_amount in gst_amounts.items():
+        sgst_amount = total_gst_amount / Decimal(2)
+        print(f"SGST Amount: {sgst_amount}, GST Rate: {gst_rate}")
+    
+    print("\nIGST Amounts:")
+    for gst_rate, total_gst_amount in gst_amounts.items():
+        igst_amount = total_gst_amount
+        print(f"IGST Amount: {igst_amount}, GST Rate: {gst_rate}")
+    
+    print("GST Amounts:")
+    print(gst_amounts)
+
+    for gst_rate, total_gst_amount in gst_amounts.items():
+       cgst_amount = total_gst_amount / Decimal(2)
+       sgst_amount = total_gst_amount / Decimal(2)
+       cgst_amounts[gst_rate] = cgst_amount
+       sgst_amounts[gst_rate] = sgst_amount
 
     order = CartOrder.objects.create(
         user=request.user,
@@ -468,7 +492,8 @@ def payment_invoice(request):
 
     # Use the incremented invoice number for the current invoice
     invoice_no = str(invoice_number)
-    
+
+    half_total_gst_amount = total_gst / Decimal(2)
 
     context = {
     "payment": payment,
@@ -476,6 +501,7 @@ def payment_invoice(request):
     "total_gst": total_gst,
     "cgst_amounts": cgst_amounts,
     "sgst_amounts": sgst_amounts,
+    "igst_amounts": igst_amounts,
     "zipcode": zipcode,
     "maharashtra_zipcodes": maharashtra_zipcodes,
     'razorpay_payment_id': razorpay_payment_id,
@@ -499,6 +525,9 @@ def payment_invoice(request):
     "shipping_address": shipping_address,
     "cart_total_amount_words": cart_total_amount_words,
     'invoice_no': invoice_no,
+    "half_total_gst_amount": half_total_gst_amount,
+    "gst_amounts": gst_amounts,
+    "gst_rate": gst_rate,
 }
     subject = 'Payment Invoice'
     from_email = 'princesachdeva@nationalmarketingprojects.com'
