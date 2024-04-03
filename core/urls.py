@@ -18,6 +18,7 @@ urlpatterns = [
     path("career", career, name="career"),
     path("faq", faq, name="faq"),
     path("shipping-policy/", shipping_policy, name="shipping_policy"),
+    path("termsandconditions/", tnc, name="tnc"),
     path("blog/", blogs, name="blogs"),
     path("privacy-policy/", privacypolicy, name="privacypolicy"),
     path("cart/", cart_view, name="cart_view"),

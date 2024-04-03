@@ -78,6 +78,8 @@ def category(request, main_title):
 
     categories = Category.objects.filter(main_category=main_categories)
     
+    gst_rate = None  # Initialize gst_rate here
+
     for product in products:
         # Check if the product has variants
         product_has_variants = product.productvarient_set.exists()
@@ -113,13 +115,14 @@ def category(request, main_title):
         "categories": categories,
         "product_variants": product_variants,
         "variant_types": variant_types,
-        "gst_rate": gst_rate,
+        "gst_rate": gst_rate,  # Include gst_rate in the context
     }
     
     if materials:
         context["materials"] = materials
 
     return render(request, "core/category.html", context)
+
 
 def main_category(request):
     return render(request, "core/main_category.html")
@@ -325,9 +328,11 @@ def checkout_view(request):
 def payment_failed_view(request):
     return render(request, "core/payment-failed.html")
 
-
 def about(request):
     return render(request, "core/about-us.html")
+
+def tnc(request):
+    return render(request, "core/tnc.html")
 
 def contact(request):
     return render(request, "core/contact_us.html")
@@ -386,7 +391,8 @@ def payment_invoice(request):
        cgst_amounts = {}
        sgst_amounts = {}
        igst_amounts = {}
-       gst_amounts = {}  # Dictionary to store aggregated GST amounts
+       gst_amounts = {}
+       gst_amounts_combined = {}  # Dictionary to store aggregated GST amounts
 
     # Calculate total amount, price without GST, and total GST
     for p_id, item in request.session['cart_data_obj'].items():
@@ -444,10 +450,9 @@ def payment_invoice(request):
     print(gst_amounts)
 
     for gst_rate, total_gst_amount in gst_amounts.items():
-       cgst_amount = total_gst_amount / Decimal(2)
-       sgst_amount = total_gst_amount / Decimal(2)
-       cgst_amounts[gst_rate] = cgst_amount
-       sgst_amounts[gst_rate] = sgst_amount
+        cgst_amount = total_gst_amount / Decimal(2)
+        sgst_amount = total_gst_amount / Decimal(2)
+        gst_amounts_combined[gst_rate] = {'cgst': cgst_amount, 'sgst': sgst_amount}
 
     order = CartOrder.objects.create(
         user=request.user,
@@ -528,6 +533,7 @@ def payment_invoice(request):
     "half_total_gst_amount": half_total_gst_amount,
     "gst_amounts": gst_amounts,
     "gst_rate": gst_rate,
+    "gst_amounts_combined": gst_amounts_combined,
 }
     subject = 'Payment Invoice'
     from_email = 'princesachdeva@nationalmarketingprojects.com'
